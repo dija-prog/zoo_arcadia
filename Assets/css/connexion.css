@@ -1,0 +1,29 @@
+
+             /*  css for connexion page start */
+#connexion .h1 {
+    color:#05772f;
+    text-decoration: none;
+  }
+
+
+.conx{
+    font-size: 3rem;
+    letter-spacing: 1px;
+    color: #f39e0b;
+    text-align: center;
+}
+
+#connexion img{
+    object-fit: cover;
+    object-position: left;
+}
+                 /* css fon connexion page end  */
+
+                  /* css for forgot_password start */
+
+.page-wrap {
+    min-height: 100vh;
+}
+.container {
+    max-width: 900px;
+}
