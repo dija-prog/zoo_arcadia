@@ -28,3 +28,25 @@
     button.forEach(a => a.addEventListener("click",habitat)); 
     
 
+
+    function incrementViews(animalId){
+        fetch('AnimalController.php', {
+            method: 'POST',
+            headers: {
+                'content-Type':'application/json'
+            },
+    
+            body: JSON.stringify({animal_id: animalId})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('consultaion incrémentée avec succès');
+    
+            } else {
+                console.error('Erreur lors de l\' incrémentation ');
+            }
+        })
+        .catch(error => console.error('Erreur:', error));
+    }
+

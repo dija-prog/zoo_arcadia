@@ -9,25 +9,7 @@ document.addEventListener("DOMContentLoaded",() => {
 
 })
 
-// button ajouter de form user
 
-// document.addEventListener("DOMContentLoaded",function(){
-//     const button = document.getElementById("serviceBtn");
-//     const form = document.getElementById("formService");
-
-//     button.addEventListener("click",function(){
-//         console.log("button click")
-//         if (form.style.display === "none"|| form.style.display === "none") {
-//             // console.log("form not hide")
-//             form.style.display = "block";
-//         } else {
-//             // console.log("form is hide")
-//             form.style.display = "none";
-
-//         }
-
-//     });
-// });
 
 // suprimer un utilisateur
 
@@ -44,3 +26,74 @@ function confirmationSup(){
 
 }
 
+// création de graphique avec chart.js
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const response = await fetch('/get_animal_views.php');
+        const data = await response.json();
+
+        const labels = data.map(animal => animal.name);
+        const views = data.map(animal => animal.views);
+
+        const ctx = document.getElementById("barCanvas").getContext("2d");
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Nombre de consultations",
+                    data: views,
+                    backgroundColor: "rgba(75, 192, 192, 0.6)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error("Erreur lors de la récupération des données:", error);
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const barCanvas = document.getElementById("barCanvas");
+// const barChart = new Chart(barCanvas,{
+//     type: "bar",
+//     data: {
+//         labels: ["animal_nom"],
+//         datasets:[{
+//             data:["views"],
+//             backgroundColor: [
+                
+//             ]
+//         }]
+//     },
+//     options: {
+//         responsive: true,
+//         scales:{
+//             y:{
+//                 beginAtZero : true
+//             }
+//         }
+//     }
+// })

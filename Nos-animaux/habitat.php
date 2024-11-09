@@ -37,7 +37,7 @@
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link " href="../Nos animaux/animal.php" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
+                  <a class="nav-link " href="../Nos-animaux/animal.php" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
                     Nos Animaux
                   </a>
                 </li>
@@ -156,7 +156,7 @@
         <div class="col-sm-5 col-md-4 text-end text-bold">
           <h3 class=" text-success mb-5 mt-5 "> Admirer une multitude d'animaux venus des quatre coins du monde </h3>
           <p class=""> Partez à la rencontre des animaux sauvages et des espèce menacées</p>
-          <button class="btn btn-success btn-lg  p-4 mt-4">Découvrir les fiches animaux <a href="./animals.php"></a></button>"
+          <button  onclick="window.location.href='./animals.php'" class="btn btn-success btn-lg  p-4 mt-4">Découvrir les fiches animaux </button>"
         </div>
       </div>
     </div>
@@ -205,6 +205,6 @@
   </footer>
     <script src="../Assets/Bootstraps/js/bootstrap.bundle.min.js"></script>
     <script src="../Assets/Bootstraps/js/bootstrap.min.js"></script>
-    <script src="../Assets/js/animaux.js"></script>
+    <script src="../Assets/js/habitat.js"></script>
 </body>
 </html>

@@ -350,6 +350,9 @@ header .dropdown-menu{
     list-style-position: inside;
    
 }
+.reviews .fas{
+    color: #FFBF00;
+}
 
 /* footer-start */
 .footer{

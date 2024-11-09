@@ -1,56 +1,110 @@
-.bloc_left_price {
-    color: #c01508;
-    text-align: center;
-    font-weight: bold;
-    font-size: 150%;
+.navbar {
+    background-color: rgba(0, 0, 0, 0.2);
 }
-.category_block li:hover {
-    background-color: #007bff;
+
+.navbar li {
+    list-style-type: none;
+    text-decoration: none;
 }
-.category_block li:hover a {
-    color: #ffffff;
+.logo{
+    width: 30px;
+    height: 60px;
 }
-.category_block li a {
-    color: #343a40;
+
+.navbar a{    
+    color:white;
+    font-size: 1.2rem;
+    list-style-type: none;
+    text-decoration: none;
 }
-.add_to_cart_block .price {
-    color: #c01508;
-    text-align: center;
-    font-weight: bold;
-    font-size: 200%;
-    margin-bottom: 0;
+.navbar a:hover {
+    color:#FFBF00;
+
 }
-.add_to_cart_block .price_discounted {
-    color: #343a40;
-    text-align: center;
-    text-decoration: line-through;
-    font-size: 140%;
-}
-.product_rassurance {
+
+/* footer-start */
+.footer{
     padding: 10px;
-    margin-top: 15px;
-    background: #ffffff;
-    border: 1px solid #6c757d;
-    color: #6c757d;
+    background-color: #05311c;
+    color: white;
+
 }
-.product_rassurance .list-inline {
-    margin-bottom: 0;
-    text-transform: uppercase;
-    text-align: center;
+    
+.footer .box-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(10rem,1fr));
+    gap: 1rem;
 }
-.product_rassurance .list-inline li:hover {
-    color: #343a40;
+.footer .box-container .box h3{
+    font-size:1rem;
+    color:#FFBF00;
+    padding: 1rem;
+    text-decoration: underline;
 }
-.reviews_product .fa-star {
-    color: gold;
+.footer .box-container .box P{
+    font-size: 1rem;
+    line-height:1.8;
+    color:white;
+    margin: 0.5rem;
+    
 }
-.pagination {
-    margin-top: 20px;
+.footer .box-container .box .links{
+    display:block;
+    font-size:1rem;
+    color: white;
+    margin: 0.5rem;
 }
-footer {
-    background: #343a40;
-    padding: 40px;
+.footer .box-container .box .links i{
+    padding-right: 1rem;
+
 }
+.footer .box-container .box .links:hover{
+    padding-right: 1rem;
+    color: #FFBF00;
+
+}
+.footer .box-container .box .email{
+    width:100%;
+    padding: 1rem;
+    margin: -0rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    text-transform: none;
+}
+.footer .share .fa-brands {
+    color: white;
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+.footer .share .fa-brands:hover{
+    color: #FFBF00;
+}
+.footer .box .btn:hover{
+    margin-left: 1rem;
+}
+
+.footer .credit {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 0.5rem;
+}
+
+ /* footer-end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 footer a {
     color: #f8f9fa!important
 }

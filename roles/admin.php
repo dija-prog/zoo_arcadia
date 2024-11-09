@@ -1,6 +1,9 @@
 <?php
 
 require_once('../includes/database.php');
+require('../vendor/autoload.php');
+
+
 
 session_start();
 if(!isset($_SESSION['username']) || $_SESSION['role'] !='1'){
@@ -25,7 +28,7 @@ $Users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../Assets/css/admin.css">
     <link rel="stylesheet" href="../Assets/Bootstraps/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title> Admin</title>
 </head>
 
@@ -80,6 +83,31 @@ $Users = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div id="mainContent" class="main-content mt-3" >
       <h2>Dashboerd</h2>
       <p>This is the main content of the page.</p>
+      <!-- afficher le graphique -->
+    <?php
+    // récupérer tous les animaux et leur nombre de consultation
+        $animals = $collection->find([],[
+          'projection'=> ['animal_nom'=> 1, 'views' =>1]
+        ]);
+
+        $data = [];
+
+        foreach ($animals as $animal){
+          $data[]=[
+            'name'=> $animal['animal_nom'],
+            'views' => $animal['views']
+
+          ];
+        }
+
+    ?>
+
+
+      <div class="chart-container">
+        
+        <canvas id="barCanvas" aria-label="chart" role="img"></canvas>
+      </div>
+
 
       
       <!-- Tableux d'utilisateur -->
@@ -287,6 +315,8 @@ $Users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="../Assets/js/admin.js"></script>
     <script src="../Assets/Bootstraps/js/bootstrap.bundle.js"></script>
     <script src="../Assets/Bootstraps/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 </body>
 </html>

@@ -1,3 +1,24 @@
+<?php  
+include('./includes/database.php');
+
+if($_SERVER["REQUEST_METHOD"] === 'POST'){
+  $pseudo = htmlspecialchars(($_POST['pseudo']));
+  $avis = htmlspecialchars($_POST['commentaire']);
+  //insérer l'avis dans la  base de donnée
+  $stmt =$bdd->prepare("INSERT INTO avis (pseudo,commentaire) VALUES(?,?)");
+  if($stmt->execute(([$pseudo,$avis]))){
+    echo "Votre avis a été soumis et est en attente de validation";
+  } else {
+    echo "Erreur lors de la soumission de l'avis";
+  }
+}
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -37,12 +58,12 @@
               </ul>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./Nos animaux/animals.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
+              <a class="nav-link" href="./Nos-animaux/animals.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
                 Nos animaux
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./Nos animaux/habitat.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
+              <a class="nav-link" href="./Nos-animaux/habitat.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
                 habitat
               </a>
             </li>
@@ -377,14 +398,14 @@
         <div >             
           <form method="POST" class="container form ">
             <div class="mb-3 ">
-              <label for="exampleFormControlInput1" class="form-label ">Email address</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <label for="exampleFormControlInput1" class="form-label ">Pseudo</label>
+              <input type="text" class="form-control" name=pseudo id="exampleFormControlInput1" placeholder="name@example.com">
             </div>
             <div class="form-floating ">
-              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" ></textarea>
-              <label for="floatingTextarea2">Comments</label>
+              <textarea class="form-control" placeholder="Leave a comment here" name="commentaire" id="floatingTextarea2" ></textarea>
+              <label for="floatingTextarea2">Commentaire</label>
             </div>
-            <div clas="">
+            <div >
               <button class="btn btn-warning mt-2 mb-3 mx-5" type="submit">Envoyer</button>
             </div>
           </form>
@@ -398,6 +419,25 @@
           </p>
         </div>
       </section>
+      <div class=" reviews m-5 ">
+        <h3 class="text-warning  fw-bold mb-2">Avis</h3>
+        <?php
+        // Aficher les avis validés
+
+          $stmt = $bdd->query("SELECT pseudo, commentaire FROM avis WHERE isValide = 1 ");
+          $avisValidés = $stmt->fetchAll();
+          
+          foreach ($avisValidés as $avis) {
+            echo "<div>";
+            echo "<i class='fas fa-star '></i>";
+            echo "<strong>" .htmlspecialchars($avis['pseudo'])."</strong>";
+            echo "<p>".htmlspecialchars(($avis['commentaire']))."</p>";
+            echo"</div>";
+          }
+        ?>
+      </div>
+
+
     <!-- localisation et horaire -->
 
     <section class="container-fluid text-light pb-4" id="maps">
@@ -469,7 +509,7 @@
   <script src="./Assets/Bootstraps/js/bootstrap.bundle.min.js"></script>
   <!-- script js -->
   <script src="./Assets/js/Accueil.js"></script>
-  <script src="./Assets/js/admin.js"></script>
+
 
   
 </body>

@@ -35,12 +35,12 @@
                         </ul>
                         </li>
                         <li class="nav-item ">
-                        <a class="nav-link" href="../Nos animaux/animals.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
+                        <a class="nav-link" href="../Nos-animaux/animals.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
                             Nos animaux
                         </a>
                         </li>
                         <li class="nav-item ">
-                        <a class="nav-link" href="../Nos animaux/habitat.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
+                        <a class="nav-link" href="../Nos-animaux/habitat.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
                             habitat
                         </a>
                         </li>

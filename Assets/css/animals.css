@@ -1,12 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:"poppins", sans-serif;
+    list-style-type:none ;
+    text-decoration: none;
+}
+ /* navbar-start */
+
+.navbar{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    width: 100px;
+    height: 60px;
+}
+.navbar a{    
+    color: white; 
+    font-weight: 500; 
+    text-decoration: none;  
+}
+.navbar a:hover {
+    color: #05311C;
+    font-weight: bold;
+    display: block;
+    filter: drop-shadow(0 0 10px #fff);
+}
+.navbar .fa-solid{
+    font-size: 1.5rem;
+    color: #FFBF00;
+    margin-left: 10px;
+}
+
+.navbar .fa-ticket-simple{
+    color: #FFBF00;
+    transform: rotate(55deg);
+}
+.fa-solid:hover{
+    
+    font-size: 2rem;
+    color: #032808;
+}
+
+.navbar .btn:hover{
+    display: block;
+    filter: drop-shadow(0 0 10px #fffdef);
+}
+
+/* caroussel css */
+
+.carousel-item img {
+    height: 590px;
+}
+
+
+
+/* cards css */
 
 .card {
-    min-height: 300px;
+    min-height: 400px;
+    margin-bottom: 20px;
+
 }
-.card .card-img-top{
-    height: 400px;
+
+.cards .card-img-top{
+    height: 300px;
 
 }
 .card:hover{
     transform: scale(1.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) ;
 }
+
+

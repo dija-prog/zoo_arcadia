@@ -47,6 +47,10 @@ text-decoration: none;
 .main-content.expanded {
     margin-left: 80px;
 }
+.chart-container{
+    width: 50%;
+    margin: 20px;
+}
 
 
 

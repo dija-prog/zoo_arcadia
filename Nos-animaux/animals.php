@@ -1,8 +1,10 @@
 <?php
 
-use Egulias\EmailValidator\Warning\EmailTooLong;
-
 include_once('../includes/database.php');
+require('../vendor/autoload.php');
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -10,8 +12,9 @@ include_once('../includes/database.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylsheet" href="../Assets/css/animals.css">
+    <link rel="stylesheet" href="../Assets/css/animals.css">
     <link rel="stylsheet" href="../Assets/Bootstraps/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Animals</title>
 </head>
 <body>
@@ -32,10 +35,10 @@ include_once('../includes/database.php');
                     <img src="../images/juguar2.jpg" class="d-block w-100  " alt="juguare">
                 </div>
                 <div class="carousel-item">
-                    <img src="../images/peroquet1.jpg" class="d-block w-100 " alt="Peroquet">
+                    <img src="../images/peroquet1.jpg" class="d-block w-100  " alt="Peroquet">
                 </div>
                 <div class="carousel-item">
-                    <img src="../images/hippopotame.jpg" class="d-block w-100 " alt="hippopotame">
+                    <img src="../images/hippopotame.jpg" class="d-block w-100  " alt="hippopotame">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -51,34 +54,35 @@ include_once('../includes/database.php');
     <main >
         <h3 class="text-center  text-success m-5 py-4">Nos Animaux</h3>
         <div class="row g-2 mb-4">
-            
-            <
                 <div class="form-floating">
                     <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                        <option selected>Trier par Classe</option>
-                        <option value="1">Mamifire</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="3">Three</option>                    
+                        <option selected>Trier par </option>
+                        <option value="1">Classe</option>
+                        <option value="2">Habitat</option>                  
                     </select>
                 </div>
-            </div>
         </div>
+        
+    
         <!-- animals card -->
-        <div class="cards row row-cols-1 row-cols-md-4 g-3 p-5">
+        <div class="cards row row-cols-1 row-cols-md-4 g-3 p-5" >
             <?php 
+
             $animals = $bdd->query("select * from animal")->fetchAll();
             foreach($animals as $animal) :
             $image = base64_encode($animal['image']);
             $animalName = strtolower(str_replace('','_',$animal['animal_nom']));
+
             ?>
             
-            <div class="card " data-name ="<?php echo htmlspecialchars($animal['habitat_id'])?>">
+            <div class="card h-100 " data-animal-id ="<?php echo ($animal['animal_id'])?>" >
                 <a href="<?php echo $animalName; ?>.php">
-                <img src="data:image/jpeg;base64,<?php echo htmlspecialchars($image) ?>" class="card-img-top  " alt="<?php echo htmlspecialchars($animal['animal_nom']) ?>"> 
+                <img src="data:image/jpeg;base64,<?php echo ($image) ?>" class="card-img-top " alt="<?php echo ($animal['animal_nom']) ?>">
                 </a>
                 <div class="card-body text-white bg-black d-flex align-items-center justify-content-center">
-                    <h5 class="card-title"><?php echo htmlspecialchars($animal['animal_nom']) ?></h5>
+                    <h5 class="card-title"><?php echo ($animal['animal_nom']) ?></h5> 
+                    <br>
+                    <p><i class="fas fa-eye" aria-hidden="true"></i>:<?php echo ($animal['views']); ?></p>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -92,5 +96,6 @@ include_once('../includes/database.php');
     </footer>
     <script src="../Assets/Bootstraps/js/bootstrap.bundle.min.js"></script>
     <script src="../Assets/Bootstraps/js/bootstrap.min.js"></script>
-    <script src="../Assets/js/animaux.js"></script>
+    <script src="../Assets/js/animals.js"></script>
 </body>
+</html>
