@@ -1,5 +1,5 @@
 <?php 
-require_once('./includes/database.php');
+include('./includes/database.php');
 
 require('./vendor/autoload.php');
 
@@ -7,39 +7,51 @@ use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
 
-    if ($_SERVER["REQUEST_METHOD"] === "POST"){
-        $titre = htmlspecialchars($_POST['titre']);
-        $message = htmlspecialchars($_POST['message']);
-        $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
+    $titre = htmlspecialchars($_POST['titre']);
+    $description = htmlspecialchars($_POST['description']);
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
     
-        $stmt = $bdd->prepare("INSERT INTO contact (titre,message,email) VALUES (?,?,?)");
-        if ($stmt->execute(array($titre,$message,$email))){
+    //Vérifier si les champs sont valides 
+
+        if (!$email){
+            echo "l'email fourni est invalide.";
+            exit;
+        }
+        if(empty($titre)|| empty($description) ){
+            echo "Le titre et le message doivent êtr remplis.";
+            exit;
+        }
+
+        $stmt = $bdd->prepare("INSERT INTO contact (titre,email,description) VALUES (?,?,?)");
+        if ($stmt->execute(array($titre,$email,$description))){
             echo "ajout réussie";
         
         try{
-            
                 $transport = Transport::fromDsn('smtp://aithamouk94@gmail.com:oxmnrtkoxgyborja@smtp.gmail.com:587');
                 $mailer = new Mailer($transport);
 
                 $email = (new Email())
                     ->from($email)
                     ->to('aithamouk94@gmail.com')
-                    ->subject('Nouvelle demande de contact:')
-                    ->text($message);
+                    ->subject('Nouvelle demande de contact:'.$titre)
+                    ->text($description);
 
                 $mailer->send($email);
 
 
                 echo 'Email envoyé avec succès';
-                header('location: ../roles/employé.php#message');
-                exit;
+                
             } catch (Exception $e){
                 echo 'Erreur lors de l\'envoie de l\'email:', $e->getMessage();
+                echo 'code d\'erreur:'. $e->getCode();
             }
         }else{
             echo"Erreur lors dans la base de données.";
         }
     }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -69,7 +81,7 @@ use Symfony\Component\Mime\Email;
                         <div class="card-header bg-success text-white"><i class="fa fa-envelope"></i> Contact nous.
                         </div>
                         <div class="card-body">
-                            <form methode="POST">
+                            <form method="POST">
                                 <div class="form-group">
                                     <label for="titre">un titre</label>
                                     <input type="text" class="form-control" name="titre" id="name" aria-describedby="emailHelp" placeholder="titre de vitre demande" required>
@@ -80,8 +92,8 @@ use Symfony\Component\Mime\Email;
                                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea class="form-control" id="description" rows="6" name="message" required></textarea>
+                                    <label for="message">Description</label>
+                                    <textarea class="form-control" id="description" rows="6" name="description" required></textarea>
                                 </div>
                                 <div class="mx-auto">
                                 <button type="submit" class="btn btn-warning text-right">Envoyer</button></div>

@@ -1,9 +1,9 @@
 <?php
 require('../includes/database.php');
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 if (isset($_GET['avis_id'])){
     $avis_id = (int)$_GET['avis_id'];

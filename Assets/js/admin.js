@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded",() => {
 // suprimer un utilisateur
 
 function confirmationSup(){
-    if(confirm("Ëtes vous sûr de vouloir supprimer cet utilisateur  ?")){
+    if(confirm("Ëtes vous sûr de vouloir supprimer  ?")){
         console.log("utilisateur supprimé.");
         alert ("l'utilisateur a été supprimé avec succés")
         

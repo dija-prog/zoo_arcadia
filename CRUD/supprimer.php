@@ -56,4 +56,31 @@ header("Location: ../roles/admin.php#services");
 
 ?>
 
+<!-- supprimer  les valeurs de la tbale food  -->
+
+<?php
+$id_food= $_GET['id_food'];
+
+try{
+    $req = $bdd->prepare("DELETE FROM food where id_food= :id_food");
+    $req->bindParam(':id_food',$id_food, PDO::PARAM_STR);
+    if($req->execute()){
+        echo" il a bien été supprimer";
+    }else{
+        echo "Erreur lors de la suppression ";
+    }
+    
+    
+    header("Location: ../roles/employé.php");
+    exit;
+
+}catch(PDOException $e){
+    echo"Ereeur:" .$e->getMessage();
+}
+
+
+?>
+
+
+
 

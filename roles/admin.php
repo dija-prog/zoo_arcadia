@@ -86,19 +86,19 @@ $Users = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <!-- afficher le graphique -->
     <?php
     // récupérer tous les animaux et leur nombre de consultation
-        $animals = $collection->find([],[
-          'projection'=> ['animal_nom'=> 1, 'views' =>1]
-        ]);
+        // $animals = $collection->find([],[
+        //   'projection'=> ['animal_nom'=> 1, 'views' =>1]
+        // ]);
 
-        $data = [];
+        // $data = [];
 
-        foreach ($animals as $animal){
-          $data[]=[
-            'name'=> $animal['animal_nom'],
-            'views' => $animal['views']
+        // foreach ($animals as $animal){
+        //   $data[]=[
+        //     'name'=> $animal['animal_nom'],
+        //     'views' => $animal['views']
 
-          ];
-        }
+        //   ];
+        // }
 
     ?>
 
@@ -310,7 +310,7 @@ $Users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-<!-- Bootstrap JS and jQuery -->
+<!-- Bootstrap JS  -->
     
     <script src="../Assets/js/admin.js"></script>
     <script src="../Assets/Bootstraps/js/bootstrap.bundle.js"></script>

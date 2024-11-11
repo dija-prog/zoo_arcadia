@@ -52,7 +52,12 @@ text-decoration: none;
     margin: 20px;
 }
 
+/* style de la page employé */
 
+#message .card{
+    height: 100%;
+
+}
 
 
 
