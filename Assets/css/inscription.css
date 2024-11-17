@@ -19,41 +19,32 @@
   overflow: hidden;
 }
 
-.bg-glass {
-
-background-color: hsla(0, 0%, 100%, 0.9) !important;
-backdrop-filter: saturate(200%) blur(25px);
-}
 .title{
 position: absolute;
 top: 0;
-
 left: 1rem;
 
 }
 
-.title1 {
-z-index: 10;
-}
 .title1 a{
 position: absolute;
 top: 4px;
 text-decoration: none;
 font-weight: bold;
-color: hsl(119, 84%, 14%);
+color: #05311c;
 font-size: 1.5em;
 
 }
 .title1 a:hover{
-color: hsl(119, 90%, 34%);
+color: #0ba509;
 
 }
 #register h1{
-color:hsl(48, 95%, 49%);
+color:#FFBF00;
 font-weight: bolder;
 }
 #register span {
-color: hsl(48, 83%, 75%);
+color: #f4df8a;
 }
 
  /* end for css inscription.php */
@@ -68,5 +59,7 @@ body {
 .container {
   max-width: 900px;
 }
+
+
 
 

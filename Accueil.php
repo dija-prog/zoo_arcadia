@@ -1,12 +1,12 @@
-<?php  
+<?php
 include('./includes/database.php');
 
-if($_SERVER["REQUEST_METHOD"] === 'POST'){
+if ($_SERVER["REQUEST_METHOD"] === 'POST') {
   $pseudo = htmlspecialchars(($_POST['pseudo']));
   $avis = htmlspecialchars($_POST['commentaire']);
   //insérer l'avis dans la  base de donnée
-  $stmt =$bdd->prepare("INSERT INTO avis (pseudo,commentaire) VALUES(?,?)");
-  if($stmt->execute(([$pseudo,$avis]))){
+  $stmt = $bdd->prepare("INSERT INTO avis (pseudo,commentaire) VALUES(?,?)");
+  if ($stmt->execute(([$pseudo, $avis]))) {
     echo "Votre avis a été soumis et est en attente de validation";
   } else {
     echo "Erreur lors de la soumission de l'avis";
@@ -30,50 +30,47 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
   <!-- font-awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- bootstrap css -->
-  <link rel="stylesheet" href="./Assets/Bootstraps/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./Assets/bootstrap/css/bootstrap.min.css">
 
   <title> ZOO Arcadia </title>
 </head>
+
 <body>
   <header>
     <!-- navbar start -->
     <nav class="navbar navbar-expand-lg  fixed-top ">
       <div class="container-fluid">
-        <a class="navbar-brand me-5 " href="Accuiel.php">
+        <a class="navbar-brand me-5 " href="./Accueil.php">
           <img src="./images/LOGOZOO.png" width="100" height="50"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse d-flex justify-content-center " id="navbarNavDropdown">
+        <div class="collapse navbar-collapse d-flex justify-content-center " id="navbarNav">
           <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a class="nav-link btn dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Préparez ma visite
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#"> Billet & Tarifs </a></li>
-                <li><a class="dropdown-item" href="#"> Restaurant </a></li>
-                <li><a class="dropdown-item" href="#"> Conseils de visite</a></li>
-                <li><a class="dropdown-item" href="#services"> Services</a></li>
-              </ul>
-            </li>
+
             <li class="nav-item ">
-              <a class="nav-link" href="./Nos-animaux/animals.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
+              <a class="nav-link" href="./Nos-animaux/animals.php" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
                 Nos animaux
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./Nos-animaux/habitat.php" id="navbarDropdownMenuLink" role="button"  aria-expanded="false">
-                habitat
+              <a class="nav-link" href="./Nos-animaux/habitat.php" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
+                Habitat
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="./service.php" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
+                Services
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link " href="./contact.php"> Contact </a>
             </li>
+
           </ul>
         </div>
         <button class="btn btn-success ms-4 ">
-          <a data-mdb-dropdown-init href="./login/connexion.php"  role="button" aria-expanded="false">
+          <a data-mdb-dropdown-init href="./login/connexion.php" role="button" aria-expanded="false">
             <i class="fas fa-user"></i> connexion
           </a>
         </button>
@@ -83,37 +80,37 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
   </header>
   <main>
-    <div class="cover">
-      <img src="./images/pexels-magda-ehlers-pexels-5078902.jpg" class="d-block w-100" alt="photo de couverture">
+    <div class="container-fluid cover">
+      <img src="./images/pexels-magda-ehlers-pexels-5078902.jpg" class="cover w-100 " alt="photo de couverture">
       <div class="carousel-caption d-none d-md-block">
         <h1> Bienvenue au Zoo Arcadia</h1>
         <p> Découvrez la faune fascinante de notre zoo et plongez dans un monde de merveilles naturelles.</p>
       </div>
     </div>
-      <!-- section boxes -->
+    <!-- section boxes -->
     <div class="container-fluid">
       <div id="boxes">
         <div class=" row  ">
 
-          <div id="box" class="col mx-2 text-center">
+          <div id="box" class="col mx-2 d-none d-sm-block  text-center">
             <a href="#billetrie">
               <h5 class="card-title"> <i class="fa-solid fa-ticket "></i> Billetterie</h5>
             </a>
           </div>
 
-          <div id="box-1" class="col mx-2 text-center">
+          <div id="box-1" class="col mx-2 d-none d-sm-block  text-center">
             <a href="#animaux">
               <h5 class="card-title"> <i class="fa-solid fa-paw"></i> Nos Animaux</h5>
             </a>
           </div>
 
-          <div id="box-1" class="col mx-2 text-center">
+          <div id="box-1" class="col mx-2 d-none d-sm-block  text-center">
             <a href="#services">
               <h5 class="card-title"> <i class="fa-solid fa-bell-concierge"></i> Services</h5>
             </a>
           </div>
 
-          <div id="box-1" class="col mx-2 text-center">
+          <div id="box-1" class="col mx-2 d-none d-sm-block  text-center">
             <a href="#services">
               <h5 class="card-title"> <i class="fa-solid fa-map"></i> préparez votre visite</h5>
             </a>
@@ -121,229 +118,226 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
         </div>
       </div>
     </div>
-    <!-- section boxes-end --> 
+    <!-- section boxes-end -->
 
 
     <!-- Histoire de zoo     -->
-    <section class="about" id="about">
+    <section class="container-fluid about" id="about">
       <div class="row">
-        <h2 class="deco-title"> A propos de Nous </h2>
-        <div class="col-lg-6">
+        <h2 class="deco-title fs-3"> A propos de Nous </h2>
+        <div class="col-lg-6  col-md-6 col-sm-12">
           <div class="story-content">
-              <p> <br>
-                Le Zoo Arcadia a ouvert ses portes en 1985, grâce à la vision et à
-                la passion de Marie et Jacques Delacroix,un couple de naturalistes dévoués.
-                Situé à proximité de la magnifique forêt de Bretagne,
-                le zoo a été conçu pour offrir aux visiteurs une expérience immersive tout en mettant
-                l'accent sur la conservation et l'éducation.
-                Expansion et Innovation.
-                Au cours des années 1990, le Zoo Arcadia a connu une expansion significative.
-                De nouveaux enclos ont été construits pour accueillir une variété d'espèces animales,
-                allant des majestueux lions africains aux gracieux flamants roses.
-              </p>
-            </div>
-            <div class="more-content">
-              <p>
-                Dans les années 2000, le Zoo Arcadia a renforcé son engagement envers la conservation.
-                Le zoo a établi des partenariats avec plusieurs organisations internationales de conservation
-                pour participer à des programmes de reproduction en captivité et à
-                la réintroduction d'espèces menacées dans leur habitat naturel.
-                Le centre de recherche du zoo est devenu un leader dans l'étude du comportement animal et
-                des écosystèmes.
-              </p>
-              <p>
-                Le Zoo Arcadia est profondément enraciné dans la communauté locale.
-                Chaque année,il organise des événements spéciaux tels que des journées portes ouvertes,
-                des ateliers de découverte de la nature, et des campagnes de nettoyage de la forêt environnante.
-                Ces initiatives ont renforcé les liens entre le zoo et la communauté,
-                faisant du Zoo Arcadia une fierté locale.
-              </p>
-              <p>
-                Aujourd'hui, le Zoo Arcadia continue de prospérer en tant que centre de conservation,
-                d'éducation et de loisirs. Avec un engagement constant envers l'innovation et la durabilité,
-                le zoo s'efforce de créer un avenir où les humains et les animaux coexistent harmonieusement.
-                Des projets d'expansion sont en cours, notamment la création d'un sanctuaire
-                pour les espèces en danger critique d'extinction et l'implantation de technologies vertes
-                pour réduire l'empreinte écologique du zoo.
-              </P>
-              <p>
-                La mission du Zoo Arcadia est de protéger la biodiversité,
-                d'éduquer le public sur l'importance de la conservation de la faune et de fournir
-                un refuge sûr et enrichissant pour les animaux. À travers ses efforts continus,
-                le Zoo Arcadia aspire à inspirer les visiteurs à prendre part à la préservation de notre planète
-                et de ses habitants.
-              </p>
-            </div>
-            <div>  
-              <p class="show-more-link text-success align-items-center"> Afficher plus</p>
-            </div>
-            
+            <p> <br>
+              Le Zoo Arcadia a ouvert ses portes en 1985, grâce à la vision et à
+              la passion de Marie et Jacques Delacroix,un couple de naturalistes dévoués.
+              Situé à proximité de la magnifique forêt de Bretagne,
+              le zoo a été conçu pour offrir aux visiteurs une expérience immersive tout en mettant
+              l'accent sur la conservation et l'éducation.
+              Expansion et Innovation.
+              Au cours des années 1990, le Zoo Arcadia a connu une expansion significative.
+              De nouveaux enclos ont été construits pour accueillir une variété d'espèces animales,
+              allant des majestueux lions africains aux gracieux flamants roses.
+            </p>
           </div>
-          <div class=" container col-lg-6 images ">
-            <div class="row">
-              <div class="col-md-12">
-                <img src="./images/juguar.jpg" alt="juguar" class="img-1">
+          <div class="more-content">
+            <p>
+              Dans les années 2000, le Zoo Arcadia a renforcé son engagement envers la conservation.
+              Le zoo a établi des partenariats avec plusieurs organisations internationales de conservation
+              pour participer à des programmes de reproduction en captivité et à
+              la réintroduction d'espèces menacées dans leur habitat naturel.
+              Le centre de recherche du zoo est devenu un leader dans l'étude du comportement animal et
+              des écosystèmes.
+            </p>
+            <p>
+              Le Zoo Arcadia est profondément enraciné dans la communauté locale.
+              Chaque année,il organise des événements spéciaux tels que des journées portes ouvertes,
+              des ateliers de découverte de la nature, et des campagnes de nettoyage de la forêt environnante.
+              Ces initiatives ont renforcé les liens entre le zoo et la communauté,
+              faisant du Zoo Arcadia une fierté locale.
+            </p>
+            <p>
+              Aujourd'hui, le Zoo Arcadia continue de prospérer en tant que centre de conservation,
+              d'éducation et de loisirs. Avec un engagement constant envers l'innovation et la durabilité,
+              le zoo s'efforce de créer un avenir où les humains et les animaux coexistent harmonieusement.
+              Des projets d'expansion sont en cours, notamment la création d'un sanctuaire
+              pour les espèces en danger critique d'extinction et l'implantation de technologies vertes
+              pour réduire l'empreinte écologique du zoo.
+            </P>
+            <p>
+              La mission du Zoo Arcadia est de protéger la biodiversité,
+              d'éduquer le public sur l'importance de la conservation de la faune et de fournir
+              un refuge sûr et enrichissant pour les animaux. À travers ses efforts continus,
+              le Zoo Arcadia aspire à inspirer les visiteurs à prendre part à la préservation de notre planète
+              et de ses habitants.
+            </p>
+          </div>
+          <div>
+            <p class="show-more-link text-success align-items-center"> Afficher plus</p>
+          </div>
+
+        </div>
+        <div class=" container col-lg-6 images ">
+          <div class="row">
+            <div class="col-md-12 mb-3 d-none d-sm-block ">
+              <img src="./images/elephant3.jpg" alt="Elephant" class="img-1  img-fluid">
+            </div>
+            <div class="col-md-6 mb-3 d-none d-sm-block">
+              <img src="./images/crapaud_buffle.jpg" alt="crapaud_buffle" class="img-2 img-fluid">
+            </div>
+            <div class="col-md-6 mb-3 d-none d-sm-block  ">
+              <img src="./images/hyéne1.jpg" alt="hyéne" class="img-3 img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- about-us--end -->
+    <!-- habitat -->
+
+    <section id="habitat" class="container-fluid">
+      <div class="row">
+        <h2 class="titre-habitat text-center text-light mt-5  ">
+          Découvrez les différents environnements du Zoo Arcadia <br>
+          &<br> plongez dans la diversité fascinante de notre faune.</h2>
+        <div id="carouselExample" class="carousel slide">
+          <div class="carousel-inner  ">
+            <div class="carousel-item active">
+              <div class=" col-12 col-md-4 col-sm-6 mx-auto">
+                <div class="card  mt-5 mb-5 ">
+                  <img src="./images/elephant.jpg" class="card-img-top img-fluid" alt="élephant">
+                  <div class="card-img-overlay ">
+                    <h5 class=" card-title text-center text-warning fw-bold mt-3"> Savane Africaine</h5>
+                    <p class="card-text mt-5 text-center d-none d-md-block">
+                      Découvrez la Jungle du Zoo Arcadia, un environnement luxuriant où singes,
+                      oiseaux colorés et reptiles se côtoient parmi les arbres gigantesques et les lianes entrelacées.
+                      Cliquez sur En savoir plus pour explorer cet écosystème tropical fascinant.</p>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-6">
-                <img src="./images/PEROQUET.jpg" alt="PERROQUET" class="img-2">
+            </div>
+            <div class="carousel-item ">
+              <div class="col-12  col-md-4 col-sm-6 mx-auto ">
+                <div class="card mt-5 mb-5 ">
+                  <img src="./images/peroquet1.jpg" class="card-img-top img-fluid" alt="peroquet">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title text-center text-warning fw-bold mt-3">Jungle tropicale</h5>
+                    <p class="card-text  mt-5 text-center d-none d-md-block">
+                      Explorez les Marais du Zoo Arcadia, un habitat mystérieux abritant alligators,
+                      tortues et oiseaux aquatiques dans un paysage de roseaux et d'étangs.
+                      CliquwarningEn savoir plus pour découvrir la faune unique de cet écosystème humide.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-6">
-                <img src="./images/giraffe.jpeg" alt="Ours" class="img-3">
+            </div>
+            <div class="carousel-item ">
+              <div class="col-12 col-md-4 col-sm-6 mx-auto">
+                <div class="card mt-5 mb-5 ">
+                  <img src="./images/aligateur.jpg" class="card-img-top img-fluid" alt="aligateur">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title text-center text-warning fw-bold mt-3"> Marais humide </h5>
+                    <p class="card-text  mt-5 text-center d-none d-md-block">
+                      Plongez dans la Forêt du Zoo Arcadia, un lieu enchanteur où cerfs,
+                      renards et hiboux vivent en harmonie dans une végétation dense et variée.
+                      Cliquez sur En savoir plus pour en savoir plus sur les secrets de cette forêt magique.
+                    </p>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- habitat-end -->
+
+    <!-- service-start -->
+    <section id="services" class=" container-fluid text-light text-center">
+      <h3 class="text-center  mt-4"> Services</h3>
+      <hr id="premier-trait">
+      <div class="container-fluid my-5">
+        <div class="row ">
+          <!-- card 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="service ">
+              <div class="icon-holder">
+                <i class="fas fa-train icon" data-bs-toggle="modal"></i>
+              </div>
+              <h4 class="heading">petit train</h4>
+              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
+            </div>
+          </div>
+          <!-- card 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="service text-center">
+              <div class="icon-holder">
+                <i class="fa-solid fa-utensils" data-bs-toggle="modal"></i>
+              </div>
+              <h4 class="heading">Restaurant</h4>
+              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
+            </div>
+          </div>
+          <!-- card 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="service text-center">
+              <div class="icon-holder">
+                <i class="fa-solid fa-baby-carriage" data-bs-toggle="modal"></i>
+              </div>
+              <h4 class="heading">louer une poussette</h4>
+              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
+            </div>
+          </div>
+          <!-- card 4 -->
+          <div class="col-md-4 mb-4">
+            <div class="service text-center">
+              <div class="icon-holder">
+                <div class="card-icon">
+                  <i class="fa-solid fa-restroom" data-bs-toggle="modal"></i>
+                </div>
+              </div>
+              <h4 class="heading"> toilette</h4>
+              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
+            </div>
+          </div>
+          <!-- card 5 -->
+          <div class="col-md-4 mb-4">
+            <div class="service text-center">
+              <div class="icon-holder">
+                <i class="fas fa-map-signs" data-bs-toggle="modal"></i>
+              </div>
+              <h4 class="heading">Guide gratuit</h4>
+              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
+            </div>
+          </div>
+          <!-- card 6 -->
+          <div class="col-md-4 mb-4">
+            <div class="service text-center text">
+              <div class="icon-holder">
+                <i class="fas fa-children icon" data-bs-toggle="modal"></i>
+              </div>
+              <h4 class="heading">aire de jeux</h4>
+              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- about-us--end -->
-    <!-- habitat -->
-  
-    <section id="habitat" class="container-fluid">
-        <div class="row">
-          <h2 class="titre-habitat text-center text-light mt-5 py-3 ">
-            Découvrez les différents environnements du Zoo Arcadia <br>
-            &<br> plongez dans la diversité fascinante de notre faune.</h2>
-            <div id="carouselExample" class="carousel slide">
-              <div class="carousel-inner  ">
-                <div class="carousel-item active">
-                  <div class=" col-12 col-md-4 col-sm-6 mx-auto">
-                    <div class="card  mt-5 mb-5 ">
-                      <img src="./images/elephant.jpg" class="card-img-top img-fluid" alt="élephant">
-                      <div class="card-img-overlay ">
-                        <h5 class="bg-dark card-title text-center text-warning fw-bold mt-3"> Savane Africaine</h5>
-                        <p class="card-text mt-5 text-center">
-                          Découvrez la Jungle du Zoo Arcadia, un environnement luxuriant où singes,
-                          oiseaux colorés et reptiles se côtoient parmi les arbres gigantesques et les lianes entrelacées.
-                          Cliquez sur En savoir plus pour explorer cet écosystème tropical fascinant.</p>
-                        <a href="#" class="btn btn-warning "> Voir plus</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item ">
-                <div class="col-12  col-md-4 col-sm-6 mx-auto ">
-                  <div class="card mt-5 mb-5 ">
-                    <img src="./images/peroquet1.jpg" class="card-img-top img-fluid" alt="peroquet">
-                    <div class="card-img-overlay">
-                      <h5 class="card-title text-center text-warning fw-bold mt-3">Jungle tropicale</h5>
-                      <p class="card-text  mt-5 text-center ">
-                        Explorez les Marais du Zoo Arcadia, un habitat mystérieux abritant alligators,
-                        tortues et oiseaux aquatiques dans un paysage de roseaux et d'étangs.
-                        CliquwarningEn savoir plus pour découvrir la faune unique de cet écosystème humide.
-                      </p>
-                      <a href="#" class="btn btn-warning">Voir plus</a>
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <div class="carousel-item ">
-                <div class="col-12 col-md-4 col-sm-6 mx-auto">
-                  <div class="card mt-5 mb-5 ">
-                    <img src="./images/aligateur.jpg" class="card-img-top img-fluid" alt="aligateur">
-                    <div class="card-img-overlay">
-                      <h5 class="card-title text-center text-warning fw-bold mt-3"> Marais humide </h5>
-                      <p class="card-text  mt-5 text-center">
-                        Plongez dans la Forêt du Zoo Arcadia, un lieu enchanteur où cerfs,
-                        renards et hiboux vivent en harmonie dans une végétation dense et variée.
-                        Cliquez sur En savoir plus pour en savoir plus sur les secrets de cette forêt magique.
-                      </p>
-                      <a href="#" class="btn btn-warning">Voir plus</a>
-                    </div>
-                  </div>
-                </div>
-                </div> 
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div> 
-      </section>             
-          
-      <!-- habitat-end -->
-      
-      <!-- service-start -->
-      <section id="services" class="text-light text-center">
-        <h3 class="text-center  mt-4"> Services</h3>
-        <hr id="premier-trait">
-        <div class="container-fluid my-5">
-          <div class="row ">
-            <!-- card 1 -->
-            <div class="col-md-4 mb-4">
-              <div class="service ">
-                <div class="icon-holder">
-                  <i class="fas fa-train icon" data-bs-toggle="modal"></i>
-                </div>
-                <h4 class="heading">petit train</h4>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
-              </div>
-            </div>
-            <!-- card 2 -->
-            <div class="col-md-4 mb-4">
-              <div class="service text-center">
-                <div class="icon-holder">
-                  <i class="fa-solid fa-utensils" data-bs-toggle="modal"></i>
-                </div>
-                <h4 class="heading">Restaurant</h4>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
-              </div>
-            </div>
-            <!-- card 3 -->
-            <div class="col-md-4 mb-4">
-              <div class="service text-center">
-                <div class="icon-holder">
-                  <i class="fa-solid fa-baby-carriage" data-bs-toggle="modal"></i>
-                </div>
-                <h4 class="heading">louer une poussette</h4>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
-              </div>
-            </div>
-            <!-- card 4 -->
-            <div class="col-md-4 mb-4">
-              <div class="service text-center">
-                <div class="icon-holder">
-                  <div class="card-icon">
-                    <i class="fa-solid fa-restroom" data-bs-toggle="modal"></i>
-                  </div>
-                </div>
-                <h4 class="heading"> toilette</h4>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
-              </div>
-            </div>
-            <!-- card 5 -->
-            <div class="col-md-4 mb-4">
-              <div class="service text-center">
-                <div class="icon-holder">
-                  <i class="fas fa-map-signs" data-bs-toggle="modal"></i>
-                </div>
-                <h4 class="heading">Guide gratuit</h4>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
-              </div>
-            </div>
-            <!-- card 6 -->
-            <div class="col-md-4 mb-4">
-              <div class="service text-center text">
-                <div class="icon-holder">
-                  <i class="fas fa-children icon" data-bs-toggle="modal"></i>
-                </div>
-                <h4 class="heading">aire de jeux</h4>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis alias </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- service-end -->
+    <!-- service-end -->
     <!-- gallery  -->
-    <section id="gallery" class=" py-4">
+    <section id="gallery" class="container-fluid py-4">
       <div class="container-xxl px-2 mt-5">
         <div class="heading py-4 border-bottom border-light">
-          <h1 class="text-center text-light">Gallerie</h1>
+          <h1 class="text-center text-light">Galerie</h1>
           <h5 class="text-center text-light py-2">Découvrez les merveilles de la faune du Zoo Arcadia à travers notre galerie de photos.</h5>
         </div>
 
@@ -371,71 +365,64 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
         </div>
       </div>
     </section>
-    
-    
-    <section class="ticket">
-      
-    </section>
-      
-      
-      
-      <section class="avis">
-        <div class=" text-center mt-4 my-5">
-          <h3>Donnez Votre Avis sur Votre Expérience au Zoo Arcadia</h3>
-            <p>
-              Nous espérons que vous avez passé un moment inoubliable au Zoo Arcadia.
-              Votre avis est très important pour nous et nous aide à améliorer constamment notre parc.
-              Partagez votre expérience avec nous !
-              <br>
-            <ul>
-              <li> Qu'avez-vous le plus apprécié lors de votre visite ?</li>
-              <li>Y a-t-il des aspects que nous pourrions améliorer ?</li>
-              <li>Quels ont été vos moments forts au zoo ?</li>
-            </ul>
-        </div>
 
-        <!-- form-start -->
-        <div >             
-          <form method="POST" class="container form ">
-            <div class="mb-3 ">
-              <label for="exampleFormControlInput1" class="form-label ">Pseudo</label>
-              <input type="text" class="form-control" name=pseudo id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
-            <div class="form-floating ">
-              <textarea class="form-control" placeholder="Leave a comment here" name="commentaire" id="floatingTextarea2" ></textarea>
-              <label for="floatingTextarea2">Commentaire</label>
-            </div>
-            <div >
-              <button class="btn btn-warning mt-2 mb-3 mx-5" type="submit">Envoyer</button>
-            </div>
-          </form>
-        </div>
-        <!-- form-end -->
-        <div class="container">
-          <p class="text-center">
-            Laissez-nous vos commentaires et vos suggestions.
+    <section class="container-fluid avis">
+      <div class=" text-center mt-4 my-5">
+        <h3>Donnez Votre Avis sur Votre Expérience au Zoo Arcadia</h3>
+        <p>
+          Nous espérons que vous avez passé un moment inoubliable au Zoo Arcadia.
+          Votre avis est très important pour nous et nous aide à améliorer constamment notre parc.
+          Partagez votre expérience avec nous !
           <br>
-            Merci de votre visite et de votre soutien à notre mission de conservation de la faune !
-          </p>
-        </div>
-      </section>
-      <div class=" reviews m-5 ">
-        <h3 class="text-warning  fw-bold mb-2">Avis</h3>
-        <?php
-        // Aficher les avis validés
-
-          $stmt = $bdd->query("SELECT pseudo, commentaire FROM avis WHERE isValide = 1 ");
-          $avisValidés = $stmt->fetchAll();
-          
-          foreach ($avisValidés as $avis) {
-            echo "<div>";
-            echo "<i class='fas fa-star '></i>";
-            echo "<strong>" .htmlspecialchars($avis['pseudo'])."</strong>";
-            echo "<p>".htmlspecialchars(($avis['commentaire']))."</p>";
-            echo"</div>";
-          }
-        ?>
+        <ul>
+          <li> Qu'avez-vous le plus apprécié lors de votre visite ?</li>
+          <li>Y a-t-il des aspects que nous pourrions améliorer ?</li>
+          <li>Quels ont été vos moments forts au zoo ?</li>
+        </ul>
       </div>
+
+      <!-- form-start -->
+      <div>
+        <form method="POST" class="container-fluid form ">
+          <div class="mb-3 ">
+            <label for="exampleFormControlInput1" class="form-label ">Pseudo</label>
+            <input type="text" class="form-control" name=pseudo id="exampleFormControlInput1" placeholder="name@example.com">
+          </div>
+          <div class="form-floating ">
+            <textarea class="form-control" placeholder="Leave a comment here" name="commentaire" id="floatingTextarea2"></textarea>
+            <label for="floatingTextarea2">Commentaire</label>
+          </div>
+          <div>
+            <button class="btn btn-warning mt-2 mb-3 " type="submit">Envoyer</button>
+          </div>
+        </form>
+      </div>
+      <!-- form-end -->
+      <div class="container">
+        <p class="text-center">
+          Laissez-nous vos commentaires et vos suggestions.
+          <br>
+          Merci de votre visite et de votre soutien à notre mission de conservation de la faune !
+        </p>
+      </div>
+    </section>
+    <div class=" reviews m-5 ">
+      <h3 class="text-warning  fw-bold mb-2">Avis</h3>
+      <?php
+      // Aficher les avis validés
+
+      $stmt = $bdd->query("SELECT pseudo, commentaire FROM avis WHERE isValide = 1 ");
+      $avisValidés = $stmt->fetchAll();
+
+      foreach ($avisValidés as $avis) {
+        echo "<div>";
+        echo "<i class='fas fa-star '></i>";
+        echo "<strong>" . htmlspecialchars($avis['pseudo']) . "</strong>";
+        echo "<p>" . htmlspecialchars(($avis['commentaire'])) . "</p>";
+        echo "</div>";
+      }
+      ?>
+    </div>
 
 
     <!-- localisation et horaire -->
@@ -466,15 +453,15 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
       </div>
     </section>
     <!-- localisation et horaire-end -->
-    
+
 
 
   </main>
-  <footer class="footer ">    
+  <footer class="footer ">
     <div class="box-container">
       <div class="box">
         <img src="./images/LOGOZOO.png" width="100" height="50">
-        <p class="links"><i class="fas fa-clock"></i> monday-friday</p>
+        <p class="links"><i class="fas fa-clock"></i> Lundi-vendredi</p>
         <p class="days">7:00AM - 11:00PM</p>
       </div>
       <div class="box">
@@ -484,15 +471,14 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
         <a href="#" class="links"><i class="fas fa-envelope"></i>info@zoolife.fr </a>
         <a href="#" class="links"><i class="fas fa-marker-alt"></i>bourdaux, France</a>
       </div>
-      
+
       <div class="box">
         <h3> Quick links</h3>
-        <a href="#" class="links"><i class="fas fa-arrow-right"></i> Accueill</a>
+        <a href="./Accueil.php" class="links"><i class="fas fa-arrow-right"></i> Accueill</a>
         <a href="#" class="links"><i class="fas fa-arrow-right"></i> billet & Tarifs</a>
-        <a href="#" class="links"><i class="fas fa-arrow-right"></i> Restaurant & Boutiques</a>
-        <a href="#" class="links"><i class="fas fa-arrow-right"></i> Services</a>
-        <a href="#" class="links"><i class="fas fa-arrow-right"></i> Nos animaux </a>
-        <a href="#" class="links"><i class="fas fa-arrow-right"></i> conatact 1 questions fréquents</a>
+        <a href="./services.php" class="links"><i class="fas fa-arrow-right"></i> Services</a>
+        <a href="./Nos-animaux/habitat.php" class="links"><i class="fas fa-arrow-right"></i> Nos animaux </a>
+        <a href="./contact.php" class="links"><i class="fas fa-arrow-right"></i> contact </a>
       </div>
     </div>
     <div class="share">
@@ -503,15 +489,18 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     </div>
 
     <div class="credit">&copy; 2024 Zoo Arcadia. Tous les droits sont réservées </div>
-    
+
   </footer>
+
   <!-- script-bootstrap js  -->
-  <script src="./Assets/Bootstraps/js/bootstrap.bundle.min.js"></script>
+  <script src="./Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <scrip src="./Assets/bootstrap/js/bootstrap.min.js"></script>
+
   <!-- script js -->
   <script src="./Assets/js/Accueil.js"></script>
 
 
-  
+
 </body>
 
 </html>

@@ -56,7 +56,7 @@ header("Location: ../roles/admin.php#services");
 
 ?>
 
-<!-- supprimer  les valeurs de la tbale food  -->
+<!-- supprimer  les valeurs de la table food  -->
 
 <?php
 $id_food= $_GET['id_food'];

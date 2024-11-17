@@ -13,7 +13,7 @@ require('../vendor/autoload.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Assets/css/animals.css">
-    <link rel="stylsheet" href="../Assets/Bootstraps/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Animals</title>
 </head>
@@ -67,16 +67,19 @@ require('../vendor/autoload.php');
         <!-- animals card -->
         <div class="cards row row-cols-1 row-cols-md-4 g-3 p-5" >
             <?php 
+                $animal = "select * FROM  animal  ";
+                $stmt = $bdd->prepare($animal);
+                $stmt->execute();
+                $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($animals as $animal) {
 
-            $animals = $bdd->query("select * from animal")->fetchAll();
-            foreach($animals as $animal) :
-            $image = base64_encode($animal['image']);
-            $animalName = strtolower(str_replace('','_',$animal['animal_nom']));
+                $image = base64_encode($animal['image']);
+                $animalName = strtolower(str_replace('','_',$animal['animal_nom']));
 
             ?>
             
             <div class="card h-100 " data-animal-id ="<?php echo ($animal['animal_id'])?>" >
-                <a href="<?php echo $animalName; ?>.php">
+                <a href="<?php echo urlencode($animalName); ?>.php">
                 <img src="data:image/jpeg;base64,<?php echo ($image) ?>" class="card-img-top " alt="<?php echo ($animal['animal_nom']) ?>">
                 </a>
                 <div class="card-body text-white bg-black d-flex align-items-center justify-content-center">
@@ -85,7 +88,7 @@ require('../vendor/autoload.php');
                     <p><i class="fas fa-eye" aria-hidden="true"></i>:<?php echo ($animal['views']); ?></p>
                 </div>
             </div>
-            <?php endforeach; ?>
+            <?php } ?>
         </div>
     </main>
     <footer>
@@ -94,8 +97,8 @@ require('../vendor/autoload.php');
         ?>
 
     </footer>
-    <script src="../Assets/Bootstraps/js/bootstrap.bundle.min.js"></script>
-    <script src="../Assets/Bootstraps/js/bootstrap.min.js"></script>
+    <script src="../Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../Assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../Assets/js/animals.js"></script>
 </body>
 </html>

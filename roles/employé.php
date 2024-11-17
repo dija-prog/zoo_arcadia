@@ -67,21 +67,16 @@ try {
             <i class="fas fa-star"></i>
             <span class="ms-2 nav-link-text">Avis</span>
         </a>
-        
-        
         <a href="#messages" class="nav-link d-flex align-items-center">
             <i class="fas fa-message"></i>
             <span class="ms-2 nav-link-text">Messages</span>
         </a>
-
         <a href="#services" class="nav-link d-flex align-items-center">
             <i class="fas fa-headset"></i>
             <span class="ms-2 nav-link-text">Services</span>
         </a>
     </nav>
-    </div>
-
-        
+</div>
 
     <!-- Main Content -->
 <div id="mainContent" class="main-content mt-3" >
@@ -111,7 +106,6 @@ try{
     <section id=animals>
         <table class="table table-striped ">
             <thead class="table-dark">
-
             <tr>
                 <th>Animale</th>
                 <th>Nouriture</th>
@@ -119,8 +113,6 @@ try{
                 <th>Date  </th>
                 <th>Heure </th>
                 <th>Action</th>
-
-
             </tr>
             </thead>
             <tbody>

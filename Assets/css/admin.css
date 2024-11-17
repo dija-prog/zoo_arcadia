@@ -52,6 +52,15 @@ text-decoration: none;
     margin: 20px;
 }
 
+#usertable .card-role{
+   
+    width: 140px;
+    margin-bottom: 1rem;
+
+}
+
+
+
 /* style de la page employé */
 
 #message .card{

@@ -6,16 +6,15 @@ include_once('../includes/database.php');
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
     
     $animal_nom = $_POST['animal_nom'];
-    $etat = $_POST['etat'];
     $id_classe = $_POST['id_classe'];
     $habitat_id =$_POST['habitat_id'];
 
 
 
-    $stmt = $bdd->prepare("INSERT INTO animal (animal_nom,etat,id_classe,habitat_id) VALUES (?,?,?,?)");
+    $stmt = $bdd->prepare("INSERT INTO animal (animal_nom,id_classe,habitat_id) VALUES (?,?,?)");
     try{
 
-        if ($stmt->execute(array($animal_nom,$etat,$id_classe,$habitat_id))){
+        if ($stmt->execute(array($animal_nom,$id_classe,$habitat_id))){
             echo "ajout de l'animal réussie";
             header("location: ../roles/admin.php#animaltable");
     
@@ -53,10 +52,6 @@ include_once('../includes/database.php');
         <div class="mb-3">
             <label  class="form-label">la classe</label>
             <input type="text" name="id_classe" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">l'état de l'animal</label>
-            <input type="text" name="etat" class="form-control" >
         </div>
         
         <button type="submit"  name="submit" class="btn btn-Success">Ajouter</button>

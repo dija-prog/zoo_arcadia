@@ -2,6 +2,7 @@
 *{  
     margin: 0;
     padding: 0;
+    
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
@@ -9,7 +10,7 @@
 
   /* navbar-start */
 .navbar {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #00000033;
 }
 
 .navbar li {
@@ -36,6 +37,8 @@ header .dropdown-menu{
     background-color:#3E5342;
     font-size: 1rem;
 }
+
+
 
 
 /* boxes style */
@@ -185,6 +188,7 @@ header .dropdown-menu{
 
 #habitat {
     background-color: #05311c;
+  
 }
 #habitat .card{
     width:  500px;
@@ -194,6 +198,8 @@ header .dropdown-menu{
     display: flex;
     justify-content: center;
 }
+
+
 /* media queris pour tablettes */
 @media screen and (max-width: 768px){
     #habitat .card{
@@ -204,13 +210,7 @@ header .dropdown-menu{
     
 }
 /* media queris pour mobiles */
-@media screen and (max-width: 480px){
-    #habitat .card{
-        width: 100%;
-        height: auto;
-    }
-    
-}
+
 
 
 

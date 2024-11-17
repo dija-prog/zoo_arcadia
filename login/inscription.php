@@ -40,18 +40,18 @@ if(isset($_POST['Inscrire'])){
     }
 }
 ?>
- 
+ ()
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../Assets/css/app.css">
+  <link rel="stylesheet" href="../Assets/css/inscription.css">
     <!-- font-awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- bootstrap css -->
-  <link rel="stylesheet" href="../Assets/Bootstraps/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../Assets/bootstrap/css/bootstrap.min.css">
   <title>Inscription</title>
 </head>
 <body>
@@ -59,7 +59,7 @@ if(isset($_POST['Inscrire'])){
   <div class="container px-4 py-5 px-md-4 text-center text-lg-start my-3">
     <div class="title row gx-lg-5 align-items-center mb-5">
       <div class=" title1  col-lg-6 mb-3 mb-lg-0">
-        <a  href="../Accuiel.php">Accueil</a>
+        <a  href="../Accueil.php"><i class="fa-solid fa-house"></i>Accueil</a>
         <h1 class=" h1 my-5 display-5 fw-bold" >
           S'inscrire <br />
           <span> au Zoo Arcadia</span>
