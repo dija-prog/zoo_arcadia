@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
           </div>
 
           <div id="box-1" class="col mx-2 d-none d-sm-block  text-center">
-            <a href="#animaux">
+            <a href="#habitat">
               <h5 class="card-title"> <i class="fa-solid fa-paw"></i> Nos Animaux</h5>
             </a>
           </div>
@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
           </div>
 
           <div id="box-1" class="col mx-2 d-none d-sm-block  text-center">
-            <a href="#services">
+            <a href="">
               <h5 class="card-title"> <i class="fa-solid fa-map"></i> préparez votre visite</h5>
             </a>
           </div>

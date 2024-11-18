@@ -175,7 +175,7 @@ if ($stmt) {
 
     <!-- tableaux d'animals -->
     <!-- <?php
-          $animal = "select * FROM  animal  ";
+          $animal = "SELECT animal.animal_nom, animal.animal_id, habitat.nom, classe.nom_classe FROM animal JOIN habitat ON animal.habitat_id = habitat.habitat_id JOIN classe ON classe.id_classe = animal.id_classe;";
           $stmt = $bdd->prepare($animal);
           $stmt->execute();
           $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -201,8 +201,8 @@ if ($stmt) {
 
             <tr>
               <td><?php echo htmlspecialchars($animal['animal_nom']) ?></td>
-              <td><?php echo htmlspecialchars($animal['habitat_id']) ?></td>
-              <td><?php echo htmlspecialchars($animal['id_classe']) ?></td>
+              <td><?php echo htmlspecialchars($animal['nom']) ?></td> <!-- habitat -->
+              <td><?php echo htmlspecialchars($animal['nom_classe']) ?></td> <!-- classe -->
               <td>
                 <a href="../CRUD/edit_animal.php?animal_id=<?= $animal['animal_id'] ?>" class="btn btn-success btn-sm">Modifier</i></a>
                 <a href="../CRUD/supprimer.php?animal_id=<?= $animal['animal_id'] ?>" onclick="return confirm('Ëtes vous sûr de vouloir supprimer cet animal  ?')" id="sup" class="btn btn-danger btn-sm">Supprimer</i></a>
@@ -213,14 +213,13 @@ if ($stmt) {
           ?>
         </tbody>
       </table>
-  </div>
-  <!-- bouton ajouter les animaux  -->
-  <button id="animalBtn" class=" btn btn-warning mb-3">
-    <a href="../CRUD/add_animal.php">
-      Ajouter
-    </a>
-  </button>
-  </section>
+        <!-- bouton ajouter les animaux  -->
+        <button id="animalBtn" class=" btn btn-warning mb-3">
+          <a href="../CRUD/add_animal.php">
+           Ajouter
+         </a>
+         </button>
+    </section>
 
 
 
@@ -235,7 +234,7 @@ if ($stmt) {
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
-      <section id="Rapport" class=" mt-5">
+      <section id="Rapport" class="container-fluid mb-5 mt-4">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12 ">

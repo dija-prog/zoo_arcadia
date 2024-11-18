@@ -79,13 +79,13 @@ require('../vendor/autoload.php');
             ?>
             
             <div class="card h-100 " data-animal-id ="<?php echo ($animal['animal_id'])?>" >
-                <a href="<?php echo urlencode($animalName); ?>.php">
+                <a href="animalName.php?animal_nom=<?php echo $animal['animal_nom'];?>">
                 <img src="data:image/jpeg;base64,<?php echo ($image) ?>" class="card-img-top " alt="<?php echo ($animal['animal_nom']) ?>">
                 </a>
                 <div class="card-body text-white bg-black d-flex align-items-center justify-content-center">
                     <h5 class="card-title"><?php echo ($animal['animal_nom']) ?></h5> 
                     <br>
-                    <p><i class="fas fa-eye" aria-hidden="true"></i>:<?php echo ($animal['views']); ?></p>
+                    <p><i class="fas fa-eye" aria-hidden="true"></i>:<?php echo "1"; ?></p> 
                 </div>
             </div>
             <?php } ?>

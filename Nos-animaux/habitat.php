@@ -119,7 +119,7 @@ $collection = $client->zoo_arcadia->animals;
     <!-- animals card -->
     <div class="cards row row-cols-1 row-cols-md-4 g-3 p-5">
       <?php
-      $animal = "select * FROM  animal  ";
+      $animal = "select * FROM  animal "; 
       $stmt = $bdd->prepare($animal);
       $stmt->execute();
       $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -130,7 +130,7 @@ $collection = $client->zoo_arcadia->animals;
 
       ?>
         <div class="card hidden h-100" data-name="<?php echo htmlspecialchars($animal['habitat_id']) ?>">
-          <a href="<?php echo $animalName;?>.php">
+          <a href="animalName.php?animal_nom=<?php echo $animal['animal_nom'];?>">
             <img src="data:image/jpeg;base64,<?php echo htmlspecialchars($image) ?>" class="card-img-top" alt="<?php echo htmlspecialchars($animal['animal_nom']) ?>">
           </a>
           <div class="card-body text-white bg-black d-flex align-items-center justify-content-center">

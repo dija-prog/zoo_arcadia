@@ -7,32 +7,6 @@
     list-style-type:none ;
     text-decoration: none;
 }
-.img-cover{
-    height: 600px;
-}
-
-.info{
-    background-color: #3E5342;
-}
-
-.img-lion{
-    width: 600px;
-    border-radius: 10px;
-}
-
-
-.buy{
-    height: 300px;
-    background-image: url("../../images/lion3.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 20px;
-    color: white;
-    text-align: center;
-    
-}
-
 
 .navbar{
     background-color: rgba(0, 0, 0, 0.2);
@@ -59,12 +33,44 @@
     margin-left: 10px;
 }
 
-
-
 .navbar .btn:hover{
     display: block;
     filter: drop-shadow(0 0 10px #fffdef);
 }
+
+.img-cover{
+    height: 60%;
+}
+
+.info{
+    background-color: #3E5342;
+}
+
+.img-lion{
+    width: 600px;
+    border-radius: 10px;
+}
+
+
+.buy{
+    height: 300px;
+    background-image: url("../../images/lion3.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    
+}
+.couverture .card-img-top{
+    height: 500px;
+}
+
+
+
+
+
 
 
 .footer{

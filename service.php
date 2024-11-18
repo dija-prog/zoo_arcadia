@@ -7,13 +7,13 @@ include('./includes/database.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Assets/css/contact.css">
+    <link rel="stylesheet" href="./Assets/css/service.css">
     <link rel="stylesheet" href="./Assets/bootstrap/css/bootstrap.min.css">
     <title>Services</title>
 </head>
 
 <body>
-    <header>
+    <header id="restaurant">
         <nav class="navbar navbar-expand-lg  fixed-top ">
             <div class="container-fluid">
                 <a class="navbar-brand me-5 " href="./Accueil.php">
@@ -51,72 +51,97 @@ include('./includes/database.php');
                     </a>
                 </button>
             </div>
+        </nav>
+        <div class="cover">
+            <div class=" carousel-caption row  d-flex align-items-center justify-content-center mb-5 py-5 ">
+                <h1 class="mb-4"> Où manger ?</h1><br>
+                <h2 class="mt-3"> Venez vous manger dans un lieu pour se détendre et savourer </h2>
+            </div>
+            <img src="./images/grue_couronée2.jpg" class=" d-block w-100 img-fluid" alt=girafe>
+        </div>
     </header>
     <main>
-        <h1 class="text-center mt-5">Venez vous restaurer dans un cadre naturel.</h1>
-        <section class="restauration">
-            <div class="row justify-content-center g-5 mt-5">
-                <div class="card  col-12 col-md-4 mb-3 ">
-                    <img class="card-img-top" src="./images/service/restaurant.jpg" class="w-100 h-100" alt="restaurant">
-                    <div class="card-body">
-                        <h5 class="card-title">Le self restaurant</h5>
-                        <p class="card-text">
-                            Profitez d'une pause déjeuner à table dans notre restaurant ou en terrasse. Ouvert toute l'année, le self-restaurant vous offre un large choix d'entrées, plats chauds, desserts et boissons.
-                            * Menu adulte à partir de 18,50€ et menu enfant à 12,40€.
-                            Accès privilégié pour les personnes à mobilité réduite.
-                        </p>
-                    </div>
+        <div class="service container-fluid text-white  ">
+            <div class="row">
+                <h2 class="text-white text-center m-4 fw-bold"> Self-restaurant</h2>
+                <div class="col-12 col-md-6 h-100 ">
+                    <img src="./images/restaurant.jpg" class="imag-fluid w-100 h-25  " alt="restaurant ">
                 </div>
-                <div class="card col-12 col-md-4 mb-3 ">
-                    <img class="card-img-top" src="./images/service/hot-dog.jpg"  class="w-100 h-100" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Restauration à Emporter</h5>
-                        <p class="card-text">
-                            Savourez un déjeuner aux quatre coins du parc dans nos kiosques variés : pizzas, burgers, sandwichs chauds ou froids, hot-dogs, salades, en-cas sucrés et bien plus encore.
-                            L'ouverture des points de restauration est variable selon la météo, nous vous invitons à vous renseigner auprès d'un(e) hôte(sse) lors de votre arrivée sur le parc.
-                            Pour éviter une attente trop longue en cas d'affluence, nous vous conseillons de déjeuner avant 12h ou après 14h
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-        <section>
-            <div class="row col-sm-6 col-md-6 m-4">
-                <div class="card" class="w-100 h-100" style="width: 18rem;">
-                    <img class="card-img-top" src="./images/service/train.jpg" alt="Train">
-                    <div class="card-body">
-                        <h5 class="card-title">Petit train</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis consectetur
-                            quaerat laboriosam cumque voluptatum quasi architecto quod ratione explicabo consequatur veniam
-                            omnis pariatur ea ad, optio illo saepe, vel eveniet.
-                            .</p>
-                        <a href="#" class="btn btn-primary">acheter votre ticket</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="./images/service/poussette.jpg" alt="poussette">
-                    <div class="card-body">
-                        <h5 class="card-title">louer une poussette</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas nesciunt placeat corrupti,
-                            in tempora aut iure repellendus ut dolorem deserunt esse cum iste modi quidem enim libero perspiciatis.</p>
-                        <a href="#" class="btn btn-primary">louer</a>
-                    </div>
+                <div class="col-12 col-md-6">
+                    <p>Après une journée riche en découvertes au Zoo Arcadia, notre self-restaurant
+                        vous invite à faire une pause gourmande dans un cadre chaleureux et convivial.
+                        Situé au cœur du parc, il offre une vue imprenable sur la forêt environnante,
+                        parfait pour se reconnecter avec la nature tout en dégustant des plats savoureux.
+                    </p>
+                    <h5 class="text-warning">une cuisine pour tous les goûts</h5>
+                    <p><strong>Option végetariennes et véganes:</strong>Nous proposons des plats équilibrés, préparés avec des ingrédients locaux et de saison. </p>
+                    <p><strong>Menus familiaux:</strong> DE délicieux repas pour les petits et les grands, adaptés à tous les appétits.</p>
+                    <h5 class="text-warning">Engagé pour l'environnement</h5>
+                    <p>Le self-restaurant du Zoo Arcadia s'inscrit dans une démarche écoresponsable :
+                        - Nos ustensiles sont biodégradables ou réutilisables.
+                        - Nous favorisons les circuits courts pour soutenir les producteurs locaux.
+                        - Une partie des recettes est reversée à nos projets de conservation de la faune.
+                    </p>
+                    <h5 class="text-warning"> Horaires d'ouvertures </h5>
+                    <p>
+                        - Ouvert tous les jours : 11h30 - 15h00
+                        - Snack et boissons disponibles l'après-midi : 15h00 - 17h00
+                    </p>
                 </div>
             </div>
-            <div class="row col-sm-6">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="./images/service/guide.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione nam illum incidunt tenetur quis dolorum possimus
-                            repudiandae eos aperiam quisquam, quas corporis fugit, perspiciatis libero, nulla placeat. Delectus, sit sequi.</p>
+            <div class="row mt-5">
+                <h2 class="text-white text-center mb-5 fw-bold"> Snack à Emporter</h2>
+                <div class="col-12 col-md-6 h-100 ">
+                    <img src="./images/hot-dog.jpg" class="imag-fluid w-100 h-25  " alt="restaurant ">
+                </div>
+                <div class="col-12 col-md-6">
+                    <p>
+                        Pour agrémenter votre journée au zoo, faites un arrêt au Snack à Emporter !<br>
+                        Découvrez une sélection de mets rapides et savoureux, parfaits pour une pause gourmande.<br>
+                        <strong class="text-success">tous les goûts :</strong> Sandwiches frais, salades colorées, snacks végétariens, et options pour enfants.<br>
+                        <strong class="text-success"> rafraîchissantes :</strong> rafraîchissantes : Jus de fruits naturels, cafés, et boissons fraîches pour vous désaltérer tout au long de votre visite.<br>
+                        <strong class="text-success"> gourmands : </strong> Glaces artisanales, muffins, cookies, et autres douceurs à déguster sur le pouce.<br>
+                        Profitez de nos points de vente situés à des endroits stratégiques du parc, pour manger où et quand vous le souhaitez. Chaque achat soutient les initiatives de conservation du zoo !
+                    <h5 class="text-warning fw-bold"> N'attendez plus : venez vous régaler tout en explorant le zoo ! </h5>
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-5 d-flex justify-content-center">
+                <h2 class="text-white text-center fw_bold m-5"> Services pratique pour une visite confortable</h2>
+
+                <div class=" col-12 col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./images/guide.jpg" class="card-img-top" alt="guide">
+                        <div class="card-body bg-dark">
+                            <h5 class="card-title text-warning">Guide gratuit</h5>
+                            <p class="card-text text-white">Enrichissez votre visite avec nos guides experts ! Disponibles sur réservation, ils vous partageront des anecdotes passionnantes et des informations captivantes sur nos animaux.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Ccol-12 col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./images/poussette.jpg" class="card-img-top" alt="poussette">
+                        <div class="card-body bg-dark">
+                            <h5 class="card-title text-warning">Location des poussettes</h5>
+                            <p class="card-text text-white">Pour le confort des plus petits, profitez de notre service de location de poussettes à l'entrée du zoo. Une solution pratique pour une journée en famille sans souci..</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card m-4" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="./images/train.jpg" class="img-fluid " alt="TRAIN">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body ">
+                                <h5 class="card-title  text-success">Petit train</h5>
+                                <p class="card-text  ">Découvrez le zoo autrement à bord de notre petit train ! Une manière relaxante et ludique de parcourir le parc tout en profitant d'une vue panoramique sur les habitats des animaux. This content is a little bit longer.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-
+        </div>
     </main>
     <footer>
         <footer class="footer ">
@@ -155,9 +180,9 @@ include('./includes/database.php');
         </footer>
 
         <!-- script-bootstrap js  -->
-    
-    <script src="./Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <scrip src="./Assets/bootstrap/js/bootstrap.min.js">
+
+        <script src="./Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <scrip src="./Assets/bootstrap/js/bootstrap.min.js">
 </body>
 
 </html>
