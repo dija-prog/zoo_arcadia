@@ -9,6 +9,7 @@ include('./includes/database.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Assets/css/service.css">
     <link rel="stylesheet" href="./Assets/bootstrap/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="./images/fiveicon.png">
     <title>Services</title>
 </head>
 
