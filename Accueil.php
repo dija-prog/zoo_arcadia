@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     <nav class="navbar navbar-expand-lg  fixed-top ">
       <div class="container-fluid">
         <a class="navbar-brand me-5 " href="./Accueil.php">
-          <img src="./images/LOGOZOO.png" width="100" height="50"></a>
+          <img src="./images/LOGOZOO.png"  width="100" height="50" ></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
   </header>
   <main>
     <div class="container-fluid cover">
-      <img src="./images/pexels-magda-ehlers-pexels-5078902.jpg" class="cover w-100 " alt="photo de couverture">
+      <img src="./images/pexels-magda-ehlers-pexels-5078902.jpg" class="cover w-100 img-fluid" alt="photo de couverture">
       <div class="carousel-caption d-none d-md-block">
         <h1> Bienvenue au Zoo Arcadia</h1>
         <p> Découvrez la faune fascinante de notre zoo et plongez dans un monde de merveilles naturelles.</p>
