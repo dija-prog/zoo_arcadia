@@ -1,0 +1,50 @@
+/* style page rapport  */
+.navbar{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.navbar a{
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: #c6bea8;
+    font-weight: bold;
+    display: block;
+}
+
+.health{
+    background-color: #3e5342;
+}
+
+
+/* style page vétérinaire.php */
+
+#sidebar .nav-link-text {
+    color: white;
+    margin: 10px 10px;
+    font-size: 1.2rem;
+    font-weight:bold;
+}
+
+#sidebar .nav-link-text:hover{
+    color: #FFBF00;
+}
+
+
+#sidebar .nav-link .fas {
+    width: 20px;
+    color: white;
+}
+
+#sidebar .nav-link .fas:hover{
+    color: #FFBF00;
+}
+
+#habitat{
+    background-color:#dcd2c6;
+}
+
+
+

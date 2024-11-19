@@ -1,0 +1,7 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.9",
+        "symfony/mailer": "^7.1",
+        "mongodb/mongodb": "^1.20.0"
+    }
+}

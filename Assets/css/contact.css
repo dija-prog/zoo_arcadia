@@ -1,0 +1,110 @@
+.navbar {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.navbar li {
+    list-style-type: none;
+    text-decoration: none;
+}
+.logo{
+    width: 30px;
+    height: 60px;
+}
+
+.navbar a{    
+    color:white;
+    font-size: 1.2rem;
+    list-style-type: none;
+    text-decoration: none;
+}
+.navbar a:hover {
+    color:#FFBF00;
+
+}
+
+/* footer-start */
+.footer{
+    padding: 10px;
+    background-color: #05311c;
+    color: white;
+
+}
+    
+.footer .box-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(10rem,1fr));
+    gap: 1rem;
+}
+.footer .box-container .box h3{
+    font-size:1rem;
+    color:#FFBF00;
+    padding: 1rem;
+    text-decoration: underline;
+}
+.footer .box-container .box P{
+    font-size: 1rem;
+    line-height:1.8;
+    color:white;
+    margin: 0.5rem;
+    
+}
+.footer .box-container .box .links{
+    display:block;
+    font-size:1rem;
+    color: white;
+    margin: 0.5rem;
+}
+.footer .box-container .box .links i{
+    padding-right: 1rem;
+
+}
+.footer .box-container .box .links:hover{
+    padding-right: 1rem;
+    color: #FFBF00;
+
+}
+.footer .box-container .box .email{
+    width:100%;
+    padding: 1rem;
+    margin: -0rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    text-transform: none;
+}
+.footer .share .fa-brands {
+    color: white;
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+.footer .share .fa-brands:hover{
+    color: #FFBF00;
+}
+.footer .box .btn:hover{
+    margin-left: 1rem;
+}
+
+.footer .credit {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 0.5rem;
+}
+footer a {
+    color: #f8f9fa!important
+}
+
+ /* footer-end */
+
+ /* page servics css 
+ */
+
+
+
+
+
+
+
+
+
+
+
