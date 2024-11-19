@@ -1,14 +1,3 @@
--- créer une table animal:
-
-create table animal(
-animal_id int auto_increment primary key,
-animal_nom varchar(50) Not NULL,
-habitat_id int, 
-id_classe int,
-constraint fk_habitat foreign key (habitat_id) REFERENCES habitat(habitat_id),
-constraint fk_classe foreign key (id_classe) REFERENCES classe(id_classe)
-);
-
 -- créer une table habitat : 
 create table habitat(
 habitat_id int auto_increment primary key,
@@ -21,6 +10,18 @@ create table classe(
     id_classe int auto_increment primary key,
     nom_classe varchar(50) not NULL
 );
+
+
+-- créer une table animal:
+create table animal(
+animal_id int auto_increment primary key,
+animal_nom varchar(50) Not NULL,
+habitat_id int, 
+id_classe int,
+constraint fk_habitat foreign key (habitat_id) REFERENCES habitat(habitat_id),
+constraint fk_classe foreign key (id_classe) REFERENCES classe(id_classe)
+);
+
 
 
 create une table role (
@@ -83,7 +84,7 @@ create une table service (
     service_nom varchar(50) not NULL,
     description varchar(50) not NULL
 )
-    -- créer une de jointure entre la table animal et la table rapport_veterinaire et la table habitat et la table classe 
+-- créer une de jointure entre la table animal et la table rapport_veterinaire et la table habitat et la table classe 
 
 SELECT animal.animal_nom, rapport_veterinaire.*, habitat.*, classe.* 
 FROM animal 
