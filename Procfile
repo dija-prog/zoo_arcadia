@@ -1,2 +1,2 @@
 
-web: vendor/bin/heroku-php-apache2 zoo_arcadia/
+web: php -S 0.0.0.0:$PORT -t  Zoo_Arcadia/public/
