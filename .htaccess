@@ -5,6 +5,5 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
 
-<FilesMatch "\.(env|json|log|md|gitignore|sh|yml|lock|htaccess|config)$">
-    Require all denied
-</FilesMatch>
+# Redirige toutes les requêtes vers public/index.php
+RewriteRule ^ Zoo_Arcadia/index.php [QSA,L]
