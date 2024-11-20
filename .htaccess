@@ -1,9 +1,0 @@
-RewriteEngine On
-
-# Redirige toutes les requêtes vers index.php
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [QSA,L]
-
-# Redirige toutes les requêtes vers public/index.php
-RewriteRule ^ Zoo_Arcadia/index.php [QSA,L]
