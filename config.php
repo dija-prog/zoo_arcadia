@@ -1,8 +1,5 @@
 <?php
 
-
-// $url =getenv('mysql://hpwdlkk6ytzu2iaz:l3mij96rgvsf75se@zy4wtsaw3sjejnud.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qj0hr19ajswaa9v1
-// ');
 $url =getenv('JAWSDB_URL');
 echo $url;
 $db = parse_url($url);

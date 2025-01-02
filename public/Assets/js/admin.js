@@ -97,3 +97,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 //         }
 //     }
 // })
+
+const ADD_ANIMAL_FORM = document.querySelector('#add-animal-form');
+
+ADD_ANIMAL_FORM.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+
+    const DATA = new FormData(ADD_ANIMAL_FORM);
+    console.log(DATA.get('animal_nom'));
+    addAnimal(DATA);
+})
+
+async function addAnimal(data) {
+    const RESPONSE = await fetch('/add-animal', {
+        'method' : 'POST',
+        'body' : data
+    });
+    const JSON = await RESPONSE.json();
+    console.log(JSON); 
+}
