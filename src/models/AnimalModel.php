@@ -29,7 +29,7 @@ class AnimalModel
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':animal_id', $animal_id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
@@ -49,19 +49,26 @@ class AnimalModel
         $stmt = $this->pdo->prepare("INSERT INTO animal (animal_nom,id_classe,habitat_id) VALUES (?,?,?)");
         return $stmt->execute(array($animal_nom, $id_classe, $habitat_id));
     } 
-    public function editAnimal($animal_id)
+    public function editAnimal($animal)
     {        
-        $sql = "UPDATE animal SET UPDATE animal SET animal_nom = :animal_nom, habitat_id = :habitat_id, id_classe = :id_classe, etat= :etat WHERE animal_id = :animal_id";
+        $sql = "UPDATE animal SET UPDATE animal
+                SET animal_nom = :animal_nom, habitat_id = :habitat_id, id_classe = :id_classe
+                WHERE animal_id = :animal_id";
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute (( $animal_id));
+        $stmt->bindParam(':animal_id', $animal['animal_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':animal_nom', $animal_nom, PDO::PARAM_STR);
+        $stmt->bindParam(':habitat_id', $habitat_id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_classe', $id_classe, PDO::PARAM_INT);
+
+        return $stmt->execute ();
     } 
+
+    
 
     public function deleteAnimal($animal)
     {
-            $animalId = $animal['animal_id']; 
-
         $req = $this->pdo->prepare("DELETE FROM animal where animal_id = :animal_id");
-        $req->bindParam(':animal_id',$animalId, PDO::PARAM_INT);
+        $req->bindParam(':animal_id',$animal['animal_id'], PDO::PARAM_INT);
         return $req->execute();
         
     }

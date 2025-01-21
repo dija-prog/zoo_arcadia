@@ -89,16 +89,14 @@
     <!-- animals card -->
     <div class="cards row row-cols-1 row-cols-md-4 g-3 p-5">
       <?php
-      foreach ($animals as $animal) {
+        foreach ($animals as $animal) {
         $image = base64_encode($animal['image']);
         $animalName = strtolower(str_replace('', '_', $animal['animal_nom']));
       ?>
         <div class="card hidden h-100" data-name="<?php echo htmlspecialchars($animal['habitat_id']) ?>">
-          <!-- <a href="animalName.php?animal_nom=<?php echo htmlspecialchars($animal['animal_nom']);?>"> -->
-            <a href="../animalName/<?php echo urlencode($animal['animal_nom']);?>">
-            
-            
-            <img src="data:image/jpeg;base64,<?php echo htmlspecialchars($image) ?>" class="card-img-top" alt="<?php echo htmlspecialchars($animal['animal_nom']) ?>">
+            <!-- <a href="animalName.php?animal_nom=<?php echo htmlspecialchars($animal['animal_nom']);?>"> -->
+            <a href="../animalName/<?php echo urlencode($animal['animal_nom']);?>"> 
+            <img src="data:image/jpeg;base64,<?php echo htmlspecialchars($image) ?>" class="card-img-top" loading="lazy" alt="<?php echo htmlspecialchars($animal['animal_nom']) ?>">
           </a>
           <div class="card-body text-white bg-black d-flex align-items-center justify-content-center">
             <h5 class="card-title"><?php echo htmlspecialchars($animal['animal_nom']) ?></h5>

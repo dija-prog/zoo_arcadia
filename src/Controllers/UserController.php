@@ -3,26 +3,28 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 use PDO;
-use PDOException;
-use Symfony\Component\Mailer\Transport;
-use Symfony\Component\Mailer\Mailer;
-use Symfony\Component\Mime\Email;
+
 
 class UserController
 {    
     private $UserModel;
+    public function __construct()
+    {
+        $this->UserModel = new UserModel();
+    }
 
     public function index()
     {   
-        $username = $_GET['username'];
+        
+        $username = urldecode($_GET['username']);
         $nom = $_GET['nom'];
         $prenom = $_GET['prenom'];
         $password = $_GET['password'];
         $role_id = $_GET['role_id'];
         $userModel = new UserModel();
         $sql = $userModel-> addUser($nom, $prenom, $username, $password, $role_id);
-        $req = $userModel -> deleteUser($username);
-        $result = $userModel->updateUser();
+    
+        require_once __DIR__. '../views/admin.php';
 
 
     }
@@ -30,7 +32,7 @@ class UserController
     {
         if (isset($_POST['Inscrire'])) {
             // Vérification des champs requis
-            $users = ['prenom', 'nom', 'username', 'password', 'role_id'];
+            $users = ['prenom', 'nom', 'role_id','username','password'];
             foreach ($users as $user) {
                 if (empty($_POST[$user])) {
                     echo "Le champ {$user} est requis.";
@@ -41,15 +43,16 @@ class UserController
             // Récupération et sécurisation des données
             $prenom = htmlspecialchars($_POST['prenom']);
             $nom = htmlspecialchars($_POST['nom']);
+            $role_id = (int) $_POST['role_id']; // Convertir en entier pour éviter des failles
             $username = htmlspecialchars($_POST['username']);
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $role_id = (int) $_POST['role_id']; // Convertir en entier pour éviter des failles
 
             
             $user = new UserModel();
-            $Result = $user->addUser($nom, $prenom, $username, $password, $role_id);
+            $Result = $user->addUser($nom, $prenom,$role_id, $username, $password);
 
             if ($Result) {
+                
                 // Redirection vers la vue selon le rôle
                 if ($role_id === 2) {
                     header('Location:/login');
@@ -61,41 +64,23 @@ class UserController
             } else {
                 echo "Erreur lors de la création de l'utilisateur.";
             }
+            
         }
+
+        require_once __DIR__ . '/../views/login.php';
     }
 
-    public function sendEmail($nom, $prenom, $username, $password, $role_id, $to)
-    {
-        //Ajouter dans la base de données
-        $add = $this->UserModel->addUser($nom, $prenom, $username, $password, $role_id);
-        header ("Location :/admin/users");
-        if($add){
-            //envoie de l'email
-            try {
-                $transport = Transport::fromDsn($_ENV['MAILER_DSN']); 
-                $mailer = new Mailer($transport);
-
-                $email = (new Email())
-                    ->from('aithamouk94@gmail.com')
-                    ->to($to)
-                    ->subject('Création de compte')
-                    ->text("Bonjour $prenom $nom,\n\nVotre compte a été créé avec succès. Veuillez contacter l'administrateur pour plus d'informations.");
-
-                $mailer->send($email);
-            } catch (PDOException $e) {
-                throw new PDOException("Erreur lors de l'envoi de l'e-mail : " . $e->getMessage());
-            }
-        }
-        require_once __DIR__ . '/../views/CRUD/addUserForm.php';
-    }
     
-    public function updateUser($nom, $prenom, $username,$password, $role_id)
+    
+    public function updateUser($username)
     {
-        if (isset($_POST['submit'])) {
+        $username = $username['username'];
+        if (isset($_POST['submit'])) { 
+            
             $prenom = htmlspecialchars($_POST['prenom']);
             $nom = htmlspecialchars($_POST['nom']);
             $username = htmlspecialchars($_POST['username']);
-            $password = $_POST['password'];
+            $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
             $role_id = intval($_POST['role_id']);
             
             // Vérification des champs requis
@@ -105,18 +90,45 @@ class UserController
             }
     
             // Appel au modèle pour la mise à jour
-            $result = $this->UserModel->updateUser( $nom, $prenom, $username,$password, $role_id);
+            $result = $this->UserModel->updateUser($nom,$prenom,$password,$role_id,$username);  
     
             if ($result) {
                 echo "Utilisateur mis à jour avec succès.";
-                header("Location:/admin.php#usertable");
+                header("Location:/admin#usertable");
             } else {
                 echo "Erreur lors de la mise à jour de l'utilisateur.";
             }
         } else {
-            echo "Méthode de requête non autorisée.";
+            
+            $user = $this->UserModel->getUserByUsername($username);
+            $User = [
+                'nom' => $user['nom'],
+                'prenom' => $user['prenom'],
+                'username' => $user['username'],
+                'password' => '',
+                'role_id' => $user['role_id']
+            ];
+            require_once __DIR__. "/../views/CRUD/edit_user.php";
+
         }
     }
+    
+    public function deleteUser($username) 
+    {   
+        if (empty($username)) {
+            return "Erreur : Le nom d'utilisateur est requis.";
+        }
+        if($this->UserModel->deleteUser($username)) {
+           
+            header("Location:/admin#usertable");
+
+        }else {
+            echo "Erreur lors de la suppression de utilisateur";
+            
+        }
+    }
+
+    
         
         
     }

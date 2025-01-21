@@ -14,12 +14,12 @@ class ContactModel
     }
     public function addContact($titre, $email, $description)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO contact (titre,email,`description`) VALUE (?,?,?)");
+        $stmt = $this->pdo->prepare("INSERT INTO contact (titre,email,description) VALUES (?,?,?)");
         return $stmt->execute([$titre,$email,$description]);
     }
-    public function showContact()
-    {
-        $stmt = $this->pdo->prepare("SELECT * FROM  contact (titre,email,`description`) VALUE (?,?,?)");
+    public function showMessages()
+    {   
+        $stmt = $this->pdo->prepare("SELECT * FROM  contact ");
         $stmt->execute();
         $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return  $messages;

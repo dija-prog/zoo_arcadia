@@ -34,3 +34,12 @@
 .container {
     max-width: 900px;
 }
+
+.is-invalid {
+    border-color: red;
+}
+.invalid-feedback {
+    color: red;
+    font-size: 0.875em;
+}
+

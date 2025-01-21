@@ -7,10 +7,12 @@ class AnimalController
 {
     private $model;
     public function index()
-    {
+    {   
+        $animal_id = $params['animal_id'] ?? '';
         $animalModel = new AnimalModel();
         $animals= $animalModel->getAnimals();
-        $rows = $animalModel->getAnimalsJoin();        
+        $rows = $animalModel->getAnimalsJoin();   
+        $stmt = $animalModel-> editAnimal($animal_id);     
 
         require_once __DIR__ . '/../views/admin.php';
     }
@@ -41,24 +43,27 @@ class AnimalController
 
     public function editAnimal($animal_id)
     {
+        
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $animal_nom = $_POST['animal_nom'];
             $id_classe = $_POST['id_classe'];
             $habitat_id = $_POST['habitat_id'];
-            $etat = $_POST['etat'];
-
-            if($this->model->editAnimal($animal_id, $animal_nom, $id_classe, $habitat_id, $etat)){
-                header("Location:/admin#animaletable");
+            if($this->model->editAnimal($animal_id, $animal_nom, $id_classe, $habitat_id)){
+                header("Location:admin#animaletable");
                 
             } else {
                 echo "Erreur lrs de la modification de l'animal.";
             }
-
-            $animal = $this->model->getAnimalById($animal_id);
-            require_once "../views/CRUD/edit-animal.php";
-
+            
         }
+            $animal = $this->model->getAnimalById($animal_id['animal_id']);
+            require_once __DIR__. "/../views/CRUD/edit_animal.php";
 
+    }
+
+    public function show()
+    {
+        require_once __DIR__. "/../views/CRUD/edit_animal.php";
     }
 
     public function deleteAnimal($animal_id) 

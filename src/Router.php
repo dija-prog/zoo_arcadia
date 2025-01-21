@@ -17,28 +17,91 @@ class Router
     {
         $routes = [
             'GET' => [
+                '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
+                '/contact' => ['App\\Controllers\\ContactController', 'showForm'],
+                '/register' => ['App\\Controllers\\RegisterController', 'index'],
                 '/login' => ['App\\Controllers\\LoginController', 'showLogin'],
                 '/admin' => ['App\\Controllers\\AdminController', 'index'],
-                '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
-                '/register' => ['App\\Controllers\\RegisterController', 'index'],
-                '/contact' => ['App\\Controllers\\ContactController', 'showForm'],
                 '/veterinaire' => ['App\\Controllers\\VeterinaireController','index'],
+                '/employe' => ['App\\Controllers\\EmployeController','index'],
+                
                 '/habitat' => ['App\\Controllers\\HabitatController','index'],
-                '/employe' => ['App\\Controllers\\employeController','index'],
                 '/animalName/{animalName}' => ['App\\Controllers\\AnimalNameController','index'],
+                
                 '/add-animal' => ['App\\Controllers\\AnimalController', 'addAnimal'],
-                '/addUserForm' => ['App\\Controllers\\UserController', 'addUser'],
+                '/edit_animal/{animal_id}' => ['App\\Controllers\\AnimalController', 'editAnimal'],
+                '/animaldelete/{animal_id}' => ['App\\Controllers\\AnimalController','deleteAnimal'],
+                
+                '/logout' => ['App\\Controllers\\AuthController','logout'],  
+                
+                '/deleteAvis/{avis_id}' => ['App\\Controllers\\EmployeController', 'deleteAvis'],
+                '/updateAvis/{avis_id}' => ['App\\Controllers\\EmployeController', 'updateAvis'],
+                '/validerAvis/{avis_id}' => ['App\\Controllers\\EmployeController','validerAvis'],
+                
+                
+                '/addUser' => ['App\\Controllers\\AdminController', 'addUserWithEmail'],
+                '/deleteUser/{username}' => ['App\\Controllers\\UserController','deleteUser'], 
+                '/edit_user/{username}' => ['App\\Controllers\\UserController','updateUser'],
+                
+                '/edit_service/{service_id}' => ['App\\Controllers\\ServiceController', 'editService'],
+                '/add_service' => ['App\\Controllers\\ServiceController','add_Services'],
+                '/deleteService/{id}' => ['App\\Controllers\\ServiceController','deleteService'],  
+                
+                '/add_food' => ['App\\Controllers\\FoodController','addFood'],
+                '/edit_food/{id_food}' => ['App\\Controllers\\FoodController','editFood'],
+                '/deleteFood/{id_food}' => ['App\\Controllers\\FoodController','deleteFood'],
 
-                '/animaldelete/{animal_id}' => ['App\\Controllers\\AnimalController','deleteAnimal'],  
-            ],
+                '/veterinaire/{animal_id}' => ['App\\Controllers\\VeterinaireController',' getRapportJoinAnimal'],
+
+                '/addCommentHabitat' => ['App\\Controllers\\VeterinaireController','addCommentHabitat'],
+
+                '/rapport' => ['App\\Controllers\\RapportController','index'],
+
+                '/forgot_password'=> ['App\\Controllers\\LoginController', 'ForgotPassword'],
+
+                '/reset_password'=> ['App\\Controllers\\LoginController', 'resetPassword'],
+
+
+                '/ShowAnimalsStatics/{animal_id}' => ['App\\Controllers\\AdminController', 'ShowAnimalsStatics'],
+
+
+ 
+
+
+            ], 
             'POST' => [
                 '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
-                '/register' => ['App\\Controllers\\UserController','createUser'],
+                '/register' => ['App\\Controllers\\UserController','addUser'],
                 '/login' => ['App\\Controllers\\LoginController', 'authenticate'],
                 '/contact' => ['App\\Controllers\\ContactController', 'contactForm'],
+                
+                '/add_service' => ['App\\Controllers\\ServiceController','add_Services'],
+                '/edit_service/{service_id}' => ['App\\Controllers\\ServiceController', 'editService'], 
+                
+                '/add_food' => ['App\\Controllers\\FoodController', 'addFood'],
+                '/edit_food/{id_food}' => ['App\\Controllers\\FoodController','editFood'],
+
                 '/addAnimal' => ['App\\Controllers\\AnimalController', 'addAnimal'],
                 '/add-animal' => ['App\\Controllers\\AnimalController', 'addAnimalAjax'],
-                '/addUserForm' => ['App\\Controllers\\UserController', 'addUser'],
+
+                '/addUser' => ['App\\Controllers\\AdminController', 'addUserWithEmail'],
+                '/edit_user/{username}' => ['App\\Controllers\\UserController','updateUser'], 
+                
+                '/rapport' => ['App\\Controllers\\RapportController','index'],
+
+                '/validerAvis/{avis_id}' => ['App\\Controllers\\EmployeController','validerAvis'],
+
+                '/veterinaire' => ['App\\Controllers\\VeterinaireController','addCommentHabitat'],
+                
+                '/forgot_password'=> ['App\\Controllers\\LoginController', 'ForgotPassword'],
+                '/reset_password/{token}'=> ['App\\Controllers\\LoginController', 'resetPassword'],
+
+
+                
+                '/ShowAnimalsStatics/{animal_id}' => ['App\\Controllers\\AdminController', 'ShowAnimalsStatics'],
+
+
+
 
             ],
         
@@ -47,6 +110,8 @@ class Router
         $uri = $_SERVER['REQUEST_URI'];
         $path = parse_url($uri, PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
+
+        
         
         // if($_SERVER['REQUEST_METHOD'] === 'GET') {
             
@@ -94,6 +159,7 @@ class Router
         if ($matchedRoute) {
             $this->controllerFqcn = $matchedRoute[0];
             $this->method = $matchedRoute[1]; 
+            
         } else {
             throw new \Exception("Route introuvable : " . $path);
             exit;

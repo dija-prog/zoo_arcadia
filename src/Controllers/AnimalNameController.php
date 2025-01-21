@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\AnimalModel;
 use App\Models\VeterinaireModel;
+use App\Models\ViewsModel;
 
 class AnimalNameController
 {
@@ -10,6 +11,7 @@ class AnimalNameController
     {   
         $animalName = $params['animalName'] ?? '';
         $animalName = urldecode($animalName);
+        $viewsModel = new ViewsModel();
         //charger le model
         $animalModel = new AnimalModel();
         $veterinaireModel = new VeterinaireModel();
@@ -19,9 +21,10 @@ class AnimalNameController
         $rapports = $veterinaireModel->getVeterinaryRapport($details['animal_id']);
         // $stmt = $veterinaireModel-> getRapportsVeterinaires();
 
+        
+
         // inclure les données à la vue 
         require_once __DIR__ . '/../views/animalName.php';
     }
-    
     
 }

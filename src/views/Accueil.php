@@ -355,7 +355,8 @@
     <div class=" reviews m-5 ">
       <h3 class="text-warning  fw-bold mb-2">Avis</h3>
       <?php
-      foreach ($avisValides as $avis) {
+      foreach ($avisValides as $avis)
+      {
         echo "<div>";
         echo "<i class='fas fa-star '></i>";
         echo "<strong>" . htmlspecialchars($avis['pseudo']) . "</strong>";

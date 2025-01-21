@@ -21,6 +21,14 @@ class HabitatModel
         $habitat = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $habitat;
     }
+    // public function gethabitatById($habitat_id)
+    // {
+    //     $sql = "SELECT habitat_id FROM habitat";
+    //     $stmt = $this->pdo->prepare($sql);
+    //     $stmt->bindParam("habitat_id", $habitat_id, PDO::PARAM_INT);
+    //     $stmt->execute();
+    //     $habitats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // }
 
 
 }

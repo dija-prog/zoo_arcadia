@@ -1,75 +1,4 @@
-<?php
 
-// if (isset($_POST['valider'])) {
-
-//   if (!empty($_POST['username']) && !empty($_POST['password'])) {
-
-//     // Connexion à la base de données
-//     try {
-//       $bdd = new PDO('mysql:host=localhost;dbname=zoo arcadia', 'root', '');
-//       $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//     } catch (Exception $e) {
-//       die('Erreur : ' . $e->getMessage());
-//     }
-
-//     $username = $_POST['username'];
-//     $password = $_POST['password'];
-
-//     // Préparer la requête SQL
-//     $recupUser = $bdd->prepare('SELECT * FROM utilisateur WHERE username = ?');
-//     $recupUser->execute(array($username));
-
-//     if ($recupUser->rowCount() > 0) {
-//       $User = $recupUser->fetch(PDO::FETCH_ASSOC);
-
-//       $hash = $User['password'];
-//       // var_dump($User);  // Vérifier ce qui est récupéré
-//       // var_dump($password); // Vérifier ce qui est saisi
-//       // var_dump($hash); // Vérifier ce qui est saisi
-//       // Vérifier si le mot de passe correspond
-//       if (password_verify($password, $hash)) {
-//         echo "vous etez connecter";
-//         $role_id = $User['role_id'];
-//         // Stocker les informations dans la session
-//         session_start();
-//         $_SESSION['username'] = $User['username'];
-//         $_SESSION['role'] = $role_id;
-//         $_SESSION['prenom'] = $User['prenom'];
-//         $_SESSION['nom'] = $User['nom'];
-//         // Rediriger selon le rôle
-//         define('ADMIN', 1);
-//         define('EMPLOYE', 2);
-//         define('VETERINAIRE', 3);
-//         if ($role_id == ADMIN) {
-//           header("Location: ../roles/admin.php");
-//         } elseif ($role_id == EMPLOYE) {
-//           header("Location: ../roles/employé.php");
-//         } elseif ($role_id == VETERINAIRE) {
-//           header("Location: ../roles/vétérinaire.php");
-//         }
-//       } else {
-//         echo "Votre mot de passe est incorrect !";
-//       }
-//     } else {
-//       echo "Votre username ou le rôle est incorrect !";
-//     }
-//   } else {
-//     echo "Veuillez remplir tous les champs !";
-//   }
-// }
-
-
-
-// $password = 'jose_arcadia';
-// $hashedPassword = password_hash('Jose_arcadia', PASSWORD_DEFAULT);
-// echo "Le hash du mot de passe est : " . $hashedPassword;
-
-
-?>
-
-
-<!-- // Mot de passe à hacher
-$motDePasse = 'Jose_arcadia'; -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -97,9 +26,13 @@ $motDePasse = 'Jose_arcadia'; -->
         </div>
 
         <div class=" login col-sm-6 text-black ">
-
+          <?php if(isset($error)){ ?>
+            <div class="alert alert-danger" role="alert">
+              <?php echo $error ?>
+            </div>
+          <?php } ?>
           <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4  pt-4 pt-xl-0 mt-xl-n5">
-            <form method="POST" action="/login">
+            <form id="login-form" method="POST" action="/login">
               <div class="back text-success fw-bold d-flex justify-content-start mt-4">
                 <a href="./Accueil"><i class="fa-solid fa-house "></i>Accueil</a>
               </div>
@@ -107,18 +40,20 @@ $motDePasse = 'Jose_arcadia'; -->
 
               <div data-mdb-input-init class="form-outline text-dark mb-4">
                 <label class="form-label">Email</label>
-                <input name="username" type="email" placeholder="exemple@gmail.fr" class="form-control form-control-lg" />
+                <input id="email" name="username" type="email" placeholder="exemple@gmail.fr" class="form-control form-control-lg" />
+                <span class="text-danger" id="email_error"></span>
               </div>
 
               <div data-mdb-input-init class="form-outline text-dark mb-4">
                 <label class="form-label">Mot de passe</label>
-                <input name="password" type="password" placeholder="mot de passe" class="form-control form-control-lg" />
+                <input id="password" name="password" type="password" placeholder="mot de passe" class="form-control form-control-lg" />
+                <span class="text-danger" id="password_error"></span>
               </div>
 
               <div class="pt-1 mb-3 ">
                 <input type="submit" name="valider" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-lg btn-block" type="button" />
               </div>
-              <p class="small mb-3 pb-lg-2"><a class="text-muted" href="forgot_password.php">Mot de passe oublié?</a></p>
+              <p class="small mb-3 pb-lg-2"><a class="text-muted" href="./forgot_password">Mot de passe oublié?</a></p>
               <p>Vous avez pas de compte? <a href="./register" class="link-success">inscription ici</a></p>
 
             </form>
@@ -129,6 +64,7 @@ $motDePasse = 'Jose_arcadia'; -->
       </div>
     </div>
   </section>
+  <script src="../Assets/js/login.js"></script>
 
 </body>
 

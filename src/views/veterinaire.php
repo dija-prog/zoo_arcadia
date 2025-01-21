@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="nav flex-column p-4 mt-5 ">
-                        <a href="../Accueil.php" class="nav-link d-flex align-items-center">
+                        <a href="/Accueil" class="nav-link d-flex align-items-center">
                             <i class="fas fa-home"></i>
                             <span class="ms-2 nav-link-text">Accueil</span>
                         </a>
@@ -54,7 +54,7 @@
                             <i class="fas fa-notes-medical"></i>
                             <span class="ms-2 nav-link-text">Rapport véternaire</span>
                         </a>
-                        <a href="../login/connexion.php" class="nav-link d-flex align-items-center">
+                        <a href="/logout" class="nav-link d-flex align-items-center">
                             <i class="fas fa-right-from-bracket"></i>
                             <span class="ms-2 nav-link-text">Deconnexion</span>
                         </a>
@@ -70,16 +70,16 @@
         </div>
         <section id="habitat" class="container-fluid ">
             <h3 class="text-center text-success fw-bold mt-5 ">Habitat</h3>
-            <form method="POST">
+            <form method="POST" action='/veterinaire'>
                 <div class="row justify-content-center">
                     <div class=" col-12 col-md-8 col-lg-6 py-4 ">
                         <label for="habitat-select" class="form-label">Choisissez un habitat</label>
-                        <select class="form-select" id="habitat-select" name="habitat_id" aria-label="Default select example" required>
-                            <option selected>Habitat</option>
-                            <option value="1">Savane Africane</option>
-                            <option value="2">Jungle Tropicale</option>
-                            <option value="3">Marais Humide</option>
+                        <select name="habitat_id" required>
+                            <?php foreach ($habitat as $habitat): ?>
+                                <option value="<?= $habitat['habitat_id'] ?>"><?= $habitat['nom'] ?></option>
+                            <?php endforeach; ?>
                         </select>
+
                         <div class="mb-3">
                             <label for="commentaire_habitat" class="form-label">commentaire</label>
                             <textarea class="form-control" name="commentaire" id="commentaire_habitat" rows="3" required></textarea>
@@ -137,29 +137,14 @@
         <section>
             <h3 class="text-center  text-success fw-bold mt-5 "> Rapport vétérinaire</h3>
             <div class="text-center mt-5">
-                <p> Click sur le bouton dessus pou remplire votre rapport des animaux</p>
-                <a href="./rapport.php"><button class="btn btn-warning mb-5">Remplire</button> </a>
+                <p> Click sur le bouton ci-dessous pou remplire votre rapport des animaux</p>
+                <a href="/rapport"><button class="btn btn-warning mb-5">Remplire</button> </a>
             </div>
             <div>
                 <!-- ici select par date -->
             </div>
 
-            <div class="card text-center">
-                <?php foreach ($rapports as $rapport) { ?>
-                <div class="card-header">
-                    <?php echo htmlspecialchars($rapport['animal_nom']) ?>
-                </div>
-                <div class="card-body">
-                        <p> <strong> L'état de l'animal : </strong> <?php echo htmlspecialchars($rapport['etat']) ?></p>
-                        <p> <strong> La nourriture proposée : </strong><?php echo htmlspecialchars($rapport['foodType']) ?></p>
-                        <p> <strong> Le grammage de la nourriture : </strong><?php echo htmlspecialchars($rapport['quantite']) ?></p>
-                        <p> <strong> Détail de l'état de l'animal :</strong><?php echo htmlspecialchars($rapport['detail']) ?></p>
-                </div>
-                <div class="card-footer text-muted">
-                    <p> <strong> Date de passage : </strong><?php echo htmlspecialchars($rapport['date']) ?></p>
-                </div>
-            <?php } ?>
-            </div>
+            
         </section>
     </main>
 

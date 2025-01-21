@@ -21,5 +21,6 @@ class HabitatController
 
         require_once __DIR__ . '/../views/habitat.php';
     }
+
    
 }    

@@ -30,7 +30,7 @@ class AvisModel
         }
       }
     }
-    public function getAvis()
+    public function getAvisValides(): array
     {
       // Aficher les avis validés
       $stmt = $this->pdo->query("SELECT pseudo, commentaire FROM avis WHERE isValide = 1 ");
@@ -38,43 +38,38 @@ class AvisModel
       return $avisValides;
 
     }
-
-    public function updateAvis()
+    public function getAvisAttente(): array
     {
-      if (isset($_GET['avis_id'])){
-        $avis_id = (int)$_GET['avis_id'];
-    
-        try{
-            $stmt = $this->pdo->prepare("UPDATE avis SET isValide = 1 WHERE avis_id = ?");
-            if ($stmt->execute([$avis_id])) {
-                echo"Avis valide avec succès";
-            } else {
-                echo "Erreur lors de la validation de l'avis.";
-            }
-            header("Location:./employé.php");
-            exit;
-    
-        } catch (PDOException $e){
-            echo"Erreur " .$e->getMessage();
-        }
-    }
+      $stmt = $this->pdo->query("SELECT * FROM avis WHERE isValide = 0 ");
+      $avis = $stmt->fetchAll();
+      return $avis;
+
     }
 
-    public function deleteAvis()
-    {
-      if(isset($_GET['avis_id'])){
-        $avis_id = (int)$_GET['avis_id'];
-    
+    public function updateAvis($avis): bool
+    {   
+      if ($avis === null) {
+        return false;  // ID invalide
+    }
+        $stmt = $this->pdo->prepare("UPDATE avis SET isValide = 1 WHERE avis_id = ? ");
+        return $stmt->execute([$avis['avis_id']]);
+    }
+
+    public function deleteAvis($avis): bool
+    {   
+      if ($avis === null) {
+        return false;  // ID invalide
+      }
         $stmt = $this->pdo->prepare("DELETE FROM avis WHERE avis_id = ?");
-        if($stmt->execute([$avis_id])){
-            echo"Avis supprimé avec succès.";
-        } else {
-            echo "Erreur lors de la suppresion de l'avis.";
-        }
-        header("Location:./employé.php");
-        exit;
+        
+        return $stmt->execute([$avis['avis_id']]);
+      
     }
-    }
+
+    
+
+
+    
 
         
 }

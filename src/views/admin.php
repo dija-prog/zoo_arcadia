@@ -18,10 +18,10 @@
       <button id="toggle-btn" class="btn btn-warning " onclick="toggleSidebar()"> <i class="fas fa-bars"></i></button>
       <a class="navbar-brand col-sm-3 col-md-2 py-2 px-5" href="admin.php"> Admin</a>
     </div>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <input id="searchInput" class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
-        <a class="nav-link" href="../login/connexion.php">Déconnexion</a>
+        <a class="nav-link" href="/logout">Déconnexion</a>
       </li>
     </ul>
   </nav>
@@ -29,7 +29,7 @@
   <!-- Sidebar -->
   <div id="sidebar" class="sidebar">
     <nav class="nav flex-column p-4 mt-5 ">
-      <a href="../Accuiel.php" class="nav-link d-flex align-items-center">
+      <a href="/Accueil" class="nav-link d-flex align-items-center">
         <i class="fas fa-home"></i>
         <span class="ms-2 nav-link-text">Home</span>
       </a>
@@ -61,27 +61,28 @@
   <!-- Main Content -->
   <div id="mainContent" class="main-content  mt-3">
     <h2>Dashboerd</h2>
-    <p>This is the main content of the page.</p>
-    <!-- afficher le graphique -->
-    <?php
-    // // récupérer tous les animaux et leur nombre de consultation
-    // $animals = $collection->find([], [
-    //   'projection' => ['animal_nom' => 1, 'views' => 1]
-    // ]);
-    // $data = [];
-    // foreach ($animals as $animal) {
-    //   $data[] = [
-    //     'name' => $animal['animal_nom'],
-    //     'views' => $animal['views']
-    //   ];
-    // }
-    ?>
-
+    <h4>Statistiques des animaux</h4>
 
     <div class="chart-container">
-
-      <canvas id="barCanvas" aria-label="chart" role="img"></canvas>
+      <canvas id="viewsChart" width="400" height="200"  aria-label="chart" role="img"></canvas>
     </div>
+
+    <?php if (!empty($animal)): ?>
+    <table>
+      <tr>
+        <th>Animal</th>
+        <th>Nombre de vues</th>
+      </tr>
+      <?php foreach ($animals as $animal): ?>
+        <tr>
+          <td><?= htmlspecialchars($animal['animal_id']); ?></td>
+          <td><?= htmlspecialchars($views) ?></td>
+        </tr>
+      <?php endforeach; ?>
+    </table>
+    <?php else: ?>
+        <p><?= $message ?? 'Aucune vue'; ?></p>
+    <?php endif; ?>
 
 
 
@@ -113,6 +114,7 @@
           </thead>
           <tbody>
             <?php
+
             foreach ($users as $user) {
             ?>
               <tr>
@@ -120,8 +122,10 @@
                 <td><?php echo htmlspecialchars($user['prenom']) ?></td>
                 <td><?php echo htmlspecialchars($user['username']) ?></td>
                 <td><?php echo htmlspecialchars($user['role_id']) ?></td>
-                <td><a href="../CRUD/edit_user.php?username=<?= $user['username'] ?>" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
-                <td><a href="../CRUD/supprimer.php?username=<?= $user['username'] ?>" onclick="return confirm('Ëtes vous sûr de vouloir supprimer cet utilisateur  ?')" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
+                <td><a href="/edit_user/<?= $user['username'] ?>" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
+                <!-- <td><a href="/edit-User/<?php echo urlencode($username); ?>"class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td> -->
+
+                <td><a href="/deleteUser/<?= $user['username'] ?>" onclick="return confirm('Ëtes vous sûr de vouloir supprimer cet utilisateur  ?')" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
               </tr>
             <?php } ?>
           </tbody>
@@ -131,7 +135,7 @@
 
       <!-- bouton ajouter un utilisateur  -->
       <button id="userBtn" class=" btn btn-warning mb-3 ">
-        <a href="../addUserForm"> Ajouter </a>
+        <a href="/addUser"> Ajouter </a>
       </button>
     </section>
 
@@ -148,120 +152,116 @@
         </thead>
         <tbody>
           <?php
-          foreach ($rows as $rows) {
+          foreach ($rows as $row) {
           ?>
 
             <tr>
-              <td><?php echo htmlspecialchars($rows['animal_nom']) ?></td>
-              <td><?php echo htmlspecialchars($rows['habitat_nom']) ?></td> 
-              <td><?php echo htmlspecialchars($rows['classe_nom']) ?></td>
+              <td><?php echo htmlspecialchars($row['animal_nom']) ?></td>
+              <td><?php echo htmlspecialchars($row['habitat_nom']) ?></td>
+              <td><?php echo htmlspecialchars($row['classe_nom']) ?></td>
               <td>
-                <a href="/edit_animal/<?= $rows['animal_id'] ?>" class="btn btn-success btn-sm">Modifier</i></a>
-                <!-- <a href="/deleteAnimal?animal_id=<?= $rows['animal_id'] ?>" onclick="return confirm('Ëtes vous sûr de vouloir supprimer cet animal  ?')" id="sup" class="btn btn-danger btn-sm">Supprimer</i></a> -->
-                <!-- <a href="./CRUD/edit_animal.php" class="btn btn-success btn-sm">Modifier</i></a> -->
-                
-              
-                <a href="/animaldelete/<?= $rows['animal_id'] ?>" onclick="return confirm('Ëtes vous sûr de vouloir supprimer cet animal  ?')" id="sup" class="btn btn-danger btn-sm">Supprimer</i></a>
+                <a href="/edit_animal/<?= $row['animal_id'] ?>" class="btn btn-success btn-sm">Modifier</i></a>
+                <a href="/animaldelete/<?= $row['animal_id'] ?>" onclick="return confirm('Ëtes vous sûr de vouloir supprimer cet animal  ?')" id="sup" class="btn btn-danger btn-sm">Supprimer</i></a>
               </td>
             </tr>
           <?php }
           ?>
         </tbody>
       </table>
-        <!-- bouton ajouter les animaux  -->
-        <button id="animalBtn" class=" btn btn-warning mb-3">
-          <a href="/add-animal">
-            Ajouter
-          </a>
-        </button>
+      <!-- bouton ajouter les animaux  -->
+      <button id="animalBtn" class=" btn btn-warning mb-3">
+        <a href="/add-animal">
+          Ajouter
+        </a>
+      </button>
     </section>
 
-      <section id="Rapport" class="container-fluid mb-5 mt-4">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12 ">
-              <div class="card">
-                <div class="card-headrer">
-                  <h4>
-                    <!-- Formulaire de sélection de l'ordre de tri  -->
-                    <form method="GET" class="">
-                      <label for="order">Trier par date : </label>
-                      <select name="order" class="from-select w-auto" id="order" onchange="this.form.submit()">
-                        <option value="DESC" <?= $order === 'DESC' ? 'selected' : ''; ?>> Décroissant</option>
-                        <option value="ASC" <?= $order === 'ASC' ? 'selected' : ''; ?>> Croissant</option>
-                      </select>
-                    </form>
-                  </h4>
-                </div>
-                <div class="card-body">
-                  <table class="table table-striped">
-                    <thead class="table-dark ">
-                      <tr class="tr">
-                        <th> ID</th>
-                        <th> Animale</th>
-                        <th> quantite</th>
-                        <th> Type de la nouriture</th>
-                        <th> Etat</th>
-                        <th> date</th>
-                        <th> détailes</th>
+    <section id="Rapport" class="container-fluid mb-5 mt-4">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 ">
+            <div class="card">
+              <div class="card-headrer">
+                <h4>
+                  <!-- Formulaire de sélection de l'ordre de tri  -->
+                  <form method="GET" class="">
+                    <label for="order">Trier par date : </label>
+                    <select name="order" class="from-select w-auto" id="order" onchange="this.form.submit()">
+                      <option value="DESC" <?= $order === 'DESC' ? 'selected' : ''; ?>> Décroissant</option>
+                      <option value="ASC" <?= $order === 'ASC' ? 'selected' : ''; ?>> Croissant</option>
+                    </select>
+                  </form>
+                </h4>
+              </div>
+              <div class="card-body">
+                <table class="table table-striped">
+                  <thead class="table-dark ">
+                    <tr class="tr">
+                      <th> ID</th>
+                      <th> Animale</th>
+                      <th> quantite</th>
+                      <th> Type de la nouriture</th>
+                      <th> Etat</th>
+                      <th> date</th>
+                      <th> détailes</th>
+                    </tr>
+                  </thead>
+                  <tbody class="tbody">
+                    <?php foreach ($rapports as $request) { ?>
+                      <tr>
+                        <td><?php echo htmlspecialchars($request['animal_id']) ?></td>
+                        <td><?php echo htmlspecialchars($request['animal_nom']) ?></td>
+                        <td><?php echo htmlspecialchars($request['quantite']) ?></td>
+                        <td><?php echo htmlspecialchars($request['foodType']) ?></td>
+                        <td><?php echo htmlspecialchars($request['etat']) ?></td>
+                        <td><?php echo htmlspecialchars($request['date']) ?></td>
+                        <td><?php echo htmlspecialchars($request['detail']) ?></td>
                       </tr>
-                    </thead>
-                    <tbody class="tbody">
-                      <?php foreach ($requests as $request) { ?>
-                        <tr>
-                          <td><?php echo htmlspecialchars($request['animal_id']) ?></td>
-                          <td><?php echo htmlspecialchars($request['animal_nom']) ?></td>
-                          <td><?php echo htmlspecialchars($request['quantite']) ?></td>
-                          <td><?php echo htmlspecialchars($request['foodType']) ?></td>
-                          <td><?php echo htmlspecialchars($request['etat']) ?></td>
-                          <td><?php echo htmlspecialchars($request['date']) ?></td>
-                          <td><?php echo htmlspecialchars($request['detail']) ?></td>
-                        </tr>
-                      <?php } ?>
-                    </tbody>
-                  </table>
-                </div>
+                    <?php } ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
 
-      <section id="services" class="container-fluid mt-5 py-4">
-        <h4 class="text-success">Services de zoo</h4>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead class="table-dark ">
+    <section id="services" class="container-fluid mt-5 py-4">
+      <h4 class="text-success">Services de zoo</h4>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="table-dark ">
+            <tr>
+              <th>Id</th>
+              <th>Nom</th>
+              <th>Description</th>
+              <th> Actions</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            <?php foreach ($services as $service) { ?>
               <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th> Actions</th>
+                <td><?php echo htmlspecialchars($service['service_id']) ?></td>
+                <td><?php echo htmlspecialchars($service['service_nom']) ?></td>
+                <td><?php echo htmlspecialchars($service['description']) ?></td>
+                <td>
+                  <a href="/edit_service/<?= $service['service_id'] ?>" class="btn btn-success btn-sm">Modifier</i></a>
+                  <a href="/deleteService/<?= $service['service_id'] ?>" onclick="return confirm('Ëtes vous sûr de vouloir supprimer ce service  ?')" id="sup" class="btn btn-danger btn-sm">Supprimer</i></a>
+                </td>
               </tr>
-            </thead>
-            <tbody class="tbody">
-              <?php foreach ($services as $service) { ?>
-                <tr>
-                  <td><?php echo htmlspecialchars($service['service_id']) ?></td>
-                  <td><?php echo htmlspecialchars($service['service_nom']) ?></td>
-                  <td><?php echo htmlspecialchars($service['description']) ?></td>
-                  <td>
-                    <a href="../CRUD/edit_service.php?service_id=<?= $service['service_id'] ?>" class="btn btn-success btn-sm">Modifier</i></a>
-                    <a href="../CRUD/supprimer.php?service_id=<?= $service['service_id'] ?>" onclick="return confirm('Ëtes vous sûr de vouloir supprimer cet animal  ?')" id="sup" class="btn btn-danger btn-sm">Supprimer</i></a>
-                  </td>
-                </tr>
-              <?php } ?>
-            </tbody>
-          </table>
-        </div>
-        <!-- bouton ajouter de service  -->
-        <button id="serviceBtn" class="btn btn-warning  mb-5 p-2 ">
-          <a href="../CRUD/add_service.php">
-            Ajouter
-          </a>
-        </button>
-      </section>
+            <?php } ?>
+          </tbody>
+        </table>
+      </div>
+      <!-- bouton ajouter de service  -->
+      <button id="serviceBtn" class="btn btn-warning  mb-5 p-2 ">
+        <a href="/add_service">
+          Ajouter
+        </a>
+      </button>
+    </section>
   </div>
 </body>
 

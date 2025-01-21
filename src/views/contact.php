@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- style css bootstrap -->
     <link rel="stylesheet" href="../Assets/bootstrap/css/bootstrap.min.css">
+
     <!-- style css -->
+    <link rel="stylesheet" href="../Assets/css/Accueil.css">
     <link rel="stylesheet" href="../Assets/css/contact.css">
     <!-- font aweson  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -33,15 +35,18 @@
                                 <div class="form-group">
                                     <label for="titre">un titre</label>
                                     <input type="text" class="form-control" name="titre" id="name" aria-describedby="emailHelp" placeholder="titre de vitre demande" required>
+                                    <span class=" text-danger" id="text_error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email address</label>
-                                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="email@gmail.com" required>
+                                    <input id="email" type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="email@gmail.com" required>
                                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    <span class=" text-danger" id="email_error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Description</label>
                                     <textarea class="form-control" id="description" rows="6" name="description" required></textarea>
+                                    <span class=" text-danger" id="description_error"></span>
                                 </div>
                                 <div class="mx-auto">
                                     <button type="submit" class="btn btn-warning text-right">Envoyer</button>
@@ -73,10 +78,11 @@
         
     </footer>
     <!-- script-bootstrap js  -->
-    <script src="./Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../Assets/bootstrap/js/bootstrap.min.js"></script>
     <!-- script js -->
-    <script src="./Assets/js/Accueil.js"></script>
+    <script src="../Assets/js/contact.js"></script>
+
 
 </body>
 

@@ -37,7 +37,7 @@
                 <input type="text" name="id_classe" class="form-control"> -->
             </div>
             <!-- <button type="submit" name="submit" class="btn btn-success">Ajouter</button> -->
-             <input type="submit" value="Ajouter">
+            <input type="submit" value="Ajouter">
         </form>
     </div>
 </body>

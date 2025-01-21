@@ -1,42 +1,42 @@
 <?php
-include("../includes/database.php");
+// include("../includes/database.php");
 
 
-    // récupérer le nom de l'animal dans la table animal
-    $recup = "SELECT * FROM animal ";
-    $stmt = $bdd->prepare($recup);
-    $stmt->execute();
-    $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
+//     // récupérer le nom de l'animal dans la table animal
+//     $recup = "SELECT * FROM animal ";
+//     $stmt = $bdd->prepare($recup);
+//     $stmt->execute();
+//     $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// ?>
 
 <?php
 // Insérer les donner dans la base de donnée 
 
 
-if ($_SERVER["REQUEST_METHOD"] === "POST"){
+// if ($_SERVER["REQUEST_METHOD"] === "POST"){
     
 
-    $animal_nom = $_POST['animal_nom'];
-    $etat = $_POST['etat'];
-    $quantite =$_POST['quantite'];
-    $foodType= $_POST['foodType'];
-    $date = $_POST['date'];
+//     $animal_nom = $_POST['animal_nom'];
+//     $etat = $_POST['etat'];
+//     $quantite =$_POST['quantite'];
+//     $foodType= $_POST['foodType'];
+//     $date = $_POST['date'];
 
-    $stmt = $bdd->prepare("INSERT INTO rapport_veterinaire (animal_nom,etat,quantite,foodType,date) VALUES (?,?,?,?,?)");
-    try{
+//     $stmt = $bdd->prepare("INSERT INTO rapport_veterinaire (animal_nom,etat,quantite,foodType,date) VALUES (?,?,?,?,?)");
+//     try{
 
-        if ($stmt->execute(array($animal_nom,$etat,$quantite,$foodType,$date))){
-            echo "ajout réussie";
-            // header("location: ./roles/vétérinaire.php");
+//         if ($stmt->execute(array($animal_nom,$etat,$quantite,$foodType,$date))){
+//             echo "ajout réussie";
+//             // header("location: ./roles/vétérinaire.php");
     
-        }else{
-            echo "erreur d'ajout";
-        } 
-    }catch (PDOException $e){
-            echo"Ereeur:" .$e->getMessage();
-        }
+//         }else{
+//             echo "erreur d'ajout";
+//         } 
+//     }catch (PDOException $e){
+//             echo"Ereeur:" .$e->getMessage();
+//         }
 
-    }
+//     }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -45,31 +45,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Assets/css/veternaire.css">
-    <link rel="stylesheet" href="../Assets/Bootstraps/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Assets/bootstrap/css/bootstrap.min.css">
     <title>rapport vétérinaire</title>
 </head>
 
 <body>
     <header>
-        <?php include('../includes/navbar.php')?>
+        <?php include_once __DIR__ . '/includes/navbar.php'?>
     </header>
     <main>
         <section class="container-fluid health ">
             <h2 class="text-center text-white mt-5 py-5"> Contrôle vétérinaire</h2>
             <div class="container-fluid  text-white mt-4">
-                <form method="POST">
+                <form method="POST"  action="/rapport">
                     <div class="row justify-content-center">
                         <div class=" col-md-6 mt-4">
-                            <select class="form-select " aria-label="Default select example" name="animal_nom" required>
-                                <option selected >Sélectionner un animal</option>
-                                <?php foreach ($animals as $animal) { ?>
-                                    <option  value="<?php echo htmlspecialchars($animal['animal_nom']) ?>"> 
-                                        <?php echo htmlspecialchars($animal['animal_nom']) ?>
-                                    </option> 
-                                    <?php } ?>
+                            <label for="animal_id" class="form-label">Choisissez un animal</label>
+                            <select name="animal_id" required>
+                                <?php foreach ($animals as $animal): ?>
+                                    <option value="<?= $animal['animal_id'] ?>"><?= $animal['animal_nom'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
-    
                         <div class="col-12 col-md-6 m-3">
                             <label for="foodType" class="form-label"> La nourriture propsé</label>
                             <input type="text"   class="form-control"  name="foodType" required>  
