@@ -76,7 +76,8 @@ class UserModel
   
   public function findByResetToken(string $token): array
   {   
-    $hashedToken = hash('sha256', $token);
+    $hashedToken = password_hash($token, PASSWORD_BCRYPT);
+
     $sql = "SELECT * FROM utilisateur WHERE reset_token = :hashedToken AND reset_token_expire > NOW()";
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute(['token' =>  $hashedToken]);

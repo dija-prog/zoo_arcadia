@@ -1,6 +1,7 @@
 body {
     overflow-x: hidden;
     text-decoration: none;
+    list-style-type: none;
     
 }
 .btn .btn--warning {
@@ -57,6 +58,9 @@ text-decoration: none;
     width: 140px;
     margin-bottom: 1rem;
 
+}
+.headItem{
+    list-style-type: none;
 }
 
 

@@ -77,7 +77,7 @@
     </footer>
     <script src="../Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../Assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../Assets/js/animaux.js"></script>
+    <script src="../Assets/js/animals.js"></script>
 </body>
 
 </html>

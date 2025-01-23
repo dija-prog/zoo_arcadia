@@ -140,14 +140,20 @@ class LoginController
         
         // Vérification du token et gestion de la réinitialisation du mot de passe
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reset'])) {
-            $formToken = $_POST['token'] ?? null;
+            $hashedToken = $_POST['token'] ?? null;
             $password = $_POST['password'] ?? null;
             $confirmPassword = $_POST['confirm_password'] ?? null;
 
-            if ($formToken !== $token) {
-                echo "Le token soumis est invalide.";
-                return;
+            if (password_verify($token, $hashedToken)) {
+                echo "Le jeton est valide !";
+            } else {
+                echo "Le jeton est invalide.";
             }
+
+            // if ($hashedToken!== $token) {
+            //     echo "Le token soumis est invalide.";
+            //     return;
+            // }
 
             if ($password !== $confirmPassword) {
                 echo "Les mots de passe ne correspondent pas.";

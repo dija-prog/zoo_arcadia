@@ -14,6 +14,7 @@ use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
 
 
+
 class AdminController
 {    
     private $userModel;
@@ -41,6 +42,7 @@ class AdminController
         $serviceModel = new ServiceModel();
         $rapportModel = new RapportModel();
         $veterinaireModel = new VeterinaireModel();
+        $viewsModel = new ViewsModel();
         
         
         
@@ -119,13 +121,17 @@ class AdminController
     
     }
 
-    public function ShowAnimalsStatics($animal_id)
-    {
-       $animal=  $this->viewsModel->incrementViews($animal_id);
-        $views= $this->viewsModel->getAnimalStats($animal_id);
-        require_once __DIR__ . '/../views/admin.php';
+    public function ShowAnimalsStatics($animal_id = null) {
+        // Récupérer les statistiques
+        $viewsStats = $this->viewsModel->getAllViews();
+        
+        // Rendre la vue avec les données
+        require_once '/../views/admin.php';
     }
-
+    public function incrementView($animal_id) {
+        $result = $this->viewsModel->incrementView($animal_id);
+        return json_encode(['success' => $result]);
+    }
 
 
     // public function incrementAnimalView() 

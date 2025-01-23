@@ -137,14 +137,14 @@ ADD_ANIMAL_FORM.addEventListener('submit', (ev) => {
     addAnimal(DATA);
 })
 
-// async function addAnimal(data) {
-//     const RESPONSE = await fetch('/add-animal', {
-//         'method' : 'POST',
-//         'body' : data
-//     });
-//     const JSON = await RESPONSE.json();
-//     console.log(JSON); 
-// }
+async function addAnimal(data) {
+    const RESPONSE = await fetch('/add-animal', {
+        'method' : 'POST',
+        'body' : data
+    });
+    const JSON = await RESPONSE.json();
+    console.log(JSON); 
+}
 
 
 // document.querySelectorAll('.btn-danger').forEach(button => {

@@ -72,12 +72,11 @@ class EmployeController
     public function deleteAvis($avisId)
     {
         if ($this->avisModel->deleteAvis($avisId)) {
-          echo json_encode(['success' => true]);
+            echo json_encode(['success' => true]);
         } else {
             echo json_encode(['success' => false, 'message' => 'Suppression échouée']);
         }
         header('Location: /employe#avis');
         exit;
-       
     }
 }

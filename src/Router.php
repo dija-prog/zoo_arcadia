@@ -62,8 +62,7 @@ class Router
                 '/reset_password'=> ['App\\Controllers\\LoginController', 'resetPassword'],
 
 
-                '/ShowAnimalsStatics/{animal_id}' => ['App\\Controllers\\AdminController', 'ShowAnimalsStatics'],
-
+                '/incrementView/{animal_id}' => ['App\\Controllers\\AnimalController', 'incrementView'],
 
  
 
@@ -98,8 +97,7 @@ class Router
 
 
                 
-                '/ShowAnimalsStatics/{animal_id}' => ['App\\Controllers\\AdminController', 'ShowAnimalsStatics'],
-
+                '/incrementView/{animal_id}' => ['App\\Controllers\\AnimalController', 'incrementView'],
 
 
 
