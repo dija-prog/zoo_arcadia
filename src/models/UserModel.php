@@ -69,11 +69,7 @@ class UserModel
     echo json_encode(['success' => $req]);
   }
 
-  // Met à jour le token et sa date d'expiration
-  
-  
-  // Vérifie si le token de réinitialisation existe dans la base de données
-  
+ 
   public function findByResetToken(string $token): array
   {   
     $hashedToken = password_hash($token, PASSWORD_BCRYPT);
@@ -89,17 +85,15 @@ class UserModel
   public function updateResetToken($username, $token) 
   {
     
-    $hashedToken = hash('sha256', $token);
+  
     $query = "UPDATE utilisateur SET reset_token = :token, reset_token_expire = DATE_ADD(NOW(), INTERVAL 15 MINUTE) WHERE username = :username";
     $stmt = $this->pdo->prepare($query);
     $stmt->bindParam(':token',  $hashedToken);
     $stmt->bindParam(':username', $username);
     return $stmt->execute();
   }
-    /**
-     * Met à jour le mot de passe d'un utilisateur
-     */
-    public function updatePassword( $username, string $hashedPassword): bool
+    
+  public function updatePassword( $username, string $hashedPassword): bool
     {   
         $sql = "UPDATE utilisateur SET password = :password, reset_token = NULL, reset_token_expire = NULL WHERE username = :username";
         $stmt = $this->pdo->prepare($sql);
@@ -108,7 +102,22 @@ class UserModel
             'password' => $hashedPassword,
             'username' => $username,
         ]);
-    }
+  }
+
+  public function getUsersByRole($role = null)
+    {
+        $sql ="SELECT nom,prenom,username, role_id FROM utilisateur";
+        if(!empty($role)){
+          $sql .= "where role_id = :role";
+        }
+        $stmt = $this->pdo->prepare($sql);
+        if(!empty($role)){
+          $stmt->bindParam(':role',$role, PDO::PARAM_STR);
+
+        }
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
 
 
 }

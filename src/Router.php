@@ -69,6 +69,7 @@ class Router
 
             ], 
             'POST' => [
+
                 '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
                 '/register' => ['App\\Controllers\\UserController','addUser'],
                 '/login' => ['App\\Controllers\\LoginController', 'authenticate'],
@@ -92,12 +93,15 @@ class Router
 
                 '/veterinaire' => ['App\\Controllers\\VeterinaireController','addCommentHabitat'],
                 
-                '/forgot_password'=> ['App\\Controllers\\LoginController', 'ForgotPassword'],
+                '/forgot_password'=> ['App\\Controllers\\LoginController','ForgotPassword'],
                 '/reset_password/{token}'=> ['App\\Controllers\\LoginController', 'resetPassword'],
+                '/filter_users'=> ['App\\Controllers\\AdminController', 'filterUsers'],
 
 
                 
                 '/incrementView/{animal_id}' => ['App\\Controllers\\AnimalController', 'incrementView'],
+
+
 
 
 

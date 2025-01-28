@@ -31,10 +31,10 @@
                         <div class="card-header bg-success text-white"><i class="fa fa-envelope"></i> Contact nous.
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="">
+                            <form method="POST" action="/contact">
                                 <div class="form-group">
                                     <label for="titre">un titre</label>
-                                    <input type="text" class="form-control" name="titre" id="name" aria-describedby="emailHelp" placeholder="titre de vitre demande" required>
+                                    <input type="text" class="form-control" name="titre" id="text" aria-describedby="emailHelp" placeholder="titre de vitre demande" required>
                                     <span class=" text-danger" id="text_error"></span>
                                 </div>
                                 <div class="form-group">
@@ -64,14 +64,11 @@
                             <p>France</p>
                             <p>Email : jose@zooarcadia.com</p>
                             <p>Tel. +33 12 56 11 51 84</p>
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
     <footer class="footer ">
     <?php include_once __DIR__ .'/includes/footer.php';?>
