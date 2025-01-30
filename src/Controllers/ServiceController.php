@@ -20,6 +20,10 @@ class ServiceController
         $this->model = new ServiceModel();
         
     }
+    public function showService()
+    {
+        require_once __DIR__ . '/../views/service.php';
+    }
 
     public function add_Services()
     {

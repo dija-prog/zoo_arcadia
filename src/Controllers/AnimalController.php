@@ -39,6 +39,7 @@ class AnimalController
             }
         }
         require_once __DIR__ . '/../views/CRUD/addAnimal.php';
+        
     }
 
     public function editAnimal($animal_id)
@@ -98,6 +99,7 @@ class AnimalController
                 // $nom = $_POST['animal_nom'];
     
                 // (new AnimalModel())->addAnimal();
+            
 
                 echo json_encode([
                     'success' => true,

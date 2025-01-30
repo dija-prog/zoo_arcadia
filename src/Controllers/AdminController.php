@@ -84,7 +84,7 @@ class AdminController
             $prenom = $_POST['prenom'];
             $role_id =$_POST['role_id'];
             $username =$_POST['username'];
-            $password =password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $password =password_hash($_POST['password'], PASSWORD_BCRYPT);
 
 
             if ($this->userModel->addUser($nom, $prenom, $role_id, $username, $password)) {
@@ -98,6 +98,7 @@ class AdminController
             
         }
         require_once __DIR__ . '/../views/CRUD/addUser.php';
+        
     }
 
 
@@ -105,7 +106,7 @@ class AdminController
     {
         
             try {
-                $transport = Transport::fromDsn($_ENV['MAILER_DSN']); 
+                $transport = Transport::fromDsn($_ENV['MAILER_DS']); 
                 $mailer = new Mailer($transport);
 
                 $email = (new Email())
@@ -167,5 +168,16 @@ class AdminController
     //     include __DIR__ . '/../views/admin.php'; // Charge la vue
     // }
 
+    public function filterUsers()
+    {
+        $data = json_decode(file_get_contents('php://input'),true);
+        $data = json_decode(file_get_contents('php://input'),true);
+        $role =$data['role'] ?? null;
 
+        $users = $this->userModel->getUsersByRole($role);
+
+        header('Content-Type: application/json');
+        
+        echo json_encode($users);
+    }
 }

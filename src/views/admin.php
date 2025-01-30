@@ -69,6 +69,7 @@
         </div>
     </div>
 
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const viewsData = <?php echo json_encode($viewsStats); ?>;
@@ -141,14 +142,19 @@ document.addEventListener('DOMContentLoaded', function() {
               <th>Prenom</th>
               <th>Email</th>
               <th>Role
-                <ul class="headItem">
-                  <li class="dropdown">
-                    <a href="" data-toggle="dropdown" class="dropdown-toggle"> 
-                        <b class="caret"></b>
+                <ul class="headItem dropdown">
+                  <li>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                      <b class="caret"></b>
                     </a>
+                    <ul class="dropdown-menu">
+                      <li><button class="dropdown-item filter-btn" data-role="all">Tous</button></li>
+                      <li><button class="dropdown-item filter-btn" data-role="Employé">Employé</button></li>
+                      <li><button class="dropdown-item filter-btn" data-role="Vétérinaire">Vétérinaire</button></li>
+                    </ul>
                   </li>
                 </ul>
-              </th>               
+              </th>           
               <th>modifier</th>
               <th>supprimer</th>
             </tr>

@@ -127,8 +127,6 @@ class LoginController
 
     public function resetPassword($token)
     {
-       // Récupérer le token de l'URL
-       // $token = $params['token'] ?? null;
     
         $token = isset($_GET['token']) ? $_GET['token'] : "";
        // $token = $_POST['token'] ?? null;
@@ -180,6 +178,8 @@ class LoginController
 
         require_once __DIR__ . '/../views/reset_password.php';
     }
+
+    
 
 
 }

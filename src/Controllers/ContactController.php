@@ -65,6 +65,49 @@ class ContactController
             }
     
         }
+
+        public function handleContact() {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $errors = [];
+    
+                // Validation du titre
+                if (empty($_POST['titre'])) {
+                    $errors['titre'] = 'Veuillez entrer un titre.';
+                }
+    
+                // Validation de l'email
+                if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                    $errors['email'] = 'Veuillez entrer une adresse email valide.';
+                }
+    
+                // Validation de la description
+                if (empty($_POST['description'])) {
+                    $errors['description'] = 'Veuillez entrer une description.';
+                }
+    
+                // Si aucune erreur, traiter le formulaire
+                if (empty($errors)) {
+                    // Traitement du formulaire (enregistrement en base de données, etc.)
+                    $response = [
+                        'success' => true,
+                        'message' => 'Message envoyé avec succès !'
+                    ];
+                } else {
+                    // Renvoyer les erreurs
+                    $response = [
+                        'success' => false,
+                        'errors' => $errors
+                    ];
+                }
+    
+                // Renvoyer la réponse en JSON
+                header('Content-Type: application/json');
+                echo json_encode($response);
+                exit;
+            }
+        }
     }
+    
+    
 
 ?>

@@ -17,7 +17,7 @@
         <div class="card bg-glass shadow-lg" style="max-width: 500px; width: 100%;">
             <div class="card-body px-4 py-5">
                 <h3 class="text-center mb-4">Réinitialisation du mot de passe</h3>
-                <form method="post" action="/reset_password/<?php echo htmlspecialchars($_GET['token'] ?? ''); ?>">
+                <form method="post" action="/updatePassword">
 
                     <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token'] ?? ''); ?>">
                     <!-- Champ pour le nouveau mot de passe -->

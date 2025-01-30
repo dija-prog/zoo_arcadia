@@ -65,80 +65,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-        // const data = echo json_encode($data);
-        // const labels = data.map(item => item.name);
-        // const views = data.map(item => item.views);
 
-        // const ctx = document.getElementById('viewsChart').getContext('2d');
-        // new Chart(ctx, {
-        //     type: 'bar',
-        //     data: {
-        //     labels: labels,
-        //     datasets: [{
-        //         label: 'Consultations par animal',
-        //         data: views,
-        //         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        //         borderColor: 'rgba(75, 192, 192, 1)',
-        //         borderWidth: 1
-        //     }]
-        //     },
-        //     options: {
-        //     responsive: true,
-        //     scales: {
-        //         y: {
-        //         beginAtZero: true
-        //         }
-        //     }
-        //     }
-        // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const barCanvas = document.getElementById("barCanvas");
-const barChart = new Chart(barCanvas,{
-    type: "bar",
-    data: {
-        labels: ["animal_nom"],
-        datasets:[{
-            data:["views"],
-            backgroundColor: [
-                
-            ]
-        }]
-    },
-    options: {
-        responsive: true,
-        scales:{
-            y:{
-                beginAtZero : true
-            }
-        }
-    }
-})
+    // une requete fetch pour ne pas recharger la page 
 
 const ADD_ANIMAL_FORM = document.querySelector('#add-animal-form');
-
 ADD_ANIMAL_FORM.addEventListener('submit', (ev) => {
     ev.preventDefault();
-
     const DATA = new FormData(ADD_ANIMAL_FORM);
     console.log(DATA.get('animal_nom'));
     addAnimal(DATA);
 })
 
 async function addAnimal(data) {
-    const RESPONSE = await fetch('/add-animal', {
+    const RESPONSE = await fetch('/add-animal',{
         'method' : 'POST',
         'body' : data
     });
@@ -147,30 +86,31 @@ async function addAnimal(data) {
 }
 
 
-// document.querySelectorAll('.btn-danger').forEach(button => {
-//     button.addEventListener('click', function (e) {
-//         e.preventDefault();
 
-//         const avisId = this.getAttribute('data-id');
-//         if (confirm('Êtes-vous sûr de vouloir supprimer cet avis ?')) {
-//             fetch('/index.php?action=supprimerAvis', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/x-www-form-urlencoded',
-//                     'X-Requested-With': 'XMLHttpRequest'
-//                 },
-//                 body: `id=${avisId}`
-//             })
-//             .then(response => response.json())
-//             .then(data => {
-//                 if (data.success) {
-//                     this.closest('.card').remove();
-//                 } else {
-//                     alert(data.message || 'Erreur lors de la suppression.');
-//                 }
-//             })
-//             .catch(error => console.error('Erreur AJAX :', error));
-//         }
-//     });
-// });
+// filter les role dans la table user 
+function fetchData()
+{
+    var action = 'fatchData';
+    $.ajax({
+        url:"admin.php",
+        method:'POST',
+        data:{action:action},
+        success: function(data){
+            $('#post_list').html(data);
+        }
+    });
 
+}
+$(document).ready(function()
+{   
+    $('#postData').submit(function(event){
+        event.preventDefault();
+        var nom = $('nom').val();
+        var prenom = $('prenom').val();
+        var username = $('username').val();
+        var role_id = $('role_id').val();
+        
+    });
+
+
+});
