@@ -65,67 +65,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-        // const data = echo json_encode($data);
-        // const labels = data.map(item => item.name);
-        // const views = data.map(item => item.views);
-
-        // const ctx = document.getElementById('viewsChart').getContext('2d');
-        // new Chart(ctx, {
-        //     type: 'bar',
-        //     data: {
-        //     labels: labels,
-        //     datasets: [{
-        //         label: 'Consultations par animal',
-        //         data: views,
-        //         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        //         borderColor: 'rgba(75, 192, 192, 1)',
-        //         borderWidth: 1
-        //     }]
-        //     },
-        //     options: {
-        //     responsive: true,
-        //     scales: {
-        //         y: {
-        //         beginAtZero: true
-        //         }
-        //     }
-        //     }
-        // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const barCanvas = document.getElementById("barCanvas");
-const barChart = new Chart(barCanvas,{
-    type: "bar",
-    data: {
-        labels: ["animal_nom"],
-        datasets:[{
-            data:["views"],
-            backgroundColor: [
-                
-            ]
-        }]
-    },
-    options: {
-        responsive: true,
-        scales:{
-            y:{
-                beginAtZero : true
-            }
-        }
-    }
-})
 
     // une requete fetch pour ne pas recharger la page 
 

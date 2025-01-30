@@ -31,7 +31,7 @@
                         <div class="card-header bg-success text-white"><i class="fa fa-envelope"></i> Contact nous.
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="/contact">
+                            <form id="contactForm" method="POST" action="/contact">
                                 <div class="form-group">
                                     <label for="titre">un titre</label>
                                     <input type="text" class="form-control" name="titre" id="text" aria-describedby="emailHelp" placeholder="titre de vitre demande" required>
@@ -74,11 +74,12 @@
     <?php include_once __DIR__ .'/includes/footer.php';?>
         
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- script js -->
+    <script src="../Assets/js/contact.js"></script>
     <!-- script-bootstrap js  -->
     <script src="../Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../Assets/bootstrap/js/bootstrap.min.js"></script>
-    <!-- script js -->
-    <script src="../Assets/js/contact.js"></script>
 
 
 </body>

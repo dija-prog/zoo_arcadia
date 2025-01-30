@@ -26,8 +26,8 @@
 
   </header>
   <main>
-    <div id="cover" class="container-fluid">
-      <img src="./images/pexels-magda-ehlers-pexels-5078902.jpg" class="cover img-fluid" alt="photo de couverture"> -->
+    <div id="cover" class="container-fluid p-0">
+      <img src="./images/pexels-magda-ehlers-pexels-5078902.jpg" class="cover img-fluid" alt="photo de couverture">
       <div class="carousel-caption d-none d-md-block">
         <h1> Bienvenue au Zoo Arcadia</h1>
         <p> Découvrez la faune fascinante de notre zoo et plongez dans un monde de merveilles naturelles.</p>
@@ -38,11 +38,6 @@
       <div id="boxes">
         <div class=" row  ">
 
-          <div id="box" class="col mx-2 d-none d-sm-block  text-center">
-            <a href="#billetrie">
-              <h5 class="card-title"> <i class="fa-solid fa-ticket "></i> Billetterie</h5>
-            </a>
-          </div>
 
           <div id="box-1" class="col mx-2 d-none d-sm-block  text-center">
             <a href="#habitat">
@@ -57,8 +52,8 @@
           </div>
 
           <div id="box-1" class="col mx-2 d-none d-sm-block  text-center">
-            <a href="">
-              <h5 class="card-title"> <i class="fa-solid fa-map"></i> préparez votre visite</h5>
+            <a href="#contact">
+              <h5 class="card-title"> <i class="fa-solid fa-map"></i> contactez-nous</h5>
             </a>
           </div>
         </div>
@@ -400,38 +395,7 @@
 
   </main>
   <footer class="footer ">
-    <div class="box-container">
-      <div class="box">
-        <img src="./images/LOGOZOO.png" width="100" height="50">
-        <p class="links"><i class="fas fa-clock"></i> Lundi-vendredi</p>
-        <p class="days">7:00AM - 11:00PM</p>
-      </div>
-      <div class="box">
-        <h3> Contact Info</h3>
-        <a href="#" class="links"><i class="fas fa-phone"></i> 1234-456 </a>
-        <a href="#" class="links"><i class="fas fa-phone"></i> 1234-987 </a>
-        <a href="#" class="links"><i class="fas fa-envelope"></i>info@zoolife.fr </a>
-        <a href="#" class="links"><i class="fas fa-marker-alt"></i>bourdaux, France</a>
-      </div>
-
-      <div class="box">
-        <h3> Quick links</h3>
-        <a href="./Accueil.php" class="links"><i class="fas fa-arrow-right"></i> Accueill</a>
-        <a href="#" class="links"><i class="fas fa-arrow-right"></i> billet & Tarifs</a>
-        <a href="./services.php" class="links"><i class="fas fa-arrow-right"></i> Services</a>
-        <a href="./Nos-animaux/habitat.php" class="links"><i class="fas fa-arrow-right"></i> Nos animaux </a>
-        <a href="./contact.php" class="links"><i class="fas fa-arrow-right"></i> contact </a>
-      </div>
-    </div>
-    <div class="share">
-      <a href="#"><i class="fa-brands fa-facebook"></i></a>
-      <a href="#" class="fa-brands fa-x-twitter"></a>
-      <a href="#" class="fa-brands fa-instagram"></a>
-      <a href="#" class="fa-brands fa-linkedin"></a>
-    </div>
-
-    <div class="credit">&copy; 2024 Zoo Arcadia. Tous les droits sont réservées </div>
-
+      <?php include_once __DIR__ .'/includes/footer.php';?>
   </footer>
 
   <!-- script-bootstrap js  -->

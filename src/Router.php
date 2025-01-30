@@ -19,6 +19,10 @@ class Router
             'GET' => [
                 '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
                 '/contact' => ['App\\Controllers\\ContactController', 'showForm'],
+                '/contactForm' => ['App\\Controllers\\ContactController', 'handleContact'],
+                '/service' => ['App\\Controllers\\ServiceController', 'showService'],
+
+
                 '/register' => ['App\\Controllers\\RegisterController', 'index'],
                 '/login' => ['App\\Controllers\\LoginController', 'showLogin'],
                 '/admin' => ['App\\Controllers\\AdminController', 'index'],
@@ -74,6 +78,7 @@ class Router
                 '/register' => ['App\\Controllers\\UserController','addUser'],
                 '/login' => ['App\\Controllers\\LoginController', 'authenticate'],
                 '/contact' => ['App\\Controllers\\ContactController', 'contactForm'],
+               
                 
                 '/add_service' => ['App\\Controllers\\ServiceController','add_Services'],
                 '/edit_service/{service_id}' => ['App\\Controllers\\ServiceController', 'editService'], 

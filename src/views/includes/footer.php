@@ -32,18 +32,18 @@
 
             <div class="box">
                 <h3> Quick links</h3>
-                <a href="../Accueil.php" class="links"><i class="fas fa-arrow-right"></i> Accueill</a>
-                <a href="../services.php" class="links"><i class="fas fa-arrow-right"></i> Services</a>
-                <a href="../Nos-animaux/habitat.php" class="links"><i class="fas fa-arrow-right"></i> Nos animaux </a>
-                <a href="../Nos-animaux/habitat.php" class="links"><i class="fas fa-arrow-right"></i> Habitat</a>
-                <a href="../contact.php" class="links"><i class="fas fa-arrow-right"></i> contact </a>
+                <a href="./Accueil" class="links"><i class="fas fa-arrow-right"></i> Accueill</a>
+                <a href="./service" class="links"><i class="fas fa-arrow-right"></i> Services</a>
+                <a href="./habitat" class="links"><i class="fas fa-arrow-right"></i> Nos animaux </a>
+                <a href="./habitat" class="links"><i class="fas fa-arrow-right"></i> Habitat</a>
+                <a href="./contact" class="links"><i class="fas fa-arrow-right"></i> contact </a>
             </div>
         </div>
         <div class="share">
-            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="fa-brands fa-x-twitter"></a>
-            <a href="#" class="fa-brands fa-instagram"></a>
-            <a href="#" class="fa-brands fa-linkedin"></a>
+            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://x.com" class="fa-brands fa-x-twitter"></a>
+            <a href="https://www.instagram.com" class="fa-brands fa-instagram"></a>
+            <a href="https://www.linkedin.com" class="fa-brands fa-linkedin"></a>
         </div>
 
         <div class="credit">&copy; 2024 Zoo Arcadia. Tous les droits sont réservées </div>
