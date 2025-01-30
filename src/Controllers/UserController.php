@@ -28,7 +28,7 @@ class UserController
 
 
     }
-    public function addUser($username)//céation da compte (page:register)
+    public function addUser($username)
     {
         if (isset($_POST['Inscrire'])) {
             // Vérification des champs requis
@@ -40,10 +40,10 @@ class UserController
                 }
             }
 
-            // Récupération et sécurisation des données
+            // Récupération  des données
             $prenom = htmlspecialchars($_POST['prenom']);
             $nom = htmlspecialchars($_POST['nom']);
-            $role_id = (int) $_POST['role_id']; // Convertir en entier pour éviter des failles
+            $role_id = (int) $_POST['role_id']; 
             $username = htmlspecialchars($_POST['username']);
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
