@@ -347,11 +347,62 @@ header .dropdown-menu{
     padding: 20px;
     color: white;
     list-style-position: inside;
-   
 }
-.reviews .fas{
-    color: #FFBF00;
+
+.reviews {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
+.reviews h3{
+    color: #ffc107;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.reviews div {
+    background-color: #ffffff; 
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.reviews div:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+}
+
+/* Étoiles */
+.reviews .fa-star {
+    color: #ffc107; 
+    margin-right: 5px;
+}
+
+/* Pseudo */
+.reviews strong {
+    font-size: 18px;
+    color: #333333; 
+    display: block; 
+    margin-bottom: 10px;
+}
+
+
+
+
+/* Commentaire */
+.reviews p {
+    font-size: 16px;
+    color: #555555; 
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+
+
 
 /* footer-start */
 .footer{

@@ -19,6 +19,10 @@ class Router
             'GET' => [
                 '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
                 '/contact' => ['App\\Controllers\\ContactController', 'showForm'],
+                '/contactForm' => ['App\\Controllers\\ContactController', 'handleContact'],
+                '/service' => ['App\\Controllers\\ServiceController', 'showService'],
+
+
                 '/register' => ['App\\Controllers\\RegisterController', 'index'],
                 '/login' => ['App\\Controllers\\LoginController', 'showLogin'],
                 '/admin' => ['App\\Controllers\\AdminController', 'index'],
@@ -69,10 +73,12 @@ class Router
 
             ], 
             'POST' => [
+
                 '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
                 '/register' => ['App\\Controllers\\UserController','addUser'],
                 '/login' => ['App\\Controllers\\LoginController', 'authenticate'],
                 '/contact' => ['App\\Controllers\\ContactController', 'contactForm'],
+               
                 
                 '/add_service' => ['App\\Controllers\\ServiceController','add_Services'],
                 '/edit_service/{service_id}' => ['App\\Controllers\\ServiceController', 'editService'], 
@@ -92,12 +98,15 @@ class Router
 
                 '/veterinaire' => ['App\\Controllers\\VeterinaireController','addCommentHabitat'],
                 
-                '/forgot_password'=> ['App\\Controllers\\LoginController', 'ForgotPassword'],
+                '/forgot_password'=> ['App\\Controllers\\LoginController','ForgotPassword'],
                 '/reset_password/{token}'=> ['App\\Controllers\\LoginController', 'resetPassword'],
+                '/filter_users'=> ['App\\Controllers\\AdminController', 'filterUsers'],
 
 
                 
                 '/incrementView/{animal_id}' => ['App\\Controllers\\AnimalController', 'incrementView'],
+
+
 
 
 

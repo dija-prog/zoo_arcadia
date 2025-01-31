@@ -1,6 +1,4 @@
-<?php
-include('./includes/database.php');
-?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -15,44 +13,7 @@ include('./includes/database.php');
 
 <body>
     <header id="restaurant">
-        <nav class="navbar navbar-expand-lg  fixed-top ">
-            <div class="container-fluid">
-                <a class="navbar-brand me-5 " href="./Accueil.php">
-                    <img src="./images/LOGOZOO.png" width="100" height="50"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse d-flex justify-content-center " id="navbarNav">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-
-                        <li class="nav-item ">
-                            <a class="nav-link" href="./Nos-animaux/animals.php" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
-                                Nos animaux
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="./Nos-animaux/habitat.php" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
-                                Habitat
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="./Nos-animaux/animals.php" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
-                                Services
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="./contact.php"> Contact </a>
-                        </li>
-
-                    </ul>
-                </div>
-                <button class="btn btn-success ms-4 ">
-                    <a data-mdb-dropdown-init href="./login/connexion.php" role="button" aria-expanded="false">
-                        <i class="fas fa-user"></i> connexion
-                    </a>
-                </button>
-            </div>
-        </nav>
+    <?php include_once __DIR__ .'/includes/navbar.php';?>
         <div class="cover">
             <div class=" carousel-caption row  d-flex align-items-center justify-content-center mb-5 py-5 ">
                 <h1 class="mb-4"> Où manger ?</h1><br>
@@ -145,40 +106,8 @@ include('./includes/database.php');
         </div>
     </main>
     <footer>
-        <footer class="footer ">
-            <div class="box-container">
-                <div class="box">
-                    <img src="./images/LOGOZOO.png" width="100" height="50">
-                    <p class="links"><i class="fas fa-clock"></i> Lundi-vendredi</p>
-                    <p class="days">7:00AM - 11:00PM</p>
-                </div>
-                <div class="box">
-                    <h3> Contact Info</h3>
-                    <a href="#" class="links"><i class="fas fa-phone"></i> 1234-456 </a>
-                    <a href="#" class="links"><i class="fas fa-phone"></i> 1234-987 </a>
-                    <a href="#" class="links"><i class="fas fa-envelope"></i>info@zoolife.fr </a>
-                    <a href="#" class="links"><i class="fas fa-marker-alt"></i>bourdaux, France</a>
-                </div>
-
-                <div class="box">
-                    <h3> Quick links</h3>
-                    <a href="./Accueil.php" class="links"><i class="fas fa-arrow-right"></i> Accueill</a>
-                    <a href="#" class="links"><i class="fas fa-arrow-right"></i> billet & Tarifs</a>
-                    <a href="./services.php" class="links"><i class="fas fa-arrow-right"></i> Services</a>
-                    <a href="./Nos-animaux/habitat.php" class="links"><i class="fas fa-arrow-right"></i> Nos animaux </a>
-                    <a href="./contact.php" class="links"><i class="fas fa-arrow-right"></i> contact </a>
-                </div>
-            </div>
-            <div class="share">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" class="fa-brands fa-x-twitter"></a>
-                <a href="#" class="fa-brands fa-instagram"></a>
-                <a href="#" class="fa-brands fa-linkedin"></a>
-            </div>
-
-            <div class="credit">&copy; 2024 Zoo Arcadia. Tous les droits sont réservées </div>
-
-        </footer>
+        <?php include_once __DIR__ .'/includes/footer.php';?>
+    </footer>
 
         <!-- script-bootstrap js  -->
 
