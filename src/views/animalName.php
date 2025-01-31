@@ -21,50 +21,55 @@
     <header>
         <?php
             include_once __DIR__ .'/includes/navbar.php';?>
-        <div class="cover">
-            <div class="carousel-caption d-flex align-items-center justify-content-center mb-5 py-5 ">
-                <h1><?php echo htmlspecialchars($details['animal_nom'])?></h1>
-            </div>
-            
+        <div class="cover ">
             <img src="data:image/jpeg;base64,<?= base64_encode($details['image']) ?>" 
-            class="card-img-top img-cover " alt="<?php echo ($details['animal_nom']) ?>">  
+                class="card-img-top img-cover " 
+                alt="<?php echo ($details['animal_nom']) ?>">
+            <div class="carousel-caption position-absolute top-50 start-50 translate-middle text-center text-white">
+                <h1 class="display-4 fw-bold"><?php echo htmlspecialchars($details['animal_nom']) ?></h1>
+            </div>
         </div>
     </header>
 
     <main>
-        <section class="info text-white">
+        <section class="info text-white py-5">
             <div class="container">
                 <div class="row align-items-center">
-                    <h1 class="text-center fw-bold m-5 pt-5">Fiche d'information</h1>
-                    <div class="col-6">
-                    <?php 
-                    foreach($rapports as $rapport){ 
-                    ?>
-                    <div class="card-body">
-                        <p><strong> Nom Animal :</strong> <?php echo htmlspecialchars($rapport['animal_nom']) ;?></p>
-                        <p><strong> Habitat :</strong> <?php echo htmlspecialchars($rapport['nom']) ;?></p>
-                        <p><strong> Classe :</strong> <?php echo htmlspecialchars($rapport['nom_classe']) ;?></p>
-                        <p><strong> Etat :</strong> <?php echo htmlspecialchars($rapport['etat']) ;?></p>
-                        <p><strong> Type de Nouriture :</strong> <?php echo htmlspecialchars($rapport['foodType']) ;?></p>
-                        <p><strong> Quantité :</strong> <?php echo htmlspecialchars($rapport['quantite']) ;?></p>
-                        <p><strong> Date :</strong> <?php echo htmlspecialchars($rapport['date']) ;?></p>
-                        <p><strong> Détaile :</strong> <?php echo htmlspecialchars($rapport['detail']) ;?></p>
+                    <h1 class="text-center fw-bold mb-5">Fiche d'information</h1>
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                        <?php 
+                        foreach($rapports as $rapport){ 
+                        ?>
+                        <div class="card bg-transparent border-0 mb-4">
+                            
+                            <div class="card-body">
+                                <p><strong> Nom Animal :</strong> <?php echo htmlspecialchars($rapport['animal_nom']) ;?></p>
+                                <p><strong> Habitat :</strong> <?php echo htmlspecialchars($rapport['nom']) ;?></p>
+                                <p><strong> Classe :</strong> <?php echo htmlspecialchars($rapport['nom_classe']) ;?></p>
+                                <p><strong> Etat :</strong> <?php echo htmlspecialchars($rapport['etat']) ;?></p>
+                                <p><strong> Type de Nouriture :</strong> <?php echo htmlspecialchars($rapport['foodType']) ;?></p>
+                                <p><strong> Quantité :</strong> <?php echo htmlspecialchars($rapport['quantite']) ;?></p>
+                                <p><strong> Date :</strong> <?php echo htmlspecialchars($rapport['date']) ;?></p>
+                                <p><strong> Détaile :</strong> <?php echo htmlspecialchars($rapport['detail']) ;?></p>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        </div>  
+                        <div class="col-4 text-center">
+                            <img src="data:image/jpeg;base64,<?= base64_encode($details['image']) ?>" class="img-fluid rounded-circle shadow-lg mx-5 w-100" alt="<?php echo ($details['animal_nom']) ?>">
+                        </div>
+                    
                     </div>
-                    <?php } ?>
-                    </div>  
-                    <div class="col-4">
-                        <img src="data:image/jpeg;base64,<?= base64_encode($details['image']) ?>" class="img-lion mb-4" alt="<?php echo ($details['animal_nom']) ?>">
-                    </div>
-                
                 </div>
             </div>
         </section>
 
-        <section class="buy">
-            <div class="mt-5 py-5">
-                <h5>Acheter vos billet dés maintenant </h5>
-                <button class="btn btn-warning ">
-                    billetrie
+        <section class="buy bg-light py-5">
+            <div class="container text-center">
+                <h5 class="mb-4">Acheter vos billet dés maintenant </h5>
+                <button class="btn btn-warning btn-lg ">
+                    <i class="fas fa-ticket-alt me-2"></i> Billetterie
                 </button>
             </div>
         </section>
