@@ -1,8 +1,12 @@
 <?php
 namespace App\Controllers;
-
 use App\Models\UserModel;
 use PDO;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mime\Email;
+
+
 
 
 class UserController
@@ -40,7 +44,7 @@ class UserController
                 }
             }
 
-            // Récupération  des données
+            // Récupération  des données du formulaire et sécurisation
             $prenom = htmlspecialchars($_POST['prenom']);
             $nom = htmlspecialchars($_POST['nom']);
             $role_id = (int) $_POST['role_id']; 
@@ -127,6 +131,92 @@ class UserController
             
         }
     }
+
+    // Afficher le formulaire "Mot de passe oublié"
+    public function showForgotPasswordForm() {
+        require __DIR__ . '/../views/forgot_password.php';
+    }
+
+    // Traiter la demande de réinitialisation
+    public function handleForgotPassword() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = $_POST['username'];
+
+            // Vérifier si l'utilisateur existe
+            $user = $this->UserModel->getUserByUsername($username);
+            if ($user) {
+                // Générer un token et une date d'expiration
+                $token = bin2hex(random_bytes(50));
+                $expiry = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+                // Mettre à jour l'utilisateur avec le token
+                $this->UserModel->updateResetToken($username, $token, $expiry);
+
+                // Créez le lien de réinitialisation
+                $resetLink = "http://localhost/reset_password?token=" . $token;
+
+                // Configurez le transport et le mailer
+                $transport = Transport::fromDsn($_ENV['MAILER_DS']);
+                $mailer = new Mailer($transport);
+
+                // Créez l'email
+                $email = (new Email())
+                    ->from('aithamouk94@gmail.com') 
+                    ->to($username) 
+                    ->subject('Réinitialisation de mot de passe')
+                    ->html("<p>Bonjour,</p>
+                            <p>Cliquez sur ce lien pour réinitialiser votre mot de passe :</p>
+                            <a href=\"$resetLink\">Réinitialiser le mot de passe</a>");
+
+                // Envoyez l'email
+                try {
+                    $mailer->send($email);
+
+                    echo "Un lien de réinitialisation a été envoyé.";
+                    
+                } catch (\Exception $e) {
+                    echo "Erreur lors de l'envoi de l'email : " . $e->getMessage();
+                }
+            } else {
+                echo "Cet email n'existe pas.";
+            }
+        }
+    }
+    
+
+    // Afficher le formulaire de réinitialisation
+    public function showResetPasswordForm($token)
+    {   
+        $token = $_GET['token'] ?? '';
+        $user = $this->UserModel->findByResetToken($token);
+        if ($user) {
+            require __DIR__ . '/../views/reset_password.php';
+        } else {
+            echo "Token invalide ou expiré.";
+        }
+    }
+
+    // Traiter la réinitialisation du mot de passe
+    public function handleResetPassword() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $token = $_POST['token'];
+            $password = $_POST['password'];
+
+            $user = $this->UserModel->findByResetToken($token);
+            if ($user) {
+                // Mettre à jour le mot de passe
+                $this->UserModel->updatePassword($user['username'], $password);
+                require __DIR__ . '/../views/reset_password_success.php';
+            } else {
+                echo "Token invalide ou expiré.";
+            }
+        }
+    }
+
+
+
+
+    
 
     
         

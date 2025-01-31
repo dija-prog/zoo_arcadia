@@ -3,6 +3,7 @@ namespace App\Models;
 
 use App\Database;
 use PDO;
+use exception; 
 
 class UserModel
 {
@@ -69,32 +70,42 @@ class UserModel
     echo json_encode(['success' => $req]);
   }
 
- 
-  public function findByResetToken(string $token): array
-  {   
-    $hashedToken = password_hash($token, PASSWORD_BCRYPT);
-
-    $sql = "SELECT * FROM utilisateur WHERE reset_token = :hashedToken AND reset_token_expire > NOW()";
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->execute(['token' =>  $hashedToken]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    return $user ?: [] ;
-  }
   
-  public function updateResetToken($username, $token) 
+  
+
+
+  public function findByResetToken($token)
+{
+    // Validation du token
+    if (is_array($token)) {
+        throw new Exception("Token must be a string, array given.");
+    }
+
+    // Requête SQL
+    $sql = "SELECT * FROM utilisateur WHERE reset_token = :token AND reset_token_expire > NOW()";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute(['token' => $token]);
+
+    // Retourne l'utilisateur trouvé ou false si aucun utilisateur n'est trouvé
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+  
+  public function updateResetToken($username, $token, $expiry) 
   {
     
-  
-    $query = "UPDATE utilisateur SET reset_token = :token, reset_token_expire = DATE_ADD(NOW(), INTERVAL 15 MINUTE) WHERE username = :username";
+    $query = "UPDATE utilisateur SET reset_token = :token, reset_token_expire = :expiry  WHERE username = :username";
     $stmt = $this->pdo->prepare($query);
-    $stmt->bindParam(':token',  $hashedToken);
+    $stmt->bindParam(':token',  $token);
     $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':expiry', $expiry);
     return $stmt->execute();
   }
-    
-  public function updatePassword( $username, string $hashedPassword): bool
+    /**
+     * Met à jour le mot de passe d'un utilisateur
+     */
+    public function updatePassword( $username, string $password): bool
     {   
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $sql = "UPDATE utilisateur SET password = :password, reset_token = NULL, reset_token_expire = NULL WHERE username = :username";
         $stmt = $this->pdo->prepare($sql);
 
