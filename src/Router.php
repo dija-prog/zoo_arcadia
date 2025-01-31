@@ -57,9 +57,9 @@ class Router
 
                 '/rapport' => ['App\\Controllers\\RapportController','index'],
 
-                '/forgot_password'=> ['App\\Controllers\\LoginController', 'ForgotPassword'],
+                '/forgot_password'=> ['App\\Controllers\\UserController', 'showForgotPasswordForm'],
 
-                '/reset_password'=> ['App\\Controllers\\LoginController', 'resetPassword'],
+                '/reset_password'=> ['App\\Controllers\\UserController', 'showResetPasswordForm'],
 
 
                 '/incrementView/{animal_id}' => ['App\\Controllers\\AnimalController', 'incrementView'],
@@ -92,8 +92,8 @@ class Router
 
                 '/veterinaire' => ['App\\Controllers\\VeterinaireController','addCommentHabitat'],
                 
-                '/forgot_password'=> ['App\\Controllers\\LoginController', 'ForgotPassword'],
-                '/reset_password/{token}'=> ['App\\Controllers\\LoginController', 'resetPassword'],
+                '/forgot_password'=> ['App\\Controllers\\UserController', 'handleForgotPassword'],
+                '/reset_password'=> ['App\\Controllers\\UserController', 'handleResetPassword'],
 
 
                 
