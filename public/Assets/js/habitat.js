@@ -14,7 +14,7 @@
     };
     button.forEach(a => a.addEventListener("click",animals)); 
 
-//  js pour la description 
+ //js pour la description 
 
     console.log(texts);
     const habitat = e =>{
@@ -28,7 +28,10 @@
         });
     };
     button.forEach(a => a.addEventListener("click",habitat)); 
-    
+
+
+
+   
 
       // incrimenter les views 
 

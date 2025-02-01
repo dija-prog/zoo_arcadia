@@ -15,16 +15,19 @@ class AnimalNameController
         //charger le model
         $animalModel = new AnimalModel();
         $veterinaireModel = new VeterinaireModel();
+        $viewsModel = new ViewsModel();
         //Récuperer les données necéssaire
         
         $details = $animalModel->getAnimalByName($animalName);
         $rapports = $veterinaireModel->getVeterinaryRapport($details['animal_id']);
-        // $stmt = $veterinaireModel-> getRapportsVeterinaires();
 
+        $viewsModel->incrementView( $animalName);
         
 
         // inclure les données à la vue 
         require_once __DIR__ . '/../views/animalName.php';
     }
+
+   
     
 }

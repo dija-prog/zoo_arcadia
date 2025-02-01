@@ -67,6 +67,11 @@ class Router
 
 
                 '/incrementView/{animal_id}' => ['App\\Controllers\\AnimalController', 'incrementView'],
+                '/ShowAnimalsStatics' => ['App\\Controllers\\AdminController', 'ShowAnimalsStatics'],
+
+
+                
+
 
  
 

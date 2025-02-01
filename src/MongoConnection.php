@@ -11,7 +11,8 @@ class MongoConnection {
         if (self::$instance === null) {
             $config = require __DIR__ . '/mongodb.php';
             try {
-                self::$instance = new Client($config['uri']);
+                self::$instance = new Client($_ENV['MONGO']);
+                self::$instance->test->command(['ping'=>1]);
                 self::$database = self::$instance->selectDatabase($config['database']);
             } catch (\Exception $e) {
                 error_log("Erreur de connexion MongoDB: " . $e->getMessage());

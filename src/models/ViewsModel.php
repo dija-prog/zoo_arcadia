@@ -26,22 +26,30 @@ class ViewsModel {
         
     }
 
-    public function incrementView($animal_id)
-    {
-        try {
+    public function incrementView($animal_nom)
+    {   
+        $animal = $this->collection->findOne(['animal_nom' => $animal_nom]);
+        if ($animal === null){
+            $result = $this->collection->insertOne(
+                
+                ['animal_nom' => $animal_nom,
+                'views'=> 1]
+
+            );
+        }else{
+            
             $result = $this->collection->updateOne(
-                ['animal_id' => $animal_id],
+                
+                ['animal_nom' => $animal_nom],
                 ['$inc' => ['views' => 1]],
                 ['upsert' => true]
             );
-            return true;
-        } catch (\Exception $e) {
-            error_log("Erreur d'incrémentation: " . $e->getMessage());
-            return false;
+            
         }
     }
 
-    public function getAllViews() {
+    public function getAllViews()
+    {
         try {
             return $this->collection->find()->toArray();
         } catch (\Exception $e) {
@@ -49,11 +57,5 @@ class ViewsModel {
             return [];
         }
     }
-
-    // public function getAnimalStats($animal_id)
-    // {
-    //     $stats = $this->mongo->findOne(['animal_id' => $animal_id]);
-    //     return $stats ? $stats['views'] : 0;
-    // }
 
 }

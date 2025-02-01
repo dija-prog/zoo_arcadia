@@ -61,6 +61,10 @@
   <!-- Main Content -->
   <div id="mainContent" class="main-content  mt-3">
     <h4>Statistiques des animaux</h4>
+    <canvas id="animalViewsChart" width="400" height="200"></canvas>
+    <button id="refreshButton">Rafraîchir</button> <!-- Exemple de bout
+
+
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -68,57 +72,6 @@
             </div>
         </div>
     </div>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const viewsData = <?php echo json_encode($viewsStats); ?>;
-    
-    new Chart(document.getElementById('viewsChart'), {
-        type: 'bar',
-        data: {
-            labels: viewsData.map(item => item.animal_id),
-            datasets: [{
-                label: 'Nombre de vues par animal',
-                data: viewsData.map(item => item.views),
-                backgroundColor: 'rgba(54, 162, 235, 0.6)'
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-});
-</script>
-
-
-
-    <!-- <div class="chart-container">
-      <canvas id="viewsChart" width="400" height="200"  aria-label="chart" role="img"></canvas>
-    </div>
-
-    <?php if (!empty($animal)): ?>
-    <table>
-      <tr>
-        <th>Animal</th>
-        <th>Nombre de vues</th>
-      </tr>
-      <?php foreach ($animals as $animal): ?>
-        <tr>
-          <td><?= htmlspecialchars($animal['animal_id']); ?></td>
-          <td><?= htmlspecialchars($views) ?></td>
-        </tr>
-      <?php endforeach; ?>
-    </table>
-    <?php else: ?>
-        <p><?= $message ?? 'Aucune vue'; ?></p>
-    <?php endif; ?> -->
-
 
 
     <!-- Tableux d'utilisateur -->
@@ -141,20 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <th>Nom</th>
               <th>Prenom</th>
               <th>Email</th>
-              <th>Role
-                <ul class="headItem dropdown">
-                  <li>
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                      <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><button class="dropdown-item filter-btn" data-role="all">Tous</button></li>
-                      <li><button class="dropdown-item filter-btn" data-role="Employé">Employé</button></li>
-                      <li><button class="dropdown-item filter-btn" data-role="Vétérinaire">Vétérinaire</button></li>
-                    </ul>
-                  </li>
-                </ul>
-              </th>           
+              <th>Role</th>           
               <th>modifier</th>
               <th>supprimer</th>
             </tr>

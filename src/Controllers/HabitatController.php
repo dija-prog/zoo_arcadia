@@ -14,13 +14,12 @@ class HabitatController
         // Récupérer les données 
         $habitat = $habitatModel->getHabitat();
         $animals = $animalModel->getAnimals();
-        
 
+    
 
         //inclure la vue avec les données 
 
         require_once __DIR__ . '/../views/habitat.php';
     }
 
-   
 }    

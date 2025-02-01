@@ -122,62 +122,29 @@ class AdminController
     
     }
 
-    public function ShowAnimalsStatics($animal_id = null) {
+    public function ShowAnimalsStatics()
+    {
         // Récupérer les statistiques
         $viewsStats = $this->viewsModel->getAllViews();
-        
-        // Rendre la vue avec les données
-        require_once '/../views/admin.php';
-    }
-    public function incrementView($animal_id) {
-        $result = $this->viewsModel->incrementView($animal_id);
-        return json_encode(['success' => $result]);
+        if (empty($viewsStats)) {
+            http_response_code(500); // Code d'erreur serveur
+            echo json_encode(['error' => 'Aucune donnée trouvée']);
+            return;
+        }
+        header('Content-Type: application/json'); // Indique que la réponse est au format JSON
+        echo json_encode($viewsStats);
     }
 
-
-    // public function incrementAnimalView() 
+    //Assurez-vous que cette méthode existe
+    // public function getAllViews()
     // {
-    //     $animalName = $_GET['animal_name'] ?? null; // Récupérer le nom via l'URL
-
-    //     if ($animalName) 
-    //     {
-    //         $animal = $this->animalModel->getAnimalByName($animalName); // Vérifier si l'animal existe
-    //         if ($animal)
-    //         {
-    //             $this->viewsModel->incrementViews($animalName); // Incrémentation dans MongoDB
-                
-    //             echo "Vues de $animalName mises à jour !";
-    //         } else {
-    //             echo "Animal introuvable.";
-    //         }
-    //     } else {
-    //         echo "Nom de l'animal manquant.";
+    //     try {
+    //         return $this->viewsModel->getAllViews();
+    //     } catch (\Exception $e) {
+    //         error_log("Erreur de récupération: " . $e->getMessage());
+    //         return [];
     //     }
+        
     // }
 
-    // Affiche le tableau de bord des vues
-    // public function showDashboard() 
-    // {
-    //     $views = $this->viewsModel->getAnimalViews(); // Récupère les données MongoDB
-        
-    //     if (empty($views)) 
-    //     {
-    //         $message = "Aucune vue disponible pour le moment.";
-    //     }
-    
-    //     include __DIR__ . '/../views/admin.php'; // Charge la vue
-    // }
-
-    public function filterUsers()
-    {
-        $data = json_decode(file_get_contents('php://input'),true);
-        $data = json_decode(file_get_contents('php://input'),true);
-        $role =$data['role'] ?? null;
-
-        $users = $this->userModel->getUsersByRole($role);
-
-        header('Content-Type: application/json');
-        
-        echo json_encode($users);
-    }
 }

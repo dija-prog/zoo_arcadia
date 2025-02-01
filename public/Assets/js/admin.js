@@ -26,44 +26,70 @@ function confirmationSup(){
 
 }
 
-// création de graphique avec chart.js
 
 
-document.addEventListener("DOMContentLoaded", async () => {
-    try {
-        const response = await fetch('/AdminController.php/admin/getAnimals');
-        const data = await response.json();
+document.addEventListener('DOMContentLoaded', function() {
+    // Exemple : Ajout d'un écouteur d'événement sur un bouton
+    const refreshButton = document.getElementById('refreshButton');
+    if (refreshButton) {
+        refreshButton.addEventListener('click', function() {
+            console.log('Bouton cliqué');
+        });
+    } else {
+        console.error("L'élément #refreshButton n'existe pas dans le DOM");
+    }
 
-        const labels = data.map(item => item.name);
-        const views = data.map(item => item.views);
+    // Votre code existant pour le graphique
+    fetch('/ShowAnimalsStatics')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur réseau : ' + response.statusText);
+            }
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new TypeError("La réponse n'est pas du JSON valide");
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (!data || !Array.isArray(data)) {
+                throw new Error('Les données reçues sont invalides ou vides');
+            }
 
-        const ctx = document.getElementById("viewsChart").getContext("2d");
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Nombre de consultations",
-                    data: views,
-                    backgroundColor: "rgba(75, 192, 192, 0.6)",
-                    borderColor: "rgba(75, 192, 192, 1)",
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+            const labels = data.map(animal => animal.animal_nom);
+            const views = data.map(animal => animal.views);
+
+            const ctx = document.getElementById('animalViewsChart');
+            if (!ctx) {
+                throw new Error("L'élément canvas #animalViewsChart n'existe pas dans le DOM");
+            }
+
+            const myChart = new Chart(ctx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Nombre de vues',
+                        data: views,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des données:', error);
+            alert('Une erreur est survenue lors du chargement des données. Veuillez réessayer plus tard.');
         });
-    } catch (error) {
-        console.error("Erreur lors de la récupération des données:", error);
-    }
 });
-
 
 
     // une requete fetch pour ne pas recharger la page 
@@ -84,33 +110,3 @@ async function addAnimal(data) {
     const JSON = await RESPONSE.json();
     console.log(JSON); 
 }
-
-
-
-// filter les role dans la table user 
-function fetchData()
-{
-    var action = 'fatchData';
-    $.ajax({
-        url:"admin.php",
-        method:'POST',
-        data:{action:action},
-        success: function(data){
-            $('#post_list').html(data);
-        }
-    });
-
-}
-$(document).ready(function()
-{   
-    $('#postData').submit(function(event){
-        event.preventDefault();
-        var nom = $('nom').val();
-        var prenom = $('prenom').val();
-        var username = $('username').val();
-        var role_id = $('role_id').val();
-        
-    });
-
-
-});
