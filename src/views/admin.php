@@ -62,8 +62,7 @@
   <div id="mainContent" class="main-content  mt-3">
     <h4>Statistiques des animaux</h4>
     <canvas id="animalViewsChart" width="400" height="200"></canvas>
-    <button id="refreshButton">Rafraîchir</button> <!-- Exemple de bout
-
+    <button  id="refreshButton">Rafraîchir</button>
 
     <div class="container">
         <div class="row">

@@ -1,29 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Assets/css/service.css">
-    <link rel="stylesheet" href="./Assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Assets/css/service.css">
+    <link rel="stylesheet" href="../Assets/bootstrap/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="./images/fiveicon.png">
     <title>Services</title>
 </head>
 
 <body>
     <header id="restaurant">
-    <?php include_once __DIR__ .'/includes/navbar.php';?>
+        <?php include_once __DIR__ . '/includes/navbar.php'; ?>
         <div class="cover">
             <div class=" carousel-caption row  d-flex align-items-center justify-content-center mb-5 py-5 ">
                 <h1 class="mb-4"> Où manger ?</h1><br>
                 <h2 class="mt-3"> Venez vous manger dans un lieu pour se détendre et savourer </h2>
             </div>
-            <img src="./images/grue_couronée2.jpg" class=" d-block w-100 img-fluid" alt=girafe>
+            <img src="./images/grue_couronée2.jpg" class=" d-block w-100 img-fluid" alt=grue_couronée>
         </div>
     </header>
     <main>
-        <div class="service container-fluid text-white  ">
+        <div class="ser container-fluid text-white  ">
             <div class="row">
                 <h2 class="text-white text-center m-4 fw-bold"> Self-restaurant</h2>
                 <div class="col-12 col-md-6 h-100 ">
@@ -80,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="Ccol-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="card" style="width: 18rem;">
                         <img src="./images/poussette.jpg" class="card-img-top" alt="poussette">
                         <div class="card-body bg-dark">
@@ -89,30 +88,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="card m-4" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="./images/train.jpg" class="img-fluid " alt="TRAIN">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body ">
-                                <h5 class="card-title  text-success">Petit train</h5>
-                                <p class="card-text  ">Découvrez le zoo autrement à bord de notre petit train ! Une manière relaxante et ludique de parcourir le parc tout en profitant d'une vue panoramique sur les habitats des animaux. This content is a little bit longer.</p>
-                            </div>
+                <div class="col-12 col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./images/train.jpg" class="img-fluid " alt="Train">
+                        <div class="card-body bg-dark">
+                            <h5 class="card-title text-warning">Petit train</h5>
+                            <p class="card-text text-white">Découvrez le zoo autrement à bord de notre petit train ! Une manière relaxante et ludique de parcourir le parc tout en profitant d'une vue panoramique sur les habitats des animaux. This content is a little bit longer.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <footer>
-        <?php include_once __DIR__ .'/includes/footer.php';?>
+    <footer class="footer">
+        <?php require_once __DIR__ . "/includes/footer.php" ?>
     </footer>
-
-        <!-- script-bootstrap js  -->
-
-        <script src="./Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <scrip src="./Assets/bootstrap/js/bootstrap.min.js">
 </body>
 
 </html>

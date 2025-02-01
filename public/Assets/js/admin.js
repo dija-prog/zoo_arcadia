@@ -31,6 +31,12 @@ function confirmationSup(){
 document.addEventListener('DOMContentLoaded', function() {
     // Exemple : Ajout d'un écouteur d'événement sur un bouton
     const refreshButton = document.getElementById('refreshButton');
+    
+    if (!refreshButton) {
+        console.error("Le bouton #refreshButton n'existe pas dans le DOM");
+        return;
+    }
+
     if (refreshButton) {
         refreshButton.addEventListener('click', function() {
             console.log('Bouton cliqué');
