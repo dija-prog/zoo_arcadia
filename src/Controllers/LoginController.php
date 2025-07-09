@@ -44,7 +44,7 @@ class LoginController
                     define('EMPLOYE', 2);
                     define('VETERINAIRE', 3);
 
-                        //créer une cookie 
+                        //gestion des cookies
                     if ($remember) {
                         setcookie('username', $username, time() + (86400 * 30), "/");
                     } else {

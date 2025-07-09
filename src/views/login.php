@@ -17,6 +17,8 @@
 </head>
 
 <body>
+
+
   <section id="connexion" class="vh-100">
     <div class="container-fluid">
       <div class="row">
@@ -40,7 +42,7 @@
 
               <div data-mdb-input-init class="form-outline text-dark mb-4">
                 <label class="form-label">Email</label>
-                <input id="email" name="username" type="email" placeholder="exemple@gmail.fr" class="form-control form-control-lg" />
+                <input id="email" name="username" type="email" placeholder="exemple@gmail.fr" class="form-control form-control-lg" value="<?php echo isset($_COOKIE['username']) ? htmlspecialchars($_COOKIE['username']) : ''; ?>"  />
                 <span class="text-danger" id="email_error"></span>
               </div>
 
@@ -50,9 +52,18 @@
                 <span class="text-danger" id="password_error"></span>
               </div>
 
+              <!-- Case à cocher "Se souvenir de moi" -->
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="remember" id="remember" />
+                <label class="form-check-label" for="remember">
+                  Se souvenir de moi
+                </label>
+              </div>
+
               <div class="pt-1 mb-3 ">
                 <input type="submit" name="valider" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-lg btn-block" type="button" />
               </div>
+              <!-- liens  -->
               <p class="small mb-3 pb-lg-2"><a class="text-muted" href="./forgot_password">Mot de passe oublié?</a></p>
               <p>Vous avez pas de compte? <a href="./register" class="link-success">inscription ici</a></p>
 
