@@ -151,7 +151,7 @@
                 </div>
             </div>
         </section>
-        <!-- <script src="../Assets/js/admin.js"></script> -->
+    
         <script src="../Assets/Bootstraps/js/bootstrap.min.js"></script>
         <script src="../Assets/Bootstraps/js/bootstrap.bundle.js"></script>
 

@@ -106,9 +106,5 @@
         </section>
 
     </main>
-
-<link rel="stylesheet" href="../Assets/Bootstraps/js/bootstrap.bundle.js">
-<link rel="stylesheet" href="../Assets/Bootstraps/js/bootstrap.min.js">
-    
 </body>
 </html>

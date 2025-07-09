@@ -135,16 +135,5 @@ class AdminController
         echo json_encode($viewsStats);
     }
 
-    //Assurez-vous que cette méthode existe
-    // public function getAllViews()
-    // {
-    //     try {
-    //         return $this->viewsModel->getAllViews();
-    //     } catch (\Exception $e) {
-    //         error_log("Erreur de récupération: " . $e->getMessage());
-    //         return [];
-    //     }
-        
-    // }
 
 }
