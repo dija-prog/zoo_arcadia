@@ -9,7 +9,7 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../', '.env');
 $dotenv->load();
 
-MongoConnection::getInstance();
+// MongoConnection::getInstance();
 $router = new Router();
 $controllerFqcn = $router->getControllerFqcn();
 $method = $router->getMethod();

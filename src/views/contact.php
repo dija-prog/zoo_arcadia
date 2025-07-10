@@ -32,15 +32,14 @@
                         </div>
                         <div class="card-body">
                             <form id="contactForm" method="POST" action="/contact">
-                                <div class="form-group">
+                                <div class="form-group mb-4">
                                     <label for="titre">un titre</label>
                                     <input type="text" class="form-control" name="titre" id="text" aria-describedby="emailHelp" placeholder="titre de vitre demande" required>
                                     <span class=" text-danger" id="text_error"></span>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mb-4">
                                     <label for="email">Email address</label>
                                     <input id="email" type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="email@gmail.com" required>
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     <span class=" text-danger" id="email_error"></span>
                                 </div>
                                 <div class="form-group">
@@ -74,7 +73,8 @@
     <?php include_once __DIR__ .'/includes/footer.php';?>
         
     </footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- script js -->
     <script src="../Assets/js/contact.js"></script>
     <!-- script-bootstrap js  -->

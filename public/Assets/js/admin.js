@@ -1,13 +1,18 @@
-document.addEventListener("DOMContentLoaded",() => {
+document.addEventListener("DOMContentLoaded", () => {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
 
-    document.querySelector("#toggle-btn").onclick = () => {
+
+    document.querySelector("#toggle-btn").onclick= () => {
         sidebar.classList.toggle('collapsed');
         mainContent.classList.toggle('expanded')
     }
 
+   
 })
+
+
+
 
 
 
@@ -100,19 +105,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // une requete fetch pour ne pas recharger la page 
 
-const ADD_ANIMAL_FORM = document.querySelector('#add-animal-form');
-ADD_ANIMAL_FORM.addEventListener('submit', (ev) => {
-    ev.preventDefault();
-    const DATA = new FormData(ADD_ANIMAL_FORM);
-    console.log(DATA.get('animal_nom'));
-    addAnimal(DATA);
-})
+// const ADD_ANIMAL_FORM = document.querySelector('#add-animal-form');
+// ADD_ANIMAL_FORM.addEventListener('submit', (ev) => {
+//     ev.preventDefault();
+//     const DATA = new FormData(ADD_ANIMAL_FORM);
+//     console.log(DATA.get('animal_nom'));
+//     addAnimal(DATA);
+// })
 
-async function addAnimal(data) {
-    const RESPONSE = await fetch('/add-animal',{
-        'method' : 'POST',
-        'body' : data
-    });
-    const JSON = await RESPONSE.json();
-    console.log(JSON); 
-}
+// async function addAnimal(data) {
+//     const RESPONSE = await fetch('/add-animal',{
+//         'method' : 'POST',
+//         'body' : data
+//     });
+//     const JSON = await RESPONSE.json();
+//     console.log(JSON); 
+// }

@@ -173,7 +173,7 @@ class Router
             
         } else {
             throw new \Exception("Route introuvable : " . $path);
-            exit;
+            
         }
     }
 
