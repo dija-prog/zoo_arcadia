@@ -286,22 +286,22 @@
           <div class="column">
             <img src="./images/Eléphant d'Afrique.jpg" alt="Eléphant d'Afrique">
             <img src="./images/Rat Musqué.jpg" alt="Rat Musqué">
-            <img src="./images/Flamant Rose.jpeg" alt="Flamant Rose">
+            <img src="./images/toucan.jpg" alt="toucan">
           </div>
           <div class="column">
             <img src="./images/lion d'Afrique.jpg" alt="lion d'Afrique">
-            <img src="./images/calao.jpg" alt="calao">
-            <img src="./images/Aigle Royal.jpg" alt="Aigle Royal">
+            <img src="./images/Flamant Rose.jpeg" alt="Flamant Rose">
+            <img src="./images/autruche.jpg" alt="autruche">
           </div>
           <div class="column">
             <img src="./images/dendrobate.jpg" alt="dendrobate">
-            <img src="./images/autruche.jpg" alt="autruche">
+            <img src="./images/Aigle Royal.jpg" alt="Aigle Royal">
             <img src="./images/Perroquet.jpg" alt="Perroquet">
           </div>
           <div class="column">
             <img src="./images/Singe Hurleur.jpg" alt="Singe Hurleur">
             <img src="./images/hippopotame.jpg" alt="hippopotame">
-            <img src="./images/toucan.jpg" alt="toucan">
+            <img src="./images/calao.jpg" alt="calao">     
           </div>
         </div>
       </div>
