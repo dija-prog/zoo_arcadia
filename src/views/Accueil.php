@@ -120,13 +120,13 @@
         <div class=" container col-lg-6 images ">
           <div class="row">
             <div class="col-md-12 mb-3 d-none d-sm-block ">
-              <img src="./images/elephant3.jpg" alt="Elephant" class="img-1  img-fluid">
+              <img src="./images/Eléphant d'Afrique.jpg" alt="Éléphant d'Afrique" class="img-1  img-fluid">
             </div>
             <div class="col-md-6 mb-3 d-none d-sm-block">
-              <img src="./images/crapaud_buffle.jpg" alt="crapaud_buffle" class="img-2 img-fluid">
+              <img src="./images/Crapaud Buffle.jpg" alt="crapaud_buffle" class="img-2 img-fluid">
             </div>
             <div class="col-md-6 mb-3 d-none d-sm-block  ">
-              <img src="./images/hyéne1.jpg" alt="hyéne" class="img-3 img-fluid">
+              <img src="./images/Hyène tachetée.jpg" alt="hyéne" class="img-3 img-fluid">
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@
             <div class="carousel-item active">
               <div class=" col-12 col-md-4 col-sm-6 mx-auto">
                 <div class="card  mt-5 mb-5 ">
-                  <img src="./images/elephant.jpg" class="card-img-top img-fluid" alt="élephant">
+                  <img src="./images/Eléphant d'Afrique.jpg" class="card-img-top img-fluid" alt="élephant">
                   <div class="card-img-overlay ">
                     <h5 class=" card-title text-center text-warning fw-bold mt-3"> Savane Africaine</h5>
                     <p class="card-text mt-5 text-center d-none d-md-block">
@@ -160,7 +160,7 @@
             <div class="carousel-item ">
               <div class="col-12  col-md-4 col-sm-6 mx-auto ">
                 <div class="card mt-5 mb-5 ">
-                  <img src="./images/peroquet1.jpg" class="card-img-top img-fluid" alt="peroquet">
+                  <img src="./images/Perroquet.jpg" class="card-img-top img-fluid" alt="peroquet">
                   <div class="card-img-overlay">
                     <h5 class="card-title text-center text-warning fw-bold mt-3">Jungle tropicale</h5>
                     <p class="card-text  mt-5 text-center d-none d-md-block">
@@ -175,7 +175,7 @@
             <div class="carousel-item ">
               <div class="col-12 col-md-4 col-sm-6 mx-auto">
                 <div class="card mt-5 mb-5 ">
-                  <img src="./images/aligateur.jpg" class="card-img-top img-fluid" alt="aligateur">
+                  <img src="./images/Alligator.jpg" class="card-img-top img-fluid" alt="aligateur">
                   <div class="card-img-overlay">
                     <h5 class="card-title text-center text-warning fw-bold mt-3"> Marais humide </h5>
                     <p class="card-text  mt-5 text-center d-none d-md-block">
@@ -284,24 +284,24 @@
 
         <div class="row py-2 mt-3">
           <div class="column">
-            <img src="./images/Elephant2.jpg" alt="elephant">
+            <img src="./images/Eléphant d'Afrique.jpg" alt="Eléphant d'Afrique">
             <img src="./images/Rat Musqué.jpg" alt="Rat Musqué">
-            <img src="./images/LE TIGRE.jpg" alt="LE TIGRE">
+            <img src="./images/Flamant Rose.jpeg" alt="Flamant Rose">
           </div>
           <div class="column">
-            <img src="./images/lione.jpg" alt="Hyéne">
-            <img src="./images/calao.jpg" alt="Héron Cendré">
-            <img src="./images/aigle royal.jpg" alt="lion">
+            <img src="./images/lion d'Afrique.jpg" alt="lion d'Afrique">
+            <img src="./images/calao.jpg" alt="calao">
+            <img src="./images/Aigle Royal.jpg" alt="Aigle Royal">
           </div>
           <div class="column">
-            <img src="./images/zébre.jpg" alt="zébre">
-            <img src="./images/cerfs.jpg" alt="cerfs">
-            <img src="./images/peroquet.jpg" alt="PEROQUET">
+            <img src="./images/dendrobate.jpg" alt="dendrobate">
+            <img src="./images/autruche.jpg" alt="autruche">
+            <img src="./images/Perroquet.jpg" alt="Perroquet">
           </div>
           <div class="column">
-            <img src="./images/serpent-vert.jpg" alt="elephant">
-            <img src="./images/aligateur.jpg" alt="Canard">
-            <img src="./images/giraffe.jpeg" alt="giraffe">
+            <img src="./images/Singe Hurleur.jpg" alt="Singe Hurleur">
+            <img src="./images/hippopotame.jpg" alt="hippopotame">
+            <img src="./images/toucan.jpg" alt="toucan">
           </div>
         </div>
       </div>

@@ -57,7 +57,7 @@
                         <?php } ?>
                         </div>  
                         <div class="col-4 text-center">
-                            <img src="data:image/jpeg;base64,<?= base64_encode($details['image']) ?>" class="img-fluid rounded-circle shadow-lg mx-5 w-100" alt="<?php echo ($details['animal_nom']) ?>">
+                            <img src="../<?php echo htmlspecialchars ($details['image']) ?>" class="img-fluid rounded-circle shadow-lg mx-5 w-100" alt="<?php echo ($details['animal_nom']) ?>">
                         </div>
                     
                     </div>
