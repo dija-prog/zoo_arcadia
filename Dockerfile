@@ -1,6 +1,6 @@
 FROM php:8.2-fpm
 
-# Installer les dépendances système nécessaires 
+# Installer les dépendances 
 RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
