@@ -1,30 +1,26 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 
-RUN a2enmod rewrite
+# Activer mod_rewrite, installer extensions PHP nécessaires (exemple)
+RUN a2enmod rewrite && \
+    apt-get update && apt-get install -y libzip-dev unzip libssl-dev pkg-config git && \
+    docker-php-ext-install zip
 
-RUN apt-get update && apt-get install -y \
-    libzip-dev \
-    unzip \
-    libssl-dev \
-    pkg-config \
-    git \
-    && docker-php-ext-install zip
+# Installer MongoDB extension version compatible avec composer.lock (ici 1.20.0)
+RUN pecl install mongodb-1.20.0 && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/docker-php-ext-mongodb.ini
 
-RUN pecl install mongodb-1.20.0 \
-    && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/docker-php-ext-mongodb.ini
-
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
+# Copier le code source dans l'image
 COPY . /var/www/html/
 
-COPY .env /var/www/html/.env
-
-
-# ✅ Installe les dépendances PHP via Composer
-RUN composer install --no-dev --optimize-autoloader
-
+# Mettre les droits
 RUN chown -R www-data:www-data /var/www/html
 
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+# Composer (on suppose composer est dans le PATH ou on peut copier depuis une image officielle)
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+WORKDIR /var/www/html
+
+# Installer les dépendances PHP sans dev
+RUN composer install --no-dev --optimize-autoloader
+
+EXPOSE 80
+CMD ["apache2-foreground"]
