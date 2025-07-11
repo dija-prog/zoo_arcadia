@@ -1,35 +1,44 @@
-# 1. Utiliser une image de base avec PHP-FPM
 FROM php:8.2-fpm
 
-# 2. Installer nginx et extensions PHP nécessaires (ex: MongoDB)
+# Installer les dépendances système
 RUN apt-get update && apt-get install -y \
     nginx \
     supervisor \
-    libcurl4-openssl-dev \
-    pkg-config \
-    libssl-dev \
+    curl \
     unzip \
     git \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    pkg-config \
+    libmongoc-dev \
+    libbson-dev \
+    libpng-dev \
     && pecl install mongodb \
     && docker-php-ext-enable mongodb
 
-# 3. Copier le code de ton app
+# Installer Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN pecl install mongodb && docker-php-ext-enable mongodb
+
+
+# Créer le dossier app
+RUN mkdir -p /var/www/html
+
+# Copier les fichiers de l'application
 COPY . /var/www/html
 
-# 4. Copier ta configuration Nginx
+# Corriger problème Git safe.directory
+RUN git config --global --add safe.directory /var/www/html
+
+# Installer les dépendances PHP avec Composer
+WORKDIR /var/www/html
+RUN composer install --no-dev --optimize-autoloader || true
+
+# Copier la config NGINX et Supervisor
 COPY nginx.conf /etc/nginx/nginx.conf
-
-# 5. Créer les logs nginx si nécessaires
-RUN mkdir -p /var/log/nginx
-
-# 6. Définir les permissions
-RUN chown -R www-data:www-data /var/www/html
-
-# 7. Copier la configuration supervisord
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# 8. Exposer le port 80 (important pour Render)
 EXPOSE 80
 
-# 9. Lancer supervisord pour gérer nginx + php-fpm
 CMD ["/usr/bin/supervisord"]
