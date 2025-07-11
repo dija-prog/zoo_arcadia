@@ -9,8 +9,13 @@ use App\MongoConnection;
 use Dotenv\Dotenv;
 
 
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../', '.env');
-$dotenv->load();
+// Charger .env seulement s'il existe
+$envPath = __DIR__ . '/../.env';
+if (file_exists($envPath)) {
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/../', '.env');
+    $dotenv->load();
+}
+
 
 // MongoConnection::getInstance();
 $router = new Router();
