@@ -1,10 +1,16 @@
 services:
   - type: web
-    name: php-mongodb-app
-    runtime: docker
-    repo: https://github.com/dija-prog/zoo_arcadia
-    branch: main
+    name: zoo_arcadia
+    env: docker
     plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+
     envVars:
-      - key: MONGO
-        value: $_ENV['MONGO'];
+      - key: MONGODB_URI
+        value: your_mongodb_atlas_uri_here
+
+    # Facultatif : santé du service
+    healthCheckPath: /
+
+   

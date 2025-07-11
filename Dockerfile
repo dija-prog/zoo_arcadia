@@ -1,33 +1,35 @@
+# 1. Utiliser une image de base avec PHP-FPM
 FROM php:8.2-fpm
 
-# Installer dépendances + nginx + supervisord
+# 2. Installer nginx et extensions PHP nécessaires (ex: MongoDB)
 RUN apt-get update && apt-get install -y \
-    libzip-dev unzip git nginx default-mysql-client supervisor \
-    libonig-dev libssl-dev libcurl4-openssl-dev pkg-config libicu-dev libxml2-dev \
-    && docker-php-ext-install pdo pdo_mysql zip intl xml opcache \
-    && pecl install mongodb-1.20.0 \
-    && docker-php-ext-enable mongodb \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    nginx \
+    supervisor \
+    libcurl4-openssl-dev \
+    pkg-config \
+    libssl-dev \
+    unzip \
+    git \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb
 
-# Copier l'app
-WORKDIR /var/www/html
+# 3. Copier le code de ton app
 COPY . /var/www/html
 
-# Droits www-data
+# 4. Copier ta configuration Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# 5. Créer les logs nginx si nécessaires
+RUN mkdir -p /var/log/nginx
+
+# 6. Définir les permissions
 RUN chown -R www-data:www-data /var/www/html
 
-# Installer composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# 7. Copier la configuration supervisord
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Installer dépendances composer
-RUN composer install --no-dev --optimize-autoloader
-
-# Copier config nginx et supervisord
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Exposer port HTTP
+# 8. Exposer le port 80 (important pour Render)
 EXPOSE 80
 
-# Lancer supervisord
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# 9. Lancer supervisord pour gérer nginx + php-fpm
+CMD ["/usr/bin/supervisord"]
