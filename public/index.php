@@ -16,6 +16,8 @@ if (file_exists($envPath)) {
     $dotenv->load();
 }
 
+var_dump(class_exists('App\Models\AvisModel'));
+
 
 // MongoConnection::getInstance();
 $router = new Router();
