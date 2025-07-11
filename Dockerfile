@@ -1,26 +1,30 @@
-FROM php:8.1-apache
+# Étape 1 : utiliser une image officielle PHP 8.2 avec FPM
+FROM php:8.2-fpm
 
-# Activer mod_rewrite, installer extensions PHP nécessaires (exemple)
-RUN a2enmod rewrite && \
-    apt-get update && apt-get install -y libzip-dev unzip libssl-dev pkg-config git && \
-    docker-php-ext-install zip
+# Installer les dépendances système nécessaires (ex: pour mongodb, zip, etc.)
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    unzip \
+    git \
+    && docker-php-ext-install zip
 
-# Installer MongoDB extension version compatible avec composer.lock (ici 1.20.0)
-RUN pecl install mongodb-1.20.0 && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/docker-php-ext-mongodb.ini
+# Installer PECL mongodb et l’activer
+RUN pecl install mongodb && docker-php-ext-enable mongodb
 
-# Copier le code source dans l'image
-COPY . /var/www/html/
+# Copier les fichiers de l’application
+WORKDIR /var/www/html
+COPY . /var/www/html
 
-# Mettre les droits
+# Donner les droits à www-data (optionnel selon besoin)
 RUN chown -R www-data:www-data /var/www/html
 
-# Composer (on suppose composer est dans le PATH ou on peut copier depuis une image officielle)
+# Installer composer (si tu ne l’as pas dans l’image)
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www/html
-
-# Installer les dépendances PHP sans dev
+# Installer les dépendances PHP via composer
 RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 80
-CMD ["apache2-foreground"]
+# Exposer le port (exemple 9000 pour FPM)
+EXPOSE 9000
+
+# Lancer PHP-FPM (par défaut CMD de l’image officielle)
