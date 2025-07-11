@@ -30,5 +30,5 @@ COPY ./nginx.conf /etc/nginx/nginx.conf
 # Exposer le port 80 pour HTTP
 EXPOSE 80
 
-# Démarrer nginx et php-fpm au lancement du conteneur
-CMD service nginx start && php-fpm
+# Lancer nginx et php-fpm en même temps
+CMD service nginx start && php-fpm -F
