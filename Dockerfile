@@ -1,26 +1,31 @@
-# Utilise PHP avec Apache
+# Utiliser une image officielle PHP avec Apache
 FROM php:8.2-apache
 
-# Active mod_rewrite (utile pour .htaccess)
-RUN a2enmod rewrite
+# Installer les extensions PHP nécessaires (ex: pdo, pdo_mysql, mongodb)
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    zip \
+    unzip \
+    && docker-php-ext-install pdo pdo_mysql zip
 
-# Installe Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Installer Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copie tout le code source dans le conteneur
-COPY . /var/www/html
-
-# Définit le dossier public comme racine web
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-
-# Modifie la config Apache pour pointer vers /public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf
-
-# Change le dossier de travail
+# Copier les fichiers composer.json et composer.lock avant le reste (pour cache Docker)
 WORKDIR /var/www/html
+COPY composer.json composer.lock ./
 
-# Installe les dépendances PHP avec Composer
-RUN composer install
+# Installer les dépendances PHP via Composer
+RUN composer install --no-dev --optimize-autoloader
 
-# Expose le port
+# Copier le reste des fichiers de l’application
+COPY . .
+
+# Donner les bonnes permissions (si besoin)
+RUN chown -R www-data:www-data /var/www/html
+
+# Exposer le port 80
 EXPOSE 80
+
+# Commande par défaut (Apache en mode foreground)
+CMD ["apache2-foreground"]

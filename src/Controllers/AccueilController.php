@@ -9,7 +9,7 @@ class AccueilController
     public function index()
     {
         $avisModel = new AvisModel();
-        //$avisInsert = $avisModel -> addAvis();
+        $avisInsert = $avisModel -> addAvis();
         $avisValides= $avisModel ->getAvisValides();
 
 
