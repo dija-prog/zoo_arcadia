@@ -122,16 +122,15 @@ class Router
         $uri = $_SERVER['REQUEST_URI'];
         $path = parse_url($uri, PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
-        var_dump($uri, $path);
-        var_dump($method);
+        // var_dump($uri, $path);
+        // var_dump($method);
 
 
         $uri = $_SERVER['REQUEST_URI'];
-$path = parse_url($uri, PHP_URL_PATH);
-$method = $_SERVER['REQUEST_METHOD'];
+        $path = parse_url($uri, PHP_URL_PATH);
+        $method = $_SERVER['REQUEST_METHOD'];
 
-var_dump($uri, $path, $method);  // Ça affichera les infos de la requête
-
+        // var_dump($uri, $path, $method); 
         
         // if($_SERVER['REQUEST_METHOD'] === 'GET') {
             
