@@ -7,8 +7,7 @@ use App\Database;
 use PDO;
 use PDOException;
 
-class AvisModel
-{
+class AvisModel{
     private $pdo ; 
     public function __construct()
     {

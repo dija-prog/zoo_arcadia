@@ -1,8 +1,5 @@
 <?php
-
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../src/Router.php';
-
 
 use App\Router;
 use App\MongoConnection;
@@ -21,7 +18,3 @@ $params = $router->getParams();
 $controller = new $controllerFqcn();
 $controller->$method($params);
 
-if ($_SERVER['REQUEST_URI'] === '/') {
-    header('Location: /Accueil');
-    exit;
-}

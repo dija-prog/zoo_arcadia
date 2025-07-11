@@ -17,6 +17,7 @@ class Router
     {
         $routes = [
             'GET' => [
+                '/' => ['App\\Controllers\\AccueilController', 'index'],  
                 '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
                 '/contact' => ['App\\Controllers\\ContactController', 'showForm'],
                 '/contactForm' => ['App\\Controllers\\ContactController', 'handleContact'],
@@ -55,7 +56,7 @@ class Router
                 '/edit_food/{id_food}' => ['App\\Controllers\\FoodController','editFood'],
                 '/deleteFood/{id_food}' => ['App\\Controllers\\FoodController','deleteFood'],
 
-                '/veterinaire/{animal_id}' => ['App\\Controllers\\VeterinaireController',' getRapportJoinAnimal'],
+                '/veterinaire/{animal_id}' => ['App\\Controllers\\VeterinaireController','getRapportJoinAnimal'],
 
                 '/addCommentHabitat' => ['App\\Controllers\\VeterinaireController','addCommentHabitat'],
 
@@ -78,7 +79,7 @@ class Router
 
             ], 
             'POST' => [
-
+            
                 '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
                 '/register' => ['App\\Controllers\\UserController','addUser'],
                 '/login' => ['App\\Controllers\\LoginController', 'authenticate'],
@@ -121,8 +122,16 @@ class Router
         $uri = $_SERVER['REQUEST_URI'];
         $path = parse_url($uri, PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
+        var_dump($uri, $path);
+        var_dump($method);
 
-        
+
+        $uri = $_SERVER['REQUEST_URI'];
+$path = parse_url($uri, PHP_URL_PATH);
+$method = $_SERVER['REQUEST_METHOD'];
+
+var_dump($uri, $path, $method);  // Ça affichera les infos de la requête
+
         
         // if($_SERVER['REQUEST_METHOD'] === 'GET') {
             
@@ -148,6 +157,9 @@ class Router
 
         
         $matchedRoute = null;
+
+
+        
 
         
         if (isset($routes[$method])) {
