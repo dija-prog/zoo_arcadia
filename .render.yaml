@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: php-mongodb-app
+    runtime: docker
+    repo: https://github.com/dija-prog/zoo_arcadia
+    branch: main
+    plan: free
+    envVars:
+      - key: MONGO
+        value: $_ENV['MONGO'];

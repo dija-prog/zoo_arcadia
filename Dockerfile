@@ -1,31 +1,36 @@
-# Utiliser une image officielle PHP avec Apache
+# Utilise une image PHP officielle avec Apache
 FROM php:8.2-apache
 
-# Installer les extensions PHP nécessaires (ex: pdo, pdo_mysql, mongodb)
+# Active mod_rewrite (utile pour les frameworks MVC)
+RUN a2enmod rewrite
+
+# Installe les extensions PHP nécessaires
 RUN apt-get update && apt-get install -y \
     libzip-dev \
-    zip \
     unzip \
-    && docker-php-ext-install pdo pdo_mysql zip
+    libssl-dev \
+    pkg-config \
+    git \
+    && docker-php-ext-install zip
 
-# Installer Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# Installe l'extension MongoDB
+RUN pecl install mongodb \
+    && docker-php-ext-enable mongodb
 
-# Copier les fichiers composer.json et composer.lock avant le reste (pour cache Docker)
-WORKDIR /var/www/html
-COPY composer.json composer.lock ./
+# Installe Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Installer les dépendances PHP via Composer
-RUN composer install --no-dev --optimize-autoloader
+# Copie les fichiers dans le container
+COPY . /var/www/html/
 
-# Copier le reste des fichiers de l’application
-COPY . .
-
-# Donner les bonnes permissions (si besoin)
+# Donne les droits à Apache
 RUN chown -R www-data:www-data /var/www/html
 
-# Exposer le port 80
-EXPOSE 80
+# Change le DocumentRoot si ton index.php est dans /public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
-# Commande par défaut (Apache en mode foreground)
-CMD ["apache2-foreground"]
+# Applique ce nouveau document root
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+
+# Expose le port (Render s'en occupe, mais utile en local)
+EXPOSE 80
