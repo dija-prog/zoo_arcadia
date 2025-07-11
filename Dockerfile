@@ -17,6 +17,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY . /var/www/html/
 
+COPY .env /var/www/html/.env
+
+
 # ✅ Installe les dépendances PHP via Composer
 RUN composer install --no-dev --optimize-autoloader
 
