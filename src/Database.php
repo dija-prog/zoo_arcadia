@@ -11,7 +11,7 @@ class Database
     public function __construct()
     {
         try {
-            $bdd = new PDO('mysql:host=localhost;dbname=zoo arcadia','jose_app',password: $_ENV['DATABASE_PASSWORD']);
+            $bdd = new PDO('mysql:host=localhost;dbname=zoo arcadia','jose_app',password: 'Jose_arcadia');
             $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $this->pdo = $bdd;

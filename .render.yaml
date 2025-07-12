@@ -5,6 +5,14 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     autoDeploy: true
+    name: zoo-arcadia
+    runtime: php
+    buildCommand: |
+      chmod +x build.sh
+      ./build.sh
+    startCommand: php -S 0.0.0.0:$PORT -t public
+
+
 
     envVars:
       - key: MONGODB_URI
