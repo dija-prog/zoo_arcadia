@@ -7,9 +7,7 @@ services:
     autoDeploy: true
     name: zoo-arcadia
     runtime: php
-    buildCommand: |
-      chmod +x build.sh
-      ./build.sh
+    buildCommand: chmod +x build.sh && ./build.sh
     startCommand: php -S 0.0.0.0:$PORT -t public
 
 
