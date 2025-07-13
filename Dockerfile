@@ -1,6 +1,6 @@
 FROM php:8.2-fpm
 
-# Installer les dépendances système
+# Installer les dépendances système et les outils nécessaires à pecl/phpize
 RUN apt-get update && apt-get install -y \
     nginx \
     supervisor \
@@ -10,12 +10,22 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libcurl4-openssl-dev \
     pkg-config \
-    libmongoc-dev \
+    libpng-dev \
     libbson-dev \
-    libpng-dev 
+    libmongoc-dev \
+    build-essential \
+    php-pear \
+    libzip-dev \
+    libonig-dev \
+    libxml2-dev \
+    && docker-php-source extract \
+    && docker-php-ext-install pdo pdo_mysql zip \
+    && docker-php-source delete
+
 # Installer l'extension MongoDB (version 1.20.0 compatible avec composer.lock)
-RUN  pecl install mongodb-1.20.0 \
+RUN pecl install mongodb-1.20.0 \
     && docker-php-ext-enable mongodb
+
 # Installer Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
