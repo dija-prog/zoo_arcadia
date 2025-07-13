@@ -24,3 +24,7 @@
 2025-07-11 15:54:32,890 INFO spawned: 'php-fpm' with pid 8
 2025-07-11 15:54:34,114 INFO success: nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2025-07-11 15:54:34,116 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-07-13 19:39:58,604 WARN received SIGQUIT indicating exit request
+2025-07-13 19:39:58,618 INFO waiting for nginx, php-fpm to die
+2025-07-13 19:39:58,673 INFO stopped: php-fpm (exit status 0)
+2025-07-13 19:39:58,682 INFO stopped: nginx (exit status 0)
