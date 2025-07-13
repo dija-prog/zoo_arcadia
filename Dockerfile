@@ -1,6 +1,6 @@
 FROM php:8.2-fpm
 
-# Installer les dépendances système et les outils nécessaires à pecl/phpize
+# Installer les dépendances système et extensions PHP
 RUN apt-get update && apt-get install -y \
     nginx \
     supervisor \
@@ -13,11 +13,11 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libbson-dev \
     libmongoc-dev \
-    build-essential \
-    php-pear \
     libzip-dev \
     libonig-dev \
     libxml2-dev \
+    autoconf \
+    build-essential \
     && docker-php-source extract \
     && docker-php-ext-install pdo pdo_mysql zip \
     && docker-php-source delete
@@ -41,13 +41,13 @@ WORKDIR /var/www/html
 # Copier uniquement les fichiers Composer d'abord (pour le cache Docker)
 COPY composer.json composer.lock* ./
 
-# Installer les dépendances PHP (AVANT de copier tout le projet)
+# Installer les dépendances PHP
 RUN composer install --no-dev --optimize-autoloader
 
 # Copier le reste des fichiers de l'application
 COPY . .
 
-# Corriger problème Git safe.directory
+# Corriger le problème Git safe.directory
 RUN git config --global --add safe.directory /var/www/html
 
 # Copier la config NGINX et Supervisor
@@ -59,3 +59,4 @@ EXPOSE 80
 
 # Lancer supervisord
 CMD ["/usr/bin/supervisord"]
+
