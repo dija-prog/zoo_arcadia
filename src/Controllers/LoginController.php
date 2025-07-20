@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mime\Email;
-use App\models\UserModel;
+use App\Models\UserModel;
 
 class LoginController
 {

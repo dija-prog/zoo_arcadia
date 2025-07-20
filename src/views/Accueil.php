@@ -27,7 +27,7 @@
   </header>
   <main>
     <div id="cover" class="container-fluid p-0">
-      <img src="./images/pexels-magda-ehlers-pexels-5078902.jpg" class="cover img-fluid" alt="photo de couverture">
+      <img src="./images/image_cover.jpg" class="cover img-fluid" alt="photo de couverture">
       <div class="carousel-caption d-none d-md-block">
         <h1> Bienvenue au Zoo Arcadia</h1>
         <p> Découvrez la faune fascinante de notre zoo et plongez dans un monde de merveilles naturelles.</p>

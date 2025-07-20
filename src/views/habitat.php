@@ -37,7 +37,7 @@
         <div class=" col-lg-4 col-md-6 col-12">
           <div class="image-container">
             <a class="buttonjs savane" href="#animals">
-              <img src="../images/elephant.jpg" class="img-fluid" alt="savane">
+              <img src="./images/Eléphant d'Afrique.jpg" class="img-fluid" alt="savane">
               <div class="title-overlay" data-name="1">Savane Africane</div>
             </a>
           </div>
@@ -46,7 +46,7 @@
         <div class=" col-lg-4 col-md-6 col-12">
           <div class="image-container">
             <a class="buttonjs jungle" href="#animals">
-              <img src="../images/LE TIGRE.jpg" class="img-fluid" alt="jungle">
+              <img src="./images/Tigre de Sibérie.jpg" class="img-fluid" alt="jungle">
               <div class="title-overlay" data-name="2">Jungle Trpicale</div>
             </a>
           </div>
@@ -55,7 +55,7 @@
         <div class=" col-lg-4 col-md-6 col-12">
           <div class="image-container">
             <a class="buttonjs marais" href="#animals">
-              <img src="../images/aligateur.jpg" class="img-fluid" alt="marais">
+              <img src="./images/Alligator.jpg" class="img-fluid" alt="marais">
               <div class="title-overlay" data-name="3">Marais Humide</div>
             </a>
           </div>
