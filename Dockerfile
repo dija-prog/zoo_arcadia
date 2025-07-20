@@ -26,6 +26,9 @@ RUN apt-get update && apt-get install -y \
 RUN pecl install mongodb-1.20.0 \
     && docker-php-ext-enable mongodb
 
+
+RUN sed -i 's|^listen = .*|listen = 127.0.0.1:9000|' /usr/local/etc/php-fpm.d/www.conf
+
 # Installer Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
