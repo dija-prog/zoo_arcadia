@@ -5,7 +5,7 @@ if (!function_exists('getMongoClient')) {
     function getMongoClient()
     {  
         try {
-            $client = new MongoDB\Client("mongodb://localhost:27017");
+            $client = new MongoDB\Client( $_ENV['MONGO']);
             return $client->zoo_arcadia;
         } catch (Exception $e) {
             echo "Erreur de connexion à MongoDB : " . $e->getMessage();
@@ -14,6 +14,6 @@ if (!function_exists('getMongoClient')) {
     }
 }
 return [
-    'uri' => 'mongodb://localhost:27017',
+    'uri' => $_ENV['MONGO'] ?? 'mongodb://localhost:27017',
     'database' => 'zoo_arcadia',
 ];
