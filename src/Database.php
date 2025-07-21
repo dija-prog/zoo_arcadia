@@ -11,7 +11,8 @@ class Database
     public function __construct()
     {
         try {
-            $bdd = new PDO('mysql:host=mysql-dija.alwaysdata.net;dbname=dija_zooarcadia','dija_arcadia',password: 'zooArcadia');
+            $bdd = new PDO('mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_DATABASE'],$_ENV['DB_USERNAME'],$_ENV['DB_PASSWORD']
+);
             $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $this->pdo = $bdd;
