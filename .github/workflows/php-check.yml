@@ -3,7 +3,10 @@ name: Vérification PHP
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+      - main
+      - test-unit 
+    
   pull_request:
 
 jobs:
