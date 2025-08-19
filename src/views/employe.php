@@ -106,12 +106,12 @@
         </section>
 
         <!-- Gérer l'avis des visiteurs -->
-        <section id="Avis" class="container my-5">
+        <section id="Avis" >
             <h2 class="text-success pb-3 border-bottom">Avis des visiteurs</h2>
             <div class="row">
                 <?php if (!empty($avisEnAttente)) : ?>
                     <?php foreach ($avisEnAttente as $avis) : ?>
-                        <div class="col-md-6 col-lg-4 mb-4">
+                        <div class=" col-lg-4 mb-4">
                             <div class="card shadow-sm">
                                 <div class="card-body">
                                     <h5 class="card-title text-primary"><?= htmlspecialchars($avis['pseudo']) ?></h5>
@@ -133,24 +133,26 @@
 
 
         <!-- gérer les messages des visiteur -->
-
-        <section id=messages class="container my-5 ">
-            <h2 class=" text-success mb-4 ">Messages de contact</h2>
-            <div class="cards row g-3 p-5 mb-4">
-                <div class="card h-100 ">
-                    <?php foreach ($messages as $message) { ?>
+    <section id="messages" class=" my-5">
+        <h2 class="text-success mb-4">Messages de contact</h2>
+        <div class="row g-3 p-3">
+            <?php foreach ($messages as $message) { ?>
+                <div class=" col-12 col-md-6 col-lg-4"> 
+                    <div class="card h-100">
                         <div class="card-header">
                             <?php echo htmlspecialchars($message['titre']); ?>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Email:<?php echo htmlspecialchars($message['email']); ?></h5>
+                            <h5 class="card-title">Email: <?php echo htmlspecialchars($message['email']); ?></h5>
                             <p class="card-text">Message: <?php echo htmlspecialchars($message['description']); ?></p>
-                            <a href="mailto:<?php echo $message['email'] ?>" class="btn btn-warning">Répondre</a> 
+                            <a href="mailto:<?php echo $message['email']; ?>" class="btn btn-warning">Répondre</a>
                         </div>
-                    <?php } ?>
+                    </div>
                 </div>
-            </div>
-        </section>
+            <?php } ?>
+        </div>
+    </section>
+
     
         <script src="../Assets/Bootstraps/js/bootstrap.min.js"></script>
         <script src="../Assets/Bootstraps/js/bootstrap.bundle.js"></script>
