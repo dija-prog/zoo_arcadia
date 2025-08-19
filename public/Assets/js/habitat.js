@@ -35,24 +35,26 @@
 
       // incrimenter les views 
 
-    function incrementAnimalView($animalName){
-        fetch('AdminController.php', {
+    async function incrementAnimalView(animalName) {
+    try {
+        const response = await fetch('AdminController.php', {
             method: 'POST',
             headers: {
-                'content-Type':'application/json'
+                'Content-Type': 'application/json'
             },
-    
-            body: JSON.stringify({animal_id: $animalName})
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log('consultaion incrémentée avec succès');
-    
-            } else {
-                console.error('Erreur lors de l\' incrémentation ');
-            }
-        })
-        .catch(error => console.error('Erreur:', error));
+            body: JSON.stringify({ animal_id: animalName })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            console.log('Consultation incrémentée avec succès');
+        } else {
+            console.error("Erreur lors de l'incrémentation");
+        }
+    } catch (error) {
+        console.error("Erreur:", error);
     }
+}
+
 

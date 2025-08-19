@@ -51,14 +51,15 @@ class AnimalModel
     } 
     public function editAnimal($animal)
     {        
-        $sql = "UPDATE animal SET UPDATE animal
-                SET animal_nom = :animal_nom, habitat_id = :habitat_id, id_classe = :id_classe
-                WHERE animal_id = :animal_id";
+        $sql = "UPDATE animal
+        SET animal_nom = :animal_nom, habitat_id = :habitat_id, id_classe = :id_classe
+        WHERE animal_id = :animal_id";
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':animal_id', $animal['animal_id'], PDO::PARAM_INT);
-        $stmt->bindParam(':animal_nom', $animal_nom, PDO::PARAM_STR);
-        $stmt->bindParam(':habitat_id', $habitat_id, PDO::PARAM_INT);
-        $stmt->bindParam(':id_classe', $id_classe, PDO::PARAM_INT);
+        $stmt->bindParam(':animal_nom', $animal['animal_nom'], PDO::PARAM_STR);
+        $stmt->bindParam(':habitat_id', $animal['habitat_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':id_classe', $$animal['id_classe'], PDO::PARAM_INT);
 
         return $stmt->execute ();
     } 

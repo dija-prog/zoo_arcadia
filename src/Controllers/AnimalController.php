@@ -52,7 +52,12 @@ class AnimalController
             $animal_nom = $_POST['animal_nom'];
             $id_classe = $_POST['id_classe'];
             $habitat_id = $_POST['habitat_id'];
-            if($this->model->editAnimal($animal_id, $animal_nom, $id_classe, $habitat_id)){
+            if($this->model->editAnimal([
+                'animal_id' => $animal_id,
+                'animal_nom' => $animal_nom,
+                'id_classe' => $id_classe,
+                'habitat_id' => $habitat_id
+            ])){
                 header("Location:admin#animaletable");
                 
             } else {

@@ -17,20 +17,20 @@
 
         <div class="mb-3 ">
         
-            <input type="hidden" name="animal_id" value="<?= $animal['animal_id'] ?>"  class="form-control" >
+            <input type="hidden" name="animal_id" value="<?= $animal['animal_id'] ?? '' ?>"  class="form-control" >
         </div>
 
         <div class="mb-3 text-white">
             <label class="form-label">Nom</label>
-            <input type="text" name="animal_nom" value="<?= $animal['animal_nom'] ?>"  class="form-control" >
+            <input type="text" name="animal_nom" value="<?= $animal['animal_nom'] ?? ''?>"  class="form-control" >
         </div>
         <div class="mb-3 text-white">
             <label class="form-label">habitat</label>
-            <input  name="habitat_id" value="<?=$animal['habitat_id']?>"  class="form-control" >
+            <input  name="habitat_id" value="<?=$animal['habitat_id'] ?? '' ?>"  class="form-control" >
         </div>
         <div class="mb-3 text-white">
             <label  class="form-label">la classe</label>
-            <input   name="id_classe" value="<?=$animal['id_classe'] ?>" class="form-control">
+            <input   name="id_classe" value="<?=$animal['id_classe']?? '' ?>" class="form-control">
         </div>
         
         <button type="submit"  name="submit" class="btn btn-success">Modifier</button>
