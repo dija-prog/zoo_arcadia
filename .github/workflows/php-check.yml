@@ -1,34 +1,39 @@
 
-name: Run PHPUnit tests
+name: PHP Unit Tests
 
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [ test-unit ]
   pull_request:
+    branches: [ test-unit ]
 
 jobs:
   phpunit:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Récupère ton code
+      # 1️⃣ Checkout du code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Installe PHP (ici 8.2, adapte si besoin)
+      # 2️⃣ Installer PHP et les extensions nécessaires
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
-          extensions: mbstring, intl, pdo_mysql
-          coverage: none
+          extensions: mongodb, mbstring, xml, curl, intl
+          ini-values: memory_limit=512M
 
-      # 3. Installe les dépendances Composer
-      - name: Install dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist
+      # 3️⃣ Installer Composer
+      - name: Setup Composer
+        uses: php-actions/composer@v6
+        with:
+          composer-options: install --no-progress --prefer-dist --ignore-platform-req=ext-mongodb
 
-      # 4. Lance PHPUnit
-      - name: Run tests
-        run: vendor/bin/phpunit --testdox
+      # 4️⃣ Installer PHPUnit via Composer
+      - name: Install PHPUnit
+        run: composer require --dev phpunit/phpunit ^10.0
+
+      # 5️⃣ Lancer les tests PHPUnit
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit --configuration phpunit.xml
