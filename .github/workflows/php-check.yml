@@ -1,28 +1,38 @@
-
-name: Vérification PHP
+name: PHP Unit Tests
 
 on:
   push:
-    branches: 
-      - main
-      - test-unit 
-    
+    branches: [ test-unit ]
   pull_request:
+    branches: [ test-unit ]
 
 jobs:
-  php-lint:
+  phpunit:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Récupérer le code
+      # 1️⃣ Checkout du code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Installer PHP
+      # 2️⃣ Installer PHP et les extensions nécessaires
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: 8.2
+          extensions: mongodb, mbstring, xml, curl, intl
+          ini-values: memory_limit=512M
 
-      - name: Vérification syntaxe PHP
-        run: |
-          find . -name "*.php" -print0 | xargs -0 -n1 php -l
+      # 3️⃣ Installer Composer
+      - name: Setup Composer
+        uses: php-actions/composer@v6
+        with:
+          composer-options: install --no-progress --prefer-dist --ignore-platform-req=ext-mongodb
 
+      # 4️⃣ Installer PHPUnit via Composer
+      - name: Install PHPUnit
+        run: composer require --dev phpunit/phpunit ^10.0
+
+      # 5️⃣ Lancer les tests PHPUnit
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit --configuration phpunit.xml
