@@ -28,14 +28,15 @@ class AnimalController
         if ($_SERVER["REQUEST_METHOD"] === "POST")  
         {
             //Récupérer les données 
-
-            $animal_nom = $_POST['animal_nom'];
-            $id_classe = $_POST['id_classe'];
-            $habitat_id =$_POST['habitat_id'];
+            $data =[
+                'animal_nom' => $_POST['animal_nom'] ?? '',
+                'id_classe'  => $_POST['id_classe'] ?? '',
+                'habitat_id' => $_POST['habitat_id'] ?? ''
+            ];
 
             // Appeler la méthode addAnimal
 
-            if ($this->model->addAnimal($animal_nom, $id_classe, $habitat_id)){ 
+            if ($this->processAddAnimal($data)) { 
                 header("Location:admin#animaletable");  
             }else{
                 echo "Erreur lors de l'ajout de l'animal";
@@ -44,6 +45,20 @@ class AnimalController
         require_once __DIR__ . '/../views/CRUD/addAnimal.php';
         
     }
+
+    // Nouvelle méthode qui sert aux tests
+        public function processAddAnimal(array $data): bool
+        {
+            if (empty($data['animal_nom']) || empty($data['id_classe']) || empty($data['habitat_id'])) {
+                return false;
+            }
+
+            return $this->model->addAnimal(
+                $data['animal_nom'],
+                $data['id_classe'],
+                $data['habitat_id']
+            );
+        }
 
     public function editAnimal($animal_id)
     {
