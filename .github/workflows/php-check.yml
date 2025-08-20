@@ -1,28 +1,34 @@
 
-name: Vérification PHP
+name: Run PHPUnit tests
 
 on:
   push:
-    branches: 
+    branches:
       - main
-      - test-unit 
-    
+      - develop
   pull_request:
 
 jobs:
-  php-lint:
+  phpunit:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Récupérer le code
+      # 1. Récupère ton code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Installer PHP
+      # 2. Installe PHP (ici 8.2, adapte si besoin)
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: 8.2
+          extensions: mbstring, intl, pdo_mysql
+          coverage: none
 
-      - name: Vérification syntaxe PHP
-        run: |
-          find . -name "*.php" -print0 | xargs -0 -n1 php -l
+      # 3. Installe les dépendances Composer
+      - name: Install dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
 
+      # 4. Lance PHPUnit
+      - name: Run tests
+        run: vendor/bin/phpunit --testdox
