@@ -45,4 +45,4 @@ jobs:
 
       # 6 Lancer les tests PHPUnit
       - name: Run PHPUnit tests
-        run: vendor/bin/phpunit --configuration phpunit.xml
+      - run: vendor/bin/phpunit tests
