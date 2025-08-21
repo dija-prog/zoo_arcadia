@@ -6,12 +6,10 @@ on:
     branches:
       - main
       - test-unit
-      - devlop
   pull_request:
     branches:
-      -main
+      - main
       - test-unit
-      - devlop
 
 jobs:
   phpunit-tests:
@@ -21,18 +19,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup PHP
+      - name: Setup PHP with basic extensions
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, xml, mongodb@1.20.0
+          extensions: mbstring, xml
           coverage: none
 
+      - name: Install exact MongoDB extension version
+        run: |
+          sudo pecl uninstall mongodb || true
+          sudo pecl install mongodb-1.20.0
+          echo "extension=mongodb.so" >> $GITHUB_ENV
+
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist
+        run: composer install --no-progress --prefer-dist --ignore-platform-req=ext-mongodb
 
-      - name: Install PHPUnit
-        run: composer require --dev phpunit/phpunit ^10
-
-      - name: Run PHPUnit tests
-        run: vendor/bin/phpunit
+      - name: In
