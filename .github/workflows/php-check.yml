@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Récupérer le code
+      # 1 Récupérer le code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Installer PHP 8.2 avec les extensions de base
+      # 2 Installer PHP 8.2 avec les extensions de base
       - name: Setup PHP with basic extensions
         uses: shivammathur/setup-php@v2
         with:
@@ -27,10 +27,18 @@ jobs:
           extensions: mbstring, xml
           coverage: none
 
-      # 3️⃣ Installer la version exacte de l'extension MongoDB
+      # 3 Installer la version exacte de l'extension MongoDB
       - name: Install exact MongoDB extension version
         run: |
           sudo phpdismod mongodb || true
           sudo pecl install -f mongodb-1.20.0
           echo "extension=mongodb.so" >> $GITHUB_ENV
           echo "extension=mongodb.so" | sudo tee /etc/php/8.2/cli/conf.d/20-mongodb.in
+
+      # 4 Installer Composer
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist
+
+      # 5 Lancer PHPUnit
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit --configuration phpunit.xml

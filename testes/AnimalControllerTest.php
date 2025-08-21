@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use App\Controllers\AnimalController;
