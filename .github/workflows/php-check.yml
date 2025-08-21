@@ -1,14 +1,17 @@
-nname: PHP Unit Tests
+
+name: PHP Unit Tests
 
 on:
   push:
     branches:
       - main
       - test-unit
+      - devlop
   pull_request:
     branches:
       -main
       - test-unit
+      - devlop
 
 jobs:
   phpunit-tests:
