@@ -28,8 +28,8 @@ jobs:
 
       - name: "Install exact MongoDB extension version"
         run: |
-          sudo pecl uninstall mongodb || true
-          sudo pecl install mongodb-1.20.0
+          sudo phpdismod mongodb || true
+          sudo pecl install -f mongodb-1.20.0
           echo "extension=mongodb.so" >> $GITHUB_ENV
 
       - name: "Install Composer dependencies"
