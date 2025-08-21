@@ -35,13 +35,13 @@ jobs:
           echo "extension=mongodb.so" >> $GITHUB_ENV
           echo "extension=mongodb.so" | sudo tee /etc/php/8.2/cli/conf.d/20-mongodb.in
 
-      # 4 Installer Composer dependencies
+      # 4 Installer les dépendances Composer sans se bloquer sur le lock file
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist || true
+        run: composer install --no-progress --prefer-dist --ignore-platform-reqs || true
 
-      # 5 Installer PHPUnit (force si pas présent dans lock)
+      # 5 Installer PHPUnit directement sur le runner
       - name: Install PHPUnit
-        run: composer require --dev phpunit/phpunit:^10.0 --no-interaction --no-progress
+        run: composer require --dev phpunit/phpunit:^10.0 --no-interaction --no-progress --ignore-platform-reqs
 
       # 6 Lancer les tests PHPUnit
       - name: Run PHPUnit tests
