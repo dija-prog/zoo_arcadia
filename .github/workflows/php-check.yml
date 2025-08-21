@@ -1,12 +1,14 @@
-name: PHP Unit Tests
+nname: PHP Unit Tests
 
 on:
   push:
     branches:
       - main
+      - test-unit
   pull_request:
     branches:
-      - main
+      -main
+      - test-unit
 
 jobs:
   phpunit-tests:
@@ -20,7 +22,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, xml
+          extensions: mbstring, xml, mongodb@1.20.0
+          coverage: none
 
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist
@@ -29,4 +32,4 @@ jobs:
         run: composer require --dev phpunit/phpunit ^10
 
       - name: Run PHPUnit tests
-        run: ./vendor/bin/phpunit --colors=always --verbose
+        run: vendor/bin/phpunit
