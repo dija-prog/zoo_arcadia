@@ -1,5 +1,4 @@
-    
-    
+
     const button = document.querySelectorAll(".buttonjs div");
     const cards = document.querySelectorAll(".cards .card");
     const texts = document.querySelectorAll(".texts .text ")
@@ -13,9 +12,7 @@
         });
     };
     button.forEach(a => a.addEventListener("click",animals)); 
-
- //js pour la description 
-
+ //js pour la description: 
     console.log(texts);
     const habitat = e =>{
         texts.forEach(text=>{

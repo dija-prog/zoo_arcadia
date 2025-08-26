@@ -83,6 +83,8 @@ class Router
                 '/Accueil' => ['App\\Controllers\\AccueilController', 'index'],
                 '/register' => ['App\\Controllers\\UserController','addUser'],
                 '/login' => ['App\\Controllers\\LoginController', 'authenticate'],
+                '/login/authenticate' => ['App\\Controllers\\LoginController', 'authenticate'],
+
                 '/contact' => ['App\\Controllers\\ContactController', 'contactForm'],
                
                 

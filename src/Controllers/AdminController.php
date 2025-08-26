@@ -63,7 +63,6 @@ class AdminController
         $animals = $animalModel->getAnimals();
         $services = $serviceModel->getServices();    
         $rapports = $rapportModel->getRapports(); 
-        // $requests = $rapportModel->getRapportJoinAnimal( $animalId,$order); 
         $rows = $animalModel->getAnimalsJoin();
         $req = $animalModel->deleteAnimal($animalId);
         $req = $userModel -> deleteUser($username);

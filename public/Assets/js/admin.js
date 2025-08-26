@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
         mainContent.classList.toggle('expanded')
     }
 
-   
 })
 
 
@@ -34,23 +33,7 @@ function confirmationSup(){
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Exemple : Ajout d'un écouteur d'événement sur un bouton
-    const refreshButton = document.getElementById('refreshButton');
-    
-    if (!refreshButton) {
-        console.error("Le bouton #refreshButton n'existe pas dans le DOM");
-        return;
-    }
-
-    if (refreshButton) {
-        refreshButton.addEventListener('click', function() {
-            console.log('Bouton cliqué');
-        });
-    } else {
-        console.error("L'élément #refreshButton n'existe pas dans le DOM");
-    }
-
-    // Votre code existant pour le graphique
+    // pour le graphique
     fetch('/ShowAnimalsStatics')
         .then(response => {
             if (!response.ok) {
@@ -103,21 +86,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-    // une requete fetch pour ne pas recharger la page 
-
-// const ADD_ANIMAL_FORM = document.querySelector('#add-animal-form');
-// ADD_ANIMAL_FORM.addEventListener('submit', (ev) => {
-//     ev.preventDefault();
-//     const DATA = new FormData(ADD_ANIMAL_FORM);
-//     console.log(DATA.get('animal_nom'));
-//     addAnimal(DATA);
-// })
-
-// async function addAnimal(data) {
-//     const RESPONSE = await fetch('/add-animal',{
-//         'method' : 'POST',
-//         'body' : data
-//     });
-//     const JSON = await RESPONSE.json();
-//     console.log(JSON); 
-// }

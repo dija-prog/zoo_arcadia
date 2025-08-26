@@ -1,10 +1,10 @@
 <?php
-// Paramètres de connexion (remplace avec TES infos AlwaysData)
-$host = 'mysql-dija.alwaysdata.net;port=3306'; 
-$port = 3306; 
-$dbname = 'dija_zooarcadia';        
-$user = 'dija_arcadia';              
-$pass = 'zooArcadia';                 
+
+$host =$_ENV['DB_HOST']; 
+$port = $_ENV['DB_PORT']; 
+$dbname = $_ENV['DB_DATABASE'];        
+$user = $_ENV['DB_USERNAME'];              
+$pass = $_ENV['MONGODB_PASSWORD'];                 
 
 try {
     // Connexion à la base avec PDO

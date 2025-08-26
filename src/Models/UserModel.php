@@ -14,38 +14,52 @@ class UserModel
     $this->pdo = $db->getPdo();
   }
 
+  // public function getNonAdminUsers()
+  // {
+  //   $query = "SELECT * FROM utilisateur WHERE role_id != 1";
+  //   $stmt = $this->pdo->prepare($query);
+  //   $stmt->execute();
+  //   $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  //   return $users;
+
+  // }
+
   public function getNonAdminUsers()
-  {
-    $query = "SELECT * FROM utilisateur WHERE role_id != 1";
+{
+    $query = "SELECT utilisateur.username, utilisateur.nom, utilisateur.prenom, role.nom_role
+              FROM utilisateur
+              INNER JOIN role ON utilisateur.role_id = role.role_id
+              WHERE utilisateur.role_id != 1";
+
     $stmt = $this->pdo->prepare($query);
     $stmt->execute();
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $users;
+}
 
-  }
+
+
+public function getUserByUsername($username)
+{
+  $query = $this->pdo->prepare('SELECT * FROM utilisateur WHERE username = ?');
+  $query->execute([$username]);
+  return $query->fetch(PDO::FETCH_ASSOC);
+}
 
   public function addUser($nom, $prenom, $role_id, $username, $password)
-    {
-        $sql = "INSERT INTO utilisateur (nom, prenom, role_id, username, password) 
-                VALUES (:nom, :prenom, :role_id, :username, :password)";
-
-        $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([
-            ':nom' => $nom,
-            ':prenom' => $prenom,
-            ':role_id' => $role_id,
-            ':username' => $username,
-            ':password' => $password
-        ]);
-    }
-
-  public function getUserByUsername($username)
   {
-        $query = $this->pdo->prepare('SELECT * FROM utilisateur WHERE username = ?');
-        $query->execute([$username]);
-        return $query->fetch(PDO::FETCH_ASSOC);
-  }
+      $sql = "INSERT INTO utilisateur (nom, prenom, role_id, username, password) 
+              VALUES (:nom, :prenom, :role_id, :username, :password)";
 
+      $stmt = $this->pdo->prepare($sql);
+      return $stmt->execute([
+          ':nom' => $nom,
+          ':prenom' => $prenom,
+          ':role_id' => $role_id,
+          ':username' => $username,
+          ':password' => $password
+      ]);
+  }
   public function updateUser($nom,$prenom,$password,$role,$username)
   {
     var_dump($nom,$prenom,$password,$role,$username);

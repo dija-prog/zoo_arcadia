@@ -1,13 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- style css bootstrap -->
     <link rel="stylesheet" href="../Assets/bootstrap/css/bootstrap.min.css">
-
     <!-- style css -->
     <link rel="stylesheet" href="../Assets/css/Accueil.css">
     <link rel="stylesheet" href="../Assets/css/contact.css">
@@ -61,7 +59,7 @@
                             <p>1795 Rte de Montoison</p>
                             <p>26120 bourdaux</p>
                             <p>France</p>
-                            <p>Email : jose@zooarcadia.com</p>
+                            <p>Email : aithamouk94@gmail.com</p>
                             <p>Tel. +33 12 56 11 51 84</p>
                         </div>
                     </div>

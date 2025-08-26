@@ -35,8 +35,9 @@ class AnimalModel
 
     public function getAnimalsJoin()
     {
-        $sql = "SELECT animal.animal_id, animal.animal_nom, habitat.nom AS habitat_nom, classe.nom_classe AS classe_nom FROM animal JOIN habitat ON animal.habitat_id = habitat.habitat_id
-                JOIN classe ON animal.id_classe = classe.id_classe";
+        $sql = "SELECT animal.animal_id, animal.animal_nom, habitat.nom AS
+            habitat_nom, classe.nom_classe AS classe_nom FROM animal JOIN habitat ON animal.habitat_id = habitat.habitat_id
+            JOIN classe ON animal.id_classe = classe.id_classe";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);

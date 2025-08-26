@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -15,10 +14,7 @@
   <link rel="icon" type="image/png" href="/images/fiveicon.png">
   <title>connexion</title>
 </head>
-
 <body>
-
-
   <section id="connexion" class="vh-100">
     <div class="container-fluid">
       <div class="row">
@@ -26,7 +22,6 @@
           <img src="/images/calao1.jpg"
             alt="Login image" class="w-100 vh-100">
         </div>
-
         <div class=" login col-sm-6 text-black ">
           <?php if(isset($error)){ ?>
             <div class="alert alert-danger" role="alert">
@@ -42,13 +37,13 @@
 
               <div data-mdb-input-init class="form-outline text-dark mb-4">
                 <label class="form-label">Email</label>
-                <input id="email" name="username" type="email" placeholder="exemple@gmail.fr" class="form-control form-control-lg" value="<?php echo isset($_COOKIE['username']) ? htmlspecialchars($_COOKIE['username']) : ''; ?>"  />
+                <input id="email" name="username" type="email" placeholder="exemple@gmail.fr" class="form-control form-control-lg" value="<?php echo isset($_COOKIE['username']) ? htmlspecialchars($_COOKIE['username']) : ''; ?>"  required/>
                 <span class="text-danger" id="email_error"></span>
               </div>
 
               <div data-mdb-input-init class="form-outline text-dark mb-4">
                 <label class="form-label">Mot de passe</label>
-                <input id="password" name="password" type="password" placeholder="mot de passe" class="form-control form-control-lg" />
+                <input id="password" name="password" type="password" placeholder="mot de passe" class="form-control form-control-lg" required/>
                 <span class="text-danger" id="password_error"></span>
               </div>
 
@@ -61,16 +56,13 @@
               </div>
 
               <div class="pt-1 mb-3 ">
-                <input type="submit" name="valider" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-lg btn-block" type="button" />
+                <input type="submit" name="valider"  class="btn btn-warning btn-lg btn-block" type="button" />
               </div>
               <!-- liens  -->
               <p class="small mb-3 pb-lg-2"><a class="text-muted" href="./forgot_password">Mot de passe oublié?</a></p>
               <p>Vous avez pas de compte? <a href="./register" class="link-success">inscription ici</a></p>
-
             </form>
-
           </div>
-
         </div>
       </div>
     </div>

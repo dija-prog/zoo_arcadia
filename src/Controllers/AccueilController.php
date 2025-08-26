@@ -15,8 +15,7 @@ class AccueilController
 
     public function index()
     {
-        // Utilisation de la propriété initialisée
-        // $avisInsert = $this->avisModel->addAvis();
+        
         $avisValides = $this->avisModel->getAvisValides();
 
         // Inclure la vue avec les données

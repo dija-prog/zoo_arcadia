@@ -11,22 +11,22 @@
 }
 
 #connexion .h1 {
-    color:#05772f;
+    color:#198754;
     text-decoration: none;
-  }
+}
 
 .back a{
-    color: #05772f;
+    color: #198754;
     text-decoration: none;
 }
 .back a:hover{
-    color: #f39e0b;
+    color: #FFBF00   ;
 }
 
 .conx{
     font-size: 3rem;
     letter-spacing: 1px;
-    color: #f39e0b;
+    color: #FFBF00   ;
     text-align: center;
 }
 
@@ -48,6 +48,7 @@
 .is-invalid {
     border-color: red;
 }
+
 .invalid-feedback {
     color: red;
     font-size: 0.875em;

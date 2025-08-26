@@ -360,10 +360,7 @@
       }
       ?>
     </div>
-
-
     <!-- localisation et horaire -->
-
     <section class="container-fluid text-light pb-4" id="maps">
       <div class="row">
         <div class="col-lg-12 mt-4 ml-2 text-center ">

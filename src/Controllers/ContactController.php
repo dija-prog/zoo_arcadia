@@ -24,8 +24,8 @@ class ContactController
     public function contactForm()
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $titre = htmlspecialchars($_POST['titre']);
-            $description = htmlspecialchars($_POST['description']);
+            $titre = trim($_POST['titre']);
+            $description = trim($_POST['description']);
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
         
             if (empty($titre) || empty($email) || empty($description)) {
@@ -33,7 +33,6 @@ class ContactController
                 require_once __DIR__ . '/../views/contact.php';
                 return;
             }
-
             // Ajouter dans la base de données
             $isInserted = $this->contactModel->addContact($titre,$email,$description);
             if($isInserted){

@@ -21,68 +21,58 @@ class LoginController
         require_once __DIR__ . '/../views/login.php';
     }
 
-
     public function authenticate()
     {
-        if (isset($_POST['valider']) && !empty($_POST['username']) && !empty($_POST['password'])) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $remember = isset($_POST['remember']);
+    header('Content-Type: application/json'); // on force JSON
 
-            $userModel = new UserModel();
-            $user = $userModel->getUserByUsername($username);
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $remember = isset($_POST['remember']);
 
-            if ($user) {
-                if (password_verify($password, $user['password'])) {
-                    session_start();
-                    $_SESSION['username'] = $user['username'];
-                    $_SESSION['role'] = $user['role_id'];
-                    $_SESSION['prenom'] = $user['prenom'];
-                    $_SESSION['nom'] = $user['nom'];
+        $user = $this->userModel->getUserByUsername($username);
 
-                    define('ADMIN', 1);
-                    define('EMPLOYE', 2);
-                    define('VETERINAIRE', 3);
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                session_start();
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['role_id'];
+                $_SESSION['prenom'] = $user['prenom'];
+                $_SESSION['nom'] = $user['nom'];
 
-                        //gestion des cookies
-                    if ($remember) {
-                        setcookie('username', $username, time() + (86400 * 30), "/");
-                    } else {
-                        // Sinon, on supprime le cookie s'il existe
-                        setcookie('username', '', time() - 3600, "/");
-                    }
-
-                    if ($user['role_id'] == ADMIN) {
-                        header("Location: /admin");
-                    } elseif ($user['role_id'] == EMPLOYE) {
-                        header("Location: /employe");
-                    } elseif ($user['role_id'] == VETERINAIRE) {
-                        header("Location: /veterinaire");
-                    }
-                    exit;
+                if ($remember) {
+                    setcookie('username', $username, time() + (86400 * 30), "/");
                 } else {
-                    $error = "Mot de passe incorrect.";
+                    setcookie('username', '', time() - 3600, "/");
                 }
+
+                
+                echo json_encode([
+                    'success' => true,
+                    'role' => $user['role_id']
+                ]);
+                return;
             } else {
-                echo "Utilisateur non trouvé.";
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Mot de passe incorrect'
+                ]);
+                return;
             }
-            // } else {
-            //             $errors = [];
-            //             if (empty($_POST['username']) || !filter_var($_POST['username'], FILTER_VALIDATE_EMAIL)) {
-            //                 $errors['email'] = 'Adresse e-mail invalide.';
-            //             }
-            //             if (empty($_POST['password']) || strlen($_POST['password']) < 6) {
-            //                 $errors['password'] = 'Le mot de passe doit contenir au moins 6 caractères.';
-            //             }
-
-            //             // Retourne une réponse JSON
-            //             if (!empty($errors)) {
-            //                 echo json_encode(['success' => false, 'errors' => $errors]);
-            //             } else {
-            //                 echo json_encode(['success' => true]);
-            //             }
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Utilisateur non trouvé'
+            ]);
+            return;
         }
-
-        require_once __DIR__ . '/../views/login.php';
+    } else {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Veuillez remplir tous les champs'
+        ]);
+        return;
     }
+}
+
 }

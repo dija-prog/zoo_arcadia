@@ -62,7 +62,7 @@
   <div id="mainContent" class="main-content  mt-3">
     <h4>Statistiques des animaux</h4>
     <canvas id="animalViewsChart" width="400" height="200"></canvas>
-    <button  id="refreshButton">Rafraîchir</button>
+    
 
     <div class="container">
         <div class="row">
@@ -77,15 +77,6 @@
 
     <section id="usertable" class="container-fluid users ml-5">
       <h2 class="text-success p-3">Liste des utilisateurs : </h2>
-      <div class="container-fluid">
-        <div class=" card-role card ">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"> <strong>Roles</strong></li>
-            <li class="list-group-item"><strong>Employé :</strong> 2</li>
-            <li class="list-group-item"><strong>Véterinaire :</strong> 3</li>
-          </ul>
-        </div>
-      </div>
       <div class="table-responsive">
         <table class="table table-striped ">
           <thead class="table-dark">
@@ -100,25 +91,20 @@
           </thead>
           <tbody>
             <?php
-
             foreach ($users as $user) {
             ?>
               <tr>
                 <td><?php echo htmlspecialchars($user['nom']) ?></td>
                 <td><?php echo htmlspecialchars($user['prenom']) ?></td>
                 <td><?php echo htmlspecialchars($user['username']) ?></td>
-                <td><?php echo htmlspecialchars($user['role_id']) ?></td>
+                <td><?php echo htmlspecialchars($user['nom_role']) ?></td>
                 <td><a href="/edit_user/<?= $user['username'] ?>" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td>
-                <!-- <td><a href="/edit-User/<?php echo urlencode($username); ?>"class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a></td> -->
-
                 <td><a href="/deleteUser/<?= $user['username'] ?>" onclick="return confirm('Ëtes vous sûr de vouloir supprimer cet utilisateur  ?')" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
               </tr>
             <?php } ?>
           </tbody>
         </table>
       </div>
-
-
       <!-- bouton ajouter un utilisateur  -->
       <button id="userBtn" class=" btn btn-warning mb-3 ">
         <a href="/addUser"> Ajouter </a>
