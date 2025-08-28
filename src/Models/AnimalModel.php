@@ -85,7 +85,50 @@ class AnimalModel
         $details = $stmt->fetch(PDO::FETCH_ASSOC);
         return $details;
     }
+    
+    // filtrer les animaux
+
+    public function getAnimaux($classe = null, $habitat = null) {
+    $where = [];
+    $params = [];
+
+    if ($classe) {
+        $where[] = "a.id_classe = :classe";
+        $params[':classe'] = $classe;
+    }
+
+    if ($habitat) {
+        $where[] = "a.habitat_id = :habitat";
+        $params[':habitat'] = $habitat;
+    }
+
+    $sql = "SELECT a.animal_id, a.animal_nom, a.image, c.nom_classe, h.nom AS habitat_nom
+            FROM animal a
+            JOIN classe c ON a.id_classe = c.id_classe
+            JOIN habitat h ON a.habitat_id = h.habitat_id";
+
+    if (!empty($where)) {
+        $sql .= " WHERE " . implode(" AND ", $where);
+    }
+
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// toutes les classes et habitats pour le formulaire
+public function getClasses() {
+    $stmt = $this->pdo->query("SELECT * FROM classe");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getHabitats() {
+    $stmt = $this->pdo->query("SELECT * FROM habitat");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 }
 
-?>
+
+

@@ -5,9 +5,13 @@ body{
     background-position: center;
 }
 
-.invalid-field {
-    border: 2px solid red !important;
+.text-danger {
+    display: block;      
+    font-size: 0.875rem;  
+    margin-top: 0.25rem; 
 }
+
+
 
 
 

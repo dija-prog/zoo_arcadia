@@ -14,13 +14,14 @@
 <body>
     <nav class="navbar fixed-top navbar-light bg-light flex-md-nowrap p-0 shadow ">
         <div class=" d-flex align-items-center">
-            <!-- Toggle Button -->
-            <button id="toggle-btn" class="btn btn-warning " onclick="toggleSidebar()"> <i class="fas fa-bars"></i></button>
+        <!-- Toggle Button -->
+        <button id="toggle-btn" class="btn btn-warning " onclick="toggleSidebar()"> <i class="fas fa-bars"></i></button>
+        <a class="navbar-brand col-sm-3 col-md-2 py-2 px-5" href="admin.php"> Admin</a>
         </div>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <input id="searchInput" class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="/logout">Déconnexion</a>
+            <a class="nav-link" href="/logout">Déconnexion</a>
             </li>
         </ul>
     </nav>
@@ -32,7 +33,7 @@
             <h3 class="text-center mt-3"><?php echo $_SESSION['nom']; ?></h3>
             <span class="text-center mb-3"><?php echo $_SESSION['username']; ?></span>
 
-            <a href="../Accuiel.php" class="nav-link d-flex align-items-center">
+            <a href="../Accuiel" class="nav-link d-flex align-items-center">
                 <i class="fas fa-home"></i>
                 <span class="ms-2 nav-link-text">Home</span>
             </a>
@@ -49,10 +50,7 @@
                 <i class="fas fa-message"></i>
                 <span class="ms-2 nav-link-text">Messages</span>
             </a>
-            <!-- <a href="#services" class="nav-link d-flex align-items-center">
-            <i class="fas fa-headset"></i>
-            <span class="ms-2 nav-link-text">Services</span>
-        </a> -->
+            
         </nav>
     </div>
 
@@ -154,8 +152,9 @@
     </section>
 
     
-        <script src="../Assets/Bootstraps/js/bootstrap.min.js"></script>
-        <script src="../Assets/Bootstraps/js/bootstrap.bundle.js"></script>
+
+    <script src="../assets/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/js/admin.js"></script>
 
 </body>
 </body>

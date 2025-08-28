@@ -6,6 +6,7 @@ use App\Models\AnimalModel;
 class AnimalController
 {
     private $model;
+    
     public function index()
     {   
         $animal_id = $params['animal_id'] ?? '';
@@ -22,7 +23,6 @@ class AnimalController
         $this->model = new AnimalModel();
     }
 
-    //ajout un animal
     public function addAnimal() 
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST")  
@@ -93,33 +93,17 @@ class AnimalController
         require_once __DIR__ . '/../views/admin.php';
     }
 
-    /**
-     * Ajouter un animal dans la base de
-     * données et renvoyer une réponse au
-     * format JSON indiquant si cela a fonctionné
-     * ou non
-     */
-    public function addAnimalAjax() : void
-    {
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            try {
-                // $id = $_POST['animal_id'];
-                // $nom = $_POST['animal_nom'];
+    public function animalFilter() {
+        $classe = $_GET['classe'] ?? null;
+        $habitat = $_GET['habitat'] ?? null;
     
-                // (new AnimalModel())->addAnimal();
-            
+        $animaux = $this->model->getAnimaux($classe, $habitat);
+        $classes = $this->model->getClasses();
+        $habitats = $this->model->getHabitats();
 
-                echo json_encode([
-                    'success' => true,
-                    'error' => null
-                ]);
-            } catch(\Throwable $e) {
-                echo json_encode([
-                    'success' => false,
-                    'error' => 'Cannot add animal in database'
-                ]);
-            }
-        }
+        require_once __DIR__ . '/../views/animaux.php';
+
     }
+
+    
 }
-?>

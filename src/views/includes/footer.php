@@ -34,7 +34,7 @@
                 <h3> Quick links</h3>
                 <a href="./Accueil" class="links"><i class="fas fa-arrow-right"></i> Accueill</a>
                 <a href="./service" class="links"><i class="fas fa-arrow-right"></i> Services</a>
-                <a href="./habitat" class="links"><i class="fas fa-arrow-right"></i> Nos animaux </a>
+                <a href="./animaux" class="links"><i class="fas fa-arrow-right"></i> Nos animaux </a>
                 <a href="./habitat" class="links"><i class="fas fa-arrow-right"></i> Habitat</a>
                 <a href="./contact" class="links"><i class="fas fa-arrow-right"></i> contact </a>
             </div>

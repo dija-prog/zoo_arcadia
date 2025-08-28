@@ -29,26 +29,28 @@
                         <div class="card-header bg-success text-white"><i class="fa fa-envelope"></i> Contact nous.
                         </div>
                         <div class="card-body">
+                            <div id="AlertForm">></div>
                             <form id="contactForm" method="POST" action="/contact">
                                 <div class="form-group mb-4">
                                     <label for="titre">un titre</label>
-                                    <input type="text" class="form-control" name="titre" id="text" aria-describedby="emailHelp" placeholder="titre de vitre demande" required>
+                                    <input type="text" class="form-control" name="titre" id="titre" aria-describedby="emailHelp" placeholder="titre de vitre demande" >
                                     <span class=" text-danger" id="text_error"></span>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="email">Email address</label>
-                                    <input id="email" type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="email@gmail.com" required>
+                                    <input  type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="email@gmail.com">
                                     <span class=" text-danger" id="email_error"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Description</label>
-                                    <textarea class="form-control" id="description" rows="6" name="description" required></textarea>
+                                    <textarea class="form-control" id="description" rows="6" name="description"></textarea>
                                     <span class=" text-danger" id="description_error"></span>
                                 </div>
                                 <div class="mx-auto">
                                     <button type="submit" class="btn btn-warning text-right">Envoyer</button>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -77,7 +79,7 @@
     <script src="../Assets/js/contact.js"></script>
     <!-- script-bootstrap js  -->
     <script src="../Assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../Assets/bootstrap/js/bootstrap.min.js"></script>
+
 
 
 </body>

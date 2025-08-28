@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\AnimalModel;
 use App\Models\UserModel;
 use App\Models\ServiceModel;
-use App\Models\RapportModel;
 use App\Models\VeterinaireModel;
 use App\Models\ViewsModel;
 use PDOException;
@@ -40,8 +39,7 @@ class AdminController
         $userModel = new UserModel();
         $animalModel = new AnimalModel();
         $serviceModel = new ServiceModel();
-        $rapportModel = new RapportModel();
-        $veterinaireModel = new VeterinaireModel();
+        $VeterinaireModel = new VeterinaireModel();
         $viewsModel = new ViewsModel();
         
         
@@ -62,7 +60,7 @@ class AdminController
         $users = $userModel->getNonAdminUsers();
         $animals = $animalModel->getAnimals();
         $services = $serviceModel->getServices();    
-        $rapports = $rapportModel->getRapports(); 
+        $rapports = $VeterinaireModel->getRapports(); 
         $rows = $animalModel->getAnimalsJoin();
         $req = $animalModel->deleteAnimal($animalId);
         $req = $userModel -> deleteUser($username);

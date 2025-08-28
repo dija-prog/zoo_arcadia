@@ -65,46 +65,54 @@ class ContactController
         }
 
     public function handleContact() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = json_decode(file_get_contents("php://input"), true);
-            $errors = [];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $errors = [];
 
-            // Validation du titre
-            if (empty($data['titre'])) {
-                $errors['titre'] = 'Veuillez entrer un titre.';
-            }
+        // Validation
+        if (empty($data['titre'])) {
+            $errors['titre'] = 'Veuillez entrer un titre.';
+        }
+        if (empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Veuillez entrer une adresse email valide.';
+        }
+        if (empty($data['description'])) {
+            $errors['description'] = 'Veuillez entrer une description.';
+        }
 
-            // Validation de l'email
-            if (empty($data['email'])||!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                $errors['email'] = 'Veuillez entrer une adresse email valide.';
-            }
+        if (empty($errors)) {
+            // Insertion en base
+            $isInserted = $this->contactModel->addContact(
+                $data['titre'],
+                $data['email'],
+                $data['description']
+            );
 
-            // Validation de la descriptio
-            if (empty($data['description'])) {
-                $errors['description'] = 'Veuillez entrer une description.';
-            }
-
-            // Si aucune erreur, traiter le formulaire
-            if (empty($errors)) {
-                // Traitement du formulaire (enregistrement en base de données, etc.)
+            if ($isInserted) {
                 $response = [
                     'success' => true,
-                    'message' => 'Message envoyé avec succès !'
+                    'message' => 'Message enregistré avec succès !'
                 ];
             } else {
-                // Renvoyer les erreurs
                 $response = [
                     'success' => false,
-                    'errors' => $errors
+                    'errors' => ['db' => 'Erreur lors de l’enregistrement en base de données.']
                 ];
             }
 
-            // Renvoyer la réponse en JSON
-            header('Content-Type: application/json');
-            echo json_encode($response);
-            exit;
+        } else {
+            $response = [
+                'success' => false,
+                'errors' => $errors
+            ];
         }
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
     }
+}
+
 }
     
     

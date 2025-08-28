@@ -1,8 +1,5 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,17 +10,13 @@
   <!-- bootstrap css -->
   <link rel="stylesheet" href="./Assets/bootstrap/css/bootstrap.min.css">
   <link rel="icon" type="image/png" href="./images/fiveicon.png">
-
   <title> ZOO Arcadia </title>
 </head>
-
 <body>
   <header>
     <!-- navbar start -->
     <?php include_once __DIR__ .'/includes/navbar.php'?>
-    
     <!-- end navbar  -->
-
   </header>
   <main>
     <div id="cover" class="container-fluid p-0">

@@ -29,19 +29,6 @@ class VeterinaireModel
         ]);
     }
 
-    public function getFoodanimals()
-    {
-        $foods = $this->pdo->prepare("SELECT* FROM food");
-        $foods->execute();
-        return $foods->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getRapportsVeterinaires()
-    {
-        $stmt = $this->pdo->prepare("SELECT*FROM rapport_veterinaire");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
 
     public function getVeterinaryRapport(int $animalId) : array
@@ -55,6 +42,33 @@ class VeterinaireModel
         $rapports = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rapports;
     }
+
+    public function getRapports()
+    {
+        // on récupére le contenue de la table rapport_veternaire 
+        $order = isset($_GET['order']) && $_GET['order'] === 'ASC' ? 'ASC' : 'DESC';
+        $rapport = "SELECT animal.animal_id, animal.animal_nom, rapport_veterinaire.* FROM animal
+        INNER JOIN rapport_veterinaire on animal.animal_id = rapport_veterinaire.animal_id ORDER BY date $order";
+        $stmt = $this->pdo->prepare($rapport);
+        $stmt->execute();
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+    }
+
+    public function getRapportVeterinaire($animal_id,$foodType,$quantite,$etat,$detail,$date)
+    {
+        $query = "INSERT INTO rapport_veterinaire (animal_id,foodType,quantite,etat,detail,date)
+        VALUE (:animal_id,:foodType,:quantite,:etat,:detail,:date)";
+        $stmt = $this->pdo->prepare($query);
+        return $stmt->execute([
+            ':animal_id' => $animal_id,
+            ':foodType' => $foodType,
+            ':quantite' => $quantite,
+            ':etat' => $etat,
+            ':detail'=> $detail,
+            ':date'=> $date
+        ]);  
+    }
     
 }
-?>

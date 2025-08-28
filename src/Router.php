@@ -70,7 +70,10 @@ class Router
                 '/incrementView/{animal_id}' => ['App\\Controllers\\AnimalController', 'incrementView'],
                 '/ShowAnimalsStatics' => ['App\\Controllers\\AdminController', 'ShowAnimalsStatics'],
 
-
+                '/animaux' => ['App\\Controllers\\AnimalController', 'animalFilter'],
+                
+                '/animaux' => ['App\\Controllers\\AnimalController', 'animalFilter'],
+                '/animaleFood()' => ['App\\Controllers\\VeterinaireController', 'animaleFood()'],
                 
 
 
@@ -100,7 +103,7 @@ class Router
                 '/addUser' => ['App\\Controllers\\AdminController', 'addUserWithEmail'],
                 '/edit_user/{username}' => ['App\\Controllers\\UserController','updateUser'], 
                 
-                '/rapport' => ['App\\Controllers\\RapportController','index'],
+                '/rapport' => ['App\\Controllers\\VeterinaireController','rapportVeterinaire'],
 
                 '/validerAvis/{avis_id}' => ['App\\Controllers\\EmployeController','validerAvis'],
 
@@ -114,6 +117,7 @@ class Router
                 '/incrementView/{animal_id}' => ['App\\Controllers\\AnimalController', 'incrementView'],
 
 
+                '/handle-contact' => ['App\\Controllers\\ContactController', 'handleContact'],
 
 
 

@@ -30,23 +30,25 @@
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-              <form method="post" action="/register"> 
-              <!-- 2 column grid layout with text inputs for the first and last names -->
+            <form method="post" action="/register"> 
+              
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
                     <label class="form-label"> Prénom</label>
                     <input type="text" name="prenom" class="form-control" />
+                    <span class="text-danger" id="prenom_error"></span>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
                     <label class="form-label" >Nom</label>
                     <input type="text" name="nom" class="form-control" />
+                    <span class="text-danger" id="nom_error"></span>
                   </div>
                 </div>
               </div>
-              <!-- select user input -->
+              
               <select name="role_id" class="form-select mb-4" aria-label="Default select example">
                 <option value="">quel est votre rôle?</option>
                 <?php
@@ -60,16 +62,18 @@
               </select>
               
 
-              <!-- Email input -->
+              <!-- email input -->
               <div data-mdb-input-init class="form-outline mb-4">
                 <label class="form-label" >username </label>
                 <input type="text" name="username" class="form-control" />
+                <span class="text-danger" id="username_error"></span>
               </div>
 
-              <!-- Password input -->
+              <!-- password input -->
               <div data-mdb-input-init class="form-outline mb-4">
                 <label class="form-label" >Mot de passe</label>
                 <input type="password" name="password" class="form-control" />
+                <span class="text-danger" id="password_error"></span>
               </div>
 
 
@@ -104,7 +108,7 @@
     </div>
   </div>
 </section>
-
+      <script src="../Assets/js/register.js" ></script>
 </body>
 </html>
 

@@ -23,7 +23,6 @@ class VeterinaireController
         $this->AnimalModel = new AnimalModel();
         $this->FoodModel =new FoodModel();
         $this->habitatModel = new HabitatModel();
-        $this->RapportModel = new RapportModel();
         $this->userModel = new userModel();
     }
     public function index()
@@ -39,13 +38,23 @@ class VeterinaireController
         
         $users = $this->userModel->getNonAdminUsers();
         $foods = $this->FoodModel->getFoodanimals();
-        $rapports = $this->RapportModel->getRapports();
-        $habitat = $this ->habitatModel->getHabitat();
+        $rapports = $this->veterinaireModel->getRapports();
         
-        //$requests = $this->model->getRapportJoinAnimal();
-
+            
 
         require_once __DIR__ . '/../views/veterinaire.php';
+    }
+    public function animaleFood() {
+        $id_food = isset($_GET['id_food']) ? intval($_GET['id_food']) : null;
+
+        $foods = $this->FoodModel->getFoodanimals();
+        require_once __DIR__ . '/../views/veterinaire.php';
+        
+    }
+
+    public function getrapport() {
+        $rows = $this->veterinaireModel->getRapports();
+        require_once __DIR__ . '/../views/admin.php';
     }
 
     public function addCommentHabitat(): void
@@ -58,6 +67,7 @@ class VeterinaireController
             $date_commentaire = $_POST['date_commentaire'];
 
             $stmt = $this->veterinaireModel->AddCommentHabitat();
+
             
             if($stmt) {
                 header("Location: /veterinaire#habitat");
@@ -68,6 +78,29 @@ class VeterinaireController
         }
 
         require_once __DIR__ . '/../views/veterinaire.php';
+    }
+
+    public function rapportVeterinaire()
+    {   
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST")  
+        {
+            //Récupérer les données du formulaire
+            $animal_id = $_POST['animal_id'];
+            $foodType = $_POST['foodType'];
+            $quantite =$_POST['quantite'];
+            $etat =$_POST['etat'];
+            $detail =$_POST['detail'];
+            $date =$_POST['date'];
+            // Appeler la méthode addAnimal
+            if ($this->veterinaireModel->getRapportVeterinaire($animal_id,$foodType,$quantite,$etat,$detail,$date)){ 
+            }else{
+                echo "Erreur lors de l'ajout de l'animal";
+            }
+        }
+        
+        $animals = $this->AnimalModel->getAnimals();
+        require_once __DIR__ . '/../views/rapport.php';
     }
 
 

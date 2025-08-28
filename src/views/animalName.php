@@ -14,17 +14,14 @@
         <?php echo  htmlspecialchars($details['animal_nom']); ?>
     </title>
 </head>
-
-
 <body>
-
     <header>
         <?php
             include_once __DIR__ .'/includes/navbar.php';?>
         <div class="cover ">
-            <img src="data:image/jpeg;base64,<?= base64_encode($details['image']) ?>" 
-                class="card-img-top img-cover " 
+            <img src="../<?php echo htmlspecialchars ($details['image']) ?>" class="card-img-top img-cover " 
                 alt="<?php echo ($details['animal_nom']) ?>">
+
             <div class="carousel-caption position-absolute top-50 start-50 translate-middle text-center text-white">
                 <h1 class="display-4 fw-bold"><?php echo htmlspecialchars($details['animal_nom']) ?></h1>
             </div>

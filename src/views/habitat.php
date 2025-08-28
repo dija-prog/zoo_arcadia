@@ -94,7 +94,7 @@
         $animalName = strtolower(str_replace('', '_', $animal['animal_nom']));
       ?>
         <div class="card hidden h-100" data-name="<?php echo htmlspecialchars($animal['habitat_id']) ?>">
-            <!-- <a href="animalName.php?animal_nom=<?php echo htmlspecialchars($animal['animal_nom']);?>"> -->
+        
             <a href="../animalName/<?php echo urlencode($animal['animal_nom']);?>"> 
             <img src="../<?php echo htmlspecialchars($animal['image']) ?>" class="card-img-top" loading="lazy" alt="<?php echo htmlspecialchars($animal['animal_nom']) ?>">
           </a>
@@ -112,7 +112,7 @@
         <div class="col-sm-5 col-md-4 text-center text-bold">
           <h3 class=" text-success mb-5 mt-5 "> Admirer une multitude d'animaux venus des quatre coins du monde </h3>
           <p> Partez à la rencontre des animaux sauvages et des espèce menacées</p>
-          <button onclick="window.location.href='./animals.php'" class="btn btn-success btn-lg  p-4 mt-4">Découvrir les fiches animaux </button>"
+          <button onclick="window.location.href='./animaux'" class="btn btn-success btn-lg  p-4 mt-4">Découvrir tous nous animaux </button>"
         </div>
       </div>
     </div>

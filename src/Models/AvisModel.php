@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Models;
-
 use App\Database;
-
 use PDO;
 use PDOException;
 
@@ -23,7 +20,6 @@ class AvisModel{
         //insérer l'avis dans la  base de donnée
         $avisInsert = $this->pdo->prepare("INSERT INTO avis (pseudo,commentaire) VALUES(?,?)");
         if ($avisInsert->execute(([$pseudo, $avis]))) {
-          echo "Votre avis a été soumis et est en attente de validation";
         } else {
           echo "Erreur lors de la soumission de l'avis";
         }

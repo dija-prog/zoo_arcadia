@@ -1,48 +1,83 @@
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contactForm");
+    const alertBox = document.getElementById("AlertForm");
 
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        let isValid = true;
+        // Récupération des valeurs
+        const titre = document.querySelector("input[name='titre']").value.trim();
+        const email = document.querySelector("input[name='email']").value.trim();
+        const description = document.getElementById("description").value.trim();
 
-        // Récupération des champs
-        const titre = document.querySelector("input[name='titre']");
-        const email = document.querySelector("input[name='email']");
-        const description = document.querySelector("textarea[name='description']");
+        // Réinitialiser erreurs
+        document.getElementById("text_error").textContent = "";
+        document.getElementById("email_error").textContent = "";
+        document.getElementById("description_error").textContent = "";
+        alertBox.innerHTML = "";
 
-        // Zones d'erreur
-        const titreError = document.getElementById("text_error");
-        const emailError = document.getElementById("email_error");
-        const descriptionError = document.getElementById("description_error");
+        let hasError = false;
 
-        // Réinitialiser les messages d'erreur
-        titreError.textContent = "";
-        emailError.textContent = "";
-        descriptionError.textContent = "";
-
-        // Vérif titre
-        if (titre.value.trim() === "") {
-        titreError.textContent = "Veuillez entrer un titre.";
-        isValid = false;
+        // Validation front
+        if (titre === "") {
+            document.getElementById("text_error").textContent = "Veuillez entrer un titre.";
+            hasError = true;
         }
 
-        // Vérif email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email.value)) {
-        emailError.textContent = "Veuillez entrer une adresse e-mail valide.";
-        isValid = false;
+        if (email === "") {
+            document.getElementById("email_error").textContent = "Veuillez entrer une adresse email.";
+            hasError = true;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            document.getElementById("email_error").textContent = "Adresse email invalide.";
+            hasError = true;
         }
 
-        // Vérif description
-        if (description.value.trim().length < 10) {
-        descriptionError.textContent = "La description doit contenir au moins 10 caractères.";
-        isValid = false;
+        if (description === "") {
+            document.getElementById("description_error").textContent = "Veuillez entrer une description.";
+            hasError = true;
         }
 
-        // Si formulaire valide → envoi
-        if (isValid) {
-        form.submit();
+        if (hasError) return;
+
+        try {
+            const response = await fetch("/handle-contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ titre, email, description }),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alertBox.innerHTML = `
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        ${result.message}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                    </div>
+                `;
+                form.reset();
+                setTimeout(() => {
+                    alertBox.innerHTML = "";
+                }, 5000);
+            } else {
+                // Affichage d'erreur  sous les champs
+                if (result.errors.titre) {
+                    document.getElementById("text_error").textContent = result.errors.titre;
+                }
+                if (result.errors.email) {
+                    document.getElementById("email_error").textContent = result.errors.email;
+                }
+                if (result.errors.description) {
+                    document.getElementById("description_error").textContent = result.errors.description;
+                }
+                // Si erreur BDD, on l’affiche sous description
+                if (result.errors.db) {
+                    document.getElementById("description_error").textContent = result.errors.db;
+                }
+            }
+        } catch (error) {
+            console.error("Erreur:", error);
+            document.getElementById("description_error").textContent = "Une erreur serveur est survenue. Veuillez réessayer.";
         }
     });
-    });
+});

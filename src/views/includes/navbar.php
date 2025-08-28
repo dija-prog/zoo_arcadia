@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse " id="navbarNav">
                     <ul class="navbar-nav mb-2 me-auto mb-lg-0 ">
                         <li class="nav-item ">
-                            <a class="nav-link" href="/animals" >Nos animaux</a>
+                            <a class="nav-link" href="/animaux" >Nos animaux</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="/habitat" > Habitat</a>

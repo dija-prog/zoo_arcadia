@@ -17,6 +17,7 @@ class AccueilController
     {
         
         $avisValides = $this->avisModel->getAvisValides();
+        $avisInsert = $this->avisModel->addAvis();
 
         // Inclure la vue avec les données
         require_once __DIR__ . '/../views/Accueil.php';
