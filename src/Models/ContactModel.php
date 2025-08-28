@@ -27,4 +27,3 @@ class ContactModel
         return  $messages;
     }
 }
-?>

@@ -29,7 +29,7 @@
                         <div class="card-header bg-success text-white"><i class="fa fa-envelope"></i> Contact nous.
                         </div>
                         <div class="card-body">
-                            <div id="AlertForm">></div>
+                            <div id="AlertForm"></div>
                             <form id="contactForm" method="POST" action="/contact">
                                 <div class="form-group mb-4">
                                     <label for="titre">un titre</label>

@@ -77,7 +77,7 @@ class FoodModel
 
         $request= $query->execute();
         return $request;
-        var_dump($request);
+        // var_dump($request);
     } 
 
     public function deleteFood($food)

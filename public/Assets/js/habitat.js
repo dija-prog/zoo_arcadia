@@ -26,12 +26,7 @@
     };
     button.forEach(a => a.addEventListener("click",habitat)); 
 
-
-
-   
-
-      // incrimenter les views 
-
+    // incrimenter les views 
     async function incrementAnimalView(animalName) {
     try {
         const response = await fetch('AdminController.php', {

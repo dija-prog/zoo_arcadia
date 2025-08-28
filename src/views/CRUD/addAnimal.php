@@ -22,8 +22,7 @@
                     <option value="2">Jungle</option>
                     <option value="3">Marais</option>
                 </select>
-                <!-- <label for="exampleInputPassword1" class="form-label">habitat</label> -->
-                <!-- <input type="text" name="habitat_id" class="form-control" > -->
+                
             </div>
             <div class="mb-4 text-white">
                 <select name="id_classe" class="form-select" aria-label="Default select example">
@@ -33,10 +32,8 @@
                     <option value="3">Reptiles </option>
                     <option value="4">Amphibiens</option>
                 </select>
-                <!-- <label  class="form-label">la classe</label>
-                <input type="text" name="id_classe" class="form-control"> -->
+                
             </div>
-            <!-- <button type="submit" name="submit" class="btn btn-success">Ajouter</button> -->
             <input type="submit" value="Ajouter">
         </form>
     </div>

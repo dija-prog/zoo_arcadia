@@ -45,10 +45,7 @@
         <i class="fas fa-notes-medical"></i>
         <span class="ms-2 nav-link-text">Rapport véternaire</span>
       </a>
-      <a href="#" class="nav-link d-flex align-items-center">
-        <i class="fas fa-clock"></i>
-        <span class="ms-2 nav-link-text">Horaires</span>
-      </a>
+  
       <a href="#services" class="nav-link d-flex align-items-center">
         <i class="fas fa-headset"></i>
         <span class="ms-2 nav-link-text">Services</span>

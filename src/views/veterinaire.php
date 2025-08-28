@@ -140,11 +140,6 @@
                 <p> Click sur le bouton ci-dessous pou remplire votre rapport des animaux</p>
                 <a href="/rapport"><button class="btn btn-warning mb-5">Remplire</button> </a>
             </div>
-            <div>
-                <!-- ici select par date -->
-            </div>
-
-            
         </section>
     </main>
 

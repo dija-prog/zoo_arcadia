@@ -6,6 +6,7 @@ services:
     container_name: mysql
     restart: unless-stopped
     environment:
+      MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -25,7 +26,8 @@ services:
     depends_on:
       - mysql
     environment:
-      DB_HOST: mysql
+      # DB_HOST: mysql
+      MYSQL_HOST: ${MYSQL_HOST}
       DB_DATABASE: ${MYSQL_DATABASE}
       DB_USERNAME: ${MYSQL_USER}
       DB_PASSWORD: ${MYSQL_PASSWORD}

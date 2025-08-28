@@ -18,5 +18,3 @@ services:
 
     # Facultatif : santé du service
     healthCheckPath: /
-
-   

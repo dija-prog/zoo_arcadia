@@ -60,7 +60,7 @@ class Router
 
                 '/addCommentHabitat' => ['App\\Controllers\\VeterinaireController','addCommentHabitat'],
 
-                '/rapport' => ['App\\Controllers\\RapportController','index'],
+                '/rapport' => ['App\\Controllers\\VeterinaireController','rapportVeterinaire'],
 
                 '/forgot_password'=> ['App\\Controllers\\UserController', 'showForgotPasswordForm'],
 
