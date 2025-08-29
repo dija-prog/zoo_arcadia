@@ -74,6 +74,7 @@ class Router
                 
                 '/animaux' => ['App\\Controllers\\AnimalController', 'animalFilter'],
                 '/animaleFood()' => ['App\\Controllers\\VeterinaireController', 'animaleFood()'],
+
                 
 
 
@@ -89,7 +90,7 @@ class Router
                 '/login/authenticate' => ['App\\Controllers\\LoginController', 'authenticate'],
 
                 '/contact' => ['App\\Controllers\\ContactController', 'contactForm'],
-               
+
                 
                 '/add_service' => ['App\\Controllers\\ServiceController','add_Services'],
                 '/edit_service/{service_id}' => ['App\\Controllers\\ServiceController', 'editService'], 
@@ -99,6 +100,8 @@ class Router
 
                 '/addAnimal' => ['App\\Controllers\\AnimalController', 'addAnimal'],
                 '/add-animal' => ['App\\Controllers\\AnimalController', 'addAnimalAjax'],
+                '/edit_animal/{animal_id}' => ['App\\Controllers\\AnimalController', 'editAnimal'],
+
 
                 '/addUser' => ['App\\Controllers\\AdminController', 'addUserWithEmail'],
                 '/edit_user/{username}' => ['App\\Controllers\\UserController','updateUser'], 
@@ -108,6 +111,7 @@ class Router
                 '/validerAvis/{avis_id}' => ['App\\Controllers\\EmployeController','validerAvis'],
 
                 '/veterinaire' => ['App\\Controllers\\VeterinaireController','addCommentHabitat'],
+        
                 
                 '/forgot_password'=> ['App\\Controllers\\UserController', 'handleForgotPassword'],
                 '/reset_password'=> ['App\\Controllers\\UserController', 'handleResetPassword'],

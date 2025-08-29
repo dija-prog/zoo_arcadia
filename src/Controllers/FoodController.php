@@ -55,7 +55,7 @@ class FoodController
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") 
         {
-            //$id_food = intval($_POST['id_food']);
+            $id_food = intval($_POST['id_food']);
             $animal_nom = $_POST['animal_nom'];
             $foodType = $_POST['foodType'];
             $quantite = $_POST['quantite'];
@@ -76,7 +76,7 @@ class FoodController
 
     public function deleteFood($id_food)
     {
-        var_dump($id_food);
+        
         if ($this->foodModel->deleteFood($id_food)) {
             header("Location:/employe#animaletable");
         } else {
@@ -85,5 +85,3 @@ class FoodController
     }
 
 }
-
-?>

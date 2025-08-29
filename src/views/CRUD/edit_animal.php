@@ -12,27 +12,32 @@
 <body>
     
 
-    <form id='animalForm' method="POST" action="/editAnimal/{animal_id}" class="m-5 py-3" >
+    <form id='animalForm' method="POST" action="/editAnimal/<?php echo $animal['animal_id'] ?>" class="m-5 py-3" >
         <h4 class="text-success text-center fw-bold ">Modifier l'animale</h4>
+        <input type="hidden" name="animal_id" value="<?= isset($animal['animal_id']) ? htmlspecialchars($animal['animal_id']) : '' ?>">
+        <label class="form-label text-white ml-2 p-2" >Nom de l'animal: </label>
+        <input type="text" name="animal_nom" value="<?= isset($animal['animal_nom']) ? htmlspecialchars($animal['animal_nom']) : '' ?>">
 
-        <div class="mb-3 ">
-        
-            <input type="hidden" name="animal_id" value="<?= $animal['animal_id'] ?? '' ?>"  class="form-control" >
-        </div>
+        <label class="form-label text-white ml-2 p-2" >Classe</label>
+        <select name="id_classe">
+            <?php foreach ($classes as $classe): ?>
+                <option value="<?= $classe['id_classe'] ?>"
+                    <?= isset($animal['id_classe']) && $classe['id_classe'] == $animal['id_classe'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($classe['nom_classe']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
 
-        <div class="mb-3 text-white">
-            <label class="form-label">Nom</label>
-            <input type="text" name="animal_nom" value="<?= $animal['animal_nom'] ?? ''?>"  class="form-control" >
-        </div>
-        <div class="mb-3 text-white">
-            <label class="form-label">habitat</label>
-            <input  name="habitat_id" value="<?=$animal['habitat_id'] ?? '' ?>"  class="form-control" >
-        </div>
-        <div class="mb-3 text-white">
-            <label  class="form-label">la classe</label>
-            <input   name="id_classe" value="<?=$animal['id_classe']?? '' ?>" class="form-control">
-        </div>
-        
+        <label class="form-label text-white ml-2 p-2"> Habitat : </label>
+        <select name="habitat_id" Classe="p-2">
+            <?php foreach ($habitats as $habitat): ?>
+                <option value="<?= $habitat['habitat_id'] ?>" 
+                    <?= isset($animal['habitat_id']) && $habitat['habitat_id'] == $animal['habitat_id'] ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($habitat['nom']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
         <button type="submit"  name="submit" class="btn btn-success">Modifier</button>
     </form>
     

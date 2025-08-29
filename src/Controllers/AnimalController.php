@@ -65,15 +65,14 @@ class AnimalController
             }
             
         }
-            $animal = $this->model->getAnimalById($animal_id['animal_id']);
+            $animal = $this->model->getAnimalById($animal_id);
+            $classes = $this->model->getClasses();
+            $habitats = $this->model->getHabitats();
+
             require_once __DIR__. "/../views/CRUD/edit_animal.php";
 
     }
 
-    public function show()
-    {
-        require_once __DIR__. "/../views/CRUD/edit_animal.php";
-    }
 
     public function deleteAnimal($animal_id) 
     {

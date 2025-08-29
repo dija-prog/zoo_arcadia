@@ -12,7 +12,7 @@ class HabitatController
         $animalModel = new AnimalModel();
 
         // Récupérer les données 
-        $habitat = $habitatModel->getHabitat();
+        $habitat = $habitatModel->getHabitats();
         $animals = $animalModel->getAnimals();
 
     

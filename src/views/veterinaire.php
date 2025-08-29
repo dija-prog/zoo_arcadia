@@ -75,7 +75,7 @@
                     <div class=" col-12 col-md-8 col-lg-6 py-4 ">
                         <label for="habitat-select" class="form-label">Choisissez un habitat</label>
                         <select name="habitat_id" required>
-                            <?php foreach ($habitat as $habitat): ?>
+                            <?php foreach ($habitats as $habitat): ?>
                                 <option value="<?= $habitat['habitat_id'] ?>"><?= $habitat['nom'] ?></option>
                             <?php endforeach; ?>
                         </select>

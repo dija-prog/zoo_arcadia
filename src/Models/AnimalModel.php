@@ -29,7 +29,8 @@ class AnimalModel
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':animal_id', $animal_id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $animal ?: null;
     }
 
 

@@ -33,7 +33,7 @@
             <h3 class="text-center mt-3"><?php echo $_SESSION['nom']; ?></h3>
             <span class="text-center mb-3"><?php echo $_SESSION['username']; ?></span>
 
-            <a href="../Accuiel" class="nav-link d-flex align-items-center">
+            <a href="/Accueil" class="nav-link d-flex align-items-center">
                 <i class="fas fa-home"></i>
                 <span class="ms-2 nav-link-text">Home</span>
             </a>

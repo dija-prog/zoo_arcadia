@@ -7,22 +7,22 @@ use App\Models\RapportModel;
 use App\Models\FoodModel;
 use App\Models\HabitatModel;
 use App\Models\UserModel;
-
+use PDOException;
 class VeterinaireController
 {
-    private $veterinaireModel;
+    private $VeterinaireModel;
     private $RapportModel;
     private $AnimalModel;
     private $FoodModel;
-    private $habitatModel;
+    private $HabitatModel;
     private $userModel;
     
     public function __construct()
     {
-        $this->veterinaireModel = new VeterinaireModel();
+        $this->VeterinaireModel = new VeterinaireModel();
         $this->AnimalModel = new AnimalModel();
         $this->FoodModel =new FoodModel();
-        $this->habitatModel = new HabitatModel();
+        $this->HabitatModel = new HabitatModel();
         $this->userModel = new userModel();
     }
     public function index()
@@ -35,10 +35,11 @@ class VeterinaireController
         }
         
         $comment_id = isset($_GET['comment_id']) ? intval($_GET['comment_id']) : null;
-        
         $users = $this->userModel->getNonAdminUsers();
         $foods = $this->FoodModel->getFoodanimals();
-        $rapports = $this->veterinaireModel->getRapports();
+        $rapports = $this->VeterinaireModel->getRapports();
+        $habitats = $this->HabitatModel->getHabitats();
+
         
             
 
@@ -53,32 +54,29 @@ class VeterinaireController
     }
 
     public function getrapport() {
-        $rows = $this->veterinaireModel->getRapports();
+        $rows = $this->VeterinaireModel->getRapports();
         require_once __DIR__ . '/../views/admin.php';
     }
 
-    public function addCommentHabitat(): void
+    public function addCommentHabitat()
     {
-        
-        // insérer le commentaire de l'habitat dans la table commentaires_habitats
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $habitat_id = $_POST['habitat_id'];
-            $commentaire = $_POST['commentaire'];
+            $habitat_id = intval($_POST['habitat_id']);
+            $commentaire = trim($_POST['commentaire']);
             $date_commentaire = $_POST['date_commentaire'];
 
-            $stmt = $this->veterinaireModel->AddCommentHabitat();
+            $success = $this->VeterinaireModel->addCommentHabitat($habitat_id, $commentaire, $date_commentaire);
 
-            
-            if($stmt) {
+            if ($success) {
                 header("Location: /veterinaire#habitat");
                 exit;
             } else {
-                //echo "Erreur lors de l'ajout du commentaire.";
+                echo "Erreur lors de l'ajout du commentaire.";
             }
         }
-
-        require_once __DIR__ . '/../views/veterinaire.php';
     }
+
+
 
     public function rapportVeterinaire()
     {   
@@ -93,7 +91,7 @@ class VeterinaireController
             $detail =$_POST['detail'];
             $date =$_POST['date'];
             // Appeler la méthode addAnimal
-            if ($this->veterinaireModel->getRapportVeterinaire($animal_id,$foodType,$quantite,$etat,$detail,$date)){ 
+            if ($this->VeterinaireModel->getRapportVeterinaire($animal_id,$foodType,$quantite,$etat,$detail,$date)){ 
             }else{
                 echo "Erreur lors de l'ajout de l'animal";
             }

@@ -13,7 +13,7 @@ class HabitatModel
         $this->pdo = $db->getPdo();
     }
 
-    public function getHabitat()
+    public function getHabitats()
     {
         $query = "SELECT * FROM habitat";
         $stmt = $this->pdo->prepare($query);

@@ -13,21 +13,27 @@ class VeterinaireModel
         $db = new Database();
         $this->pdo = $db->getPdo();
     }
-    public function addCommentHabitat(): void
-    {   
+    public function addCommentHabitat($habitat_id, $commentaire, $date_commentaire): bool
+{
+    try {
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO commentaires_habitats (habitat_id, commentaire, date_commentaire) 
+                    VALUES (:habitat_id, :commentaire, :date_commentaire)"
+        );
 
-        $habitat_id = $_POST['habitat_id'];
-        $commentaire = $_POST['commentaire'];
-        $date_commentaire = $_POST['date_commentaire'];
-        
-        $stmt = $this->pdo->prepare("INSERT INTO commentaires_habitats
-                (habitat_id,commentaire,date_commentaire) VALUE (:habitat_id,:commentaire,:date_commentaire)");
-        $stmt->execute([
-            ':habitat_id' => $habitat_id,
-            ':commentaire' => $commentaire,
+        return $stmt->execute([
+            ':habitat_id' => intval($habitat_id),
+            ':commentaire' => trim($commentaire),
             ':date_commentaire' => $date_commentaire
         ]);
+
+    } catch (PDOException $e) {
+        // optionnel : loguer l'erreur
+        // error_log($e->getMessage());
+        return false;
     }
+}
+
 
 
 

@@ -14,15 +14,15 @@ class UserModel
     $this->pdo = $db->getPdo();
   }
 
-  public function getNonAdminUsers()
-  {
-    $query = "SELECT * FROM utilisateur WHERE role_id != 1";
-    $stmt = $this->pdo->prepare($query);
-    $stmt->execute();
-    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $users;
+  // public function getNonAdminUsers()
+  // {
+  //   $query = "SELECT * FROM utilisateur WHERE role_id != 1";
+  //   $stmt = $this->pdo->prepare($query);
+  //   $stmt->execute();
+  //   $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  //   return $users;
 
-  }
+  // }
 
 public function getUserByUsername($username)
 {
@@ -30,6 +30,20 @@ public function getUserByUsername($username)
   $query->execute([$username]);
   return $query->fetch(PDO::FETCH_ASSOC);
 }
+
+public function getNonAdminUsers()
+{
+    $query = "
+        SELECT  u.nom, u.prenom, u.username, u.role_id, r.nom_role
+        FROM utilisateur u
+        JOIN role r ON u.role_id = r.role_id
+        WHERE u.role_id != 1
+    ";
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
   public function addUser($nom, $prenom, $role_id, $username, $password)
   {
@@ -47,8 +61,9 @@ public function getUserByUsername($username)
   }
   public function updateUser($nom,$prenom,$password,$role,$username)
   {
-    var_dump($nom,$prenom,$password,$role,$username);
-    $req = $this->pdo->prepare("UPDATE utilisateur SET nom = :nom, prenom = :prenom, password = :password, role_id =:role  WHERE username = :username");
+    // var_dump($nom,$prenom,$password,$role,$username);
+    $req = $this->pdo->prepare("UPDATE utilisateur 
+    SET nom = :nom, prenom = :prenom, password = :password, role_id =:role  WHERE username = :username");
 
     
     $req->bindParam(':nom',$nom, PDO::PARAM_STR);
