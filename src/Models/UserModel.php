@@ -14,15 +14,6 @@ class UserModel
     $this->pdo = $db->getPdo();
   }
 
-  // public function getNonAdminUsers()
-  // {
-  //   $query = "SELECT * FROM utilisateur WHERE role_id != 1";
-  //   $stmt = $this->pdo->prepare($query);
-  //   $stmt->execute();
-  //   $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  //   return $users;
-
-  // }
 
 public function getUserByUsername($username)
 {

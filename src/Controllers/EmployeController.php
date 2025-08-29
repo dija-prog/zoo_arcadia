@@ -74,6 +74,7 @@ class EmployeController
         if ($this->avisModel->deleteAvis($avisId)) {
             echo json_encode(['success' => true]);
             header('Location: /employe#avis');
+            exit();
         } else {
             echo json_encode(['success' => false, 'message' => 'Suppression échouée']);
         }

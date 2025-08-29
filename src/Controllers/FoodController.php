@@ -64,6 +64,7 @@ class FoodController
 
             if ($this->foodModel->editFood($id_food, $animal_nom, $foodType, $quantite, $date, $heure)) {
                 header("Location:/employe");
+                exit();
             } else {
                 echo "Erreur lors de la modification de l'animal.";
             }
@@ -79,6 +80,7 @@ class FoodController
         
         if ($this->foodModel->deleteFood($id_food)) {
             header("Location:/employe#animaletable");
+            exit();
         } else {
             echo "Erreur lors de la suppression de utilisateur";
         }

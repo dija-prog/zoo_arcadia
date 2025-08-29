@@ -77,7 +77,7 @@ class FoodModel
 
         $request= $query->execute();
         return $request;
-        // var_dump($request);
+        
     } 
 
     public function deleteFood($food)
@@ -90,7 +90,7 @@ class FoodModel
                 return true; // Suppression réussie
             } else {
                 // Affiche les erreurs SQL
-                print_r($req->errorInfo());
+                $_SESSION['error'] = "Erreur lors de la suppression.";
                 return false;
             }
         } catch (PDOException $e) {

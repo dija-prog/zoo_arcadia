@@ -28,8 +28,6 @@ class VeterinaireModel
         ]);
 
     } catch (PDOException $e) {
-        // optionnel : loguer l'erreur
-        // error_log($e->getMessage());
         return false;
     }
 }

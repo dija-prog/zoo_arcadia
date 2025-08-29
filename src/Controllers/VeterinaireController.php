@@ -31,7 +31,7 @@ class VeterinaireController
 
         if(!isset($_SESSION['username']) || $_SESSION['role'] !='3'){
             header('location:/login');
-            exit;
+            exit();
         }
         
         $comment_id = isset($_GET['comment_id']) ? intval($_GET['comment_id']) : null;
@@ -69,7 +69,7 @@ class VeterinaireController
 
             if ($success) {
                 header("Location: /veterinaire#habitat");
-                exit;
+                exit();
             } else {
                 echo "Erreur lors de l'ajout du commentaire.";
             }

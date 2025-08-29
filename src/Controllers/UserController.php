@@ -169,7 +169,9 @@ class UserController
                 $this->UserModel->updateResetToken($username, $token, $expiry);
 
                 // Créez le lien de réinitialisation
-                $resetLink = "http://localhost/reset_password?token=" . $token;
+                $baseUrl = $_ENV['APP_URL'] ?? 'http://localhost';
+                $resetLink = $baseUrl . "/reset_password?token=" . $token;
+
 
                 // Configurez le transport et le mailer
                 $transport = Transport::fromDsn($_ENV['MAILER_DS']);
