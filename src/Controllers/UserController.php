@@ -55,23 +55,17 @@ class UserController
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
             $user = new UserModel();
-
-            // Try/Catch 
             try {
                 $Result = $user->addUser($nom, $prenom, $role_id, $username, $password);
 
                 if ($Result) {
                     // Redirection vers la vue selon le rôle
-                    if ($role_id === 2) {
                         header('Location:/login');
-                    } elseif ($role_id === 3) {
-                        header('Location:/login');
-                    } else {
-                        echo "Rôle non reconnu.";
-
-                    }
+                        exit();
                 } else {
-                    echo "Ce nom d'utilisateur existe déjà ou une erreur est survenue.";
+                    $_SESSION['error'] = "Ce nom d'utilisateur existe déjà ou une erreur est survenue.";
+                    header('Location:/register'); // redirection vers la page du formulaire
+                    exit();
                 }
             } catch (PDOException $e) {
                 // Gestion propre de l'exception
@@ -117,8 +111,11 @@ class UserController
             if ($result) {
                 echo "Utilisateur mis à jour avec succès.";
                 header("Location:/admin#usertable");
+                exit();
             } else {
-                echo "Erreur lors de la mise à jour de l'utilisateur.";
+                $_SESSION['error'] = "Erreur lors de la mise à jour de l'utilisateur.";
+                header("Location:/admin#usertable");
+                exit();
             }
         } else {
 
@@ -140,10 +137,12 @@ class UserController
             return "Erreur : Le nom d'utilisateur est requis.";
         }
         if ($this->UserModel->deleteUser($username)) {
-
             header("Location:/admin#usertable");
+            exit();
         } else {
-            echo "Erreur lors de la suppression de utilisateur";
+            $_SESSION['error'] = "Erreur lors de la suppression de l'utilisateur.";
+            header("Location:/admin#usertable");
+            exit();
         }
     }
 

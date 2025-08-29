@@ -81,7 +81,6 @@ public function getNonAdminUsers()
     $req = $this->pdo->prepare("DELETE FROM utilisateur where username = :username");
     $req->bindParam(':username',$username['username'], PDO::PARAM_STR); 
     return $req->execute();
-    echo json_encode(['success' => $req]);
   }
 
   
