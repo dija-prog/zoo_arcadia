@@ -33,7 +33,11 @@ function confirmationSup(){
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // pour le graphique
+    // je vérifie est ce que canvas exist
+    const ctx = document.getElementById('animalViewsChart');
+    if (!ctx) {
+        return; // on arrête le script sans erreur
+    }
     fetch('/ShowAnimalsStatics')
         .then(response => {
             if (!response.ok) {
@@ -57,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!ctx) {
                 throw new Error("L'élément canvas #animalViewsChart n'existe pas dans le DOM");
             }
-
+            
             const myChart = new Chart(ctx.getContext('2d'), {
                 type: 'bar',
                 data: {

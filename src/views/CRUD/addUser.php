@@ -59,6 +59,9 @@
 
                 <button type="submit" class="btn btn-success col-md-3  m-5 ">Envoyer</button>
             </form>
+            <?php if (!empty($message)): ?>
+                <div class="alert alert-danger"><?= htmlspecialchars($message) ?></div>
+            <?php endif; ?>
         </div>
     </div>
 </body>

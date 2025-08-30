@@ -40,6 +40,10 @@
 
         <button type="submit"  name="submit" class="btn btn-success">Modifier</button>
     </form>
+    <?php if (!empty($message)): ?>
+        <div class="alert alert-danger"><?= htmlspecialchars($message) ?></div>
+    <?php endif; ?>
+
     
 </body>
 </html>

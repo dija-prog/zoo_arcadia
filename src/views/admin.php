@@ -137,6 +137,9 @@
           ?>
         </tbody>
       </table>
+      <?php if (!empty($message)): ?>
+        <div class="alert alert-danger"><?= htmlspecialchars($message) ?></div>
+      <?php endif; ?>
       <!-- bouton ajouter les animaux  -->
       <button id="animalBtn" class=" btn btn-warning mb-3">
         <a href="/add-animal">

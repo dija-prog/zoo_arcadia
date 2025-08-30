@@ -17,7 +17,7 @@
   <div class="container px-4 py-5 px-md-4 text-center text-lg-start my-3">
     <div class="title row gx-lg-5 align-items-center mb-5">
       <div class=" title1  col-lg-6 mb-3 mb-lg-0">
-        <a  href="../Accueil.php"><i class="fa-solid fa-house"></i>Accueil</a>
+        <a  href="/Accueil"><i class="fa-solid fa-house"></i>Accueil</a>
         <h1 class=" h1 my-5 display-5 fw-bold" >
           S'inscrire <br />
           <span> au Zoo Arcadia</span>

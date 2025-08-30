@@ -35,13 +35,13 @@ class RegisterModel
             $role = $checkrole->fetch(PDO::FETCH_ASSOC);
 
             if (!$role) {
-                echo "Rôle invalide.";
+                $message= "Rôle invalide.";
                 return;
             }
 
             // Interdire la création d'un admin
             if ($role['nom_role'] === 'admin') {
-                echo "Vous ne pouvez pas vous inscrire en tant qu'administrateur.";
+                $message= "Vous ne pouvez pas vous inscrire en tant qu'administrateur.";
                 return;
             }
 
@@ -55,21 +55,21 @@ class RegisterModel
                     header("Location: /login");
                     exit;
                 } else {
-                    echo "Erreur lors de l'inscription.";
+                    $message= "Erreur lors de l'inscription.";
                     
                 }
 
             } catch (PDOException $e) {
                 
                 if ($e->getCode() == 23000) {
-                    echo "Ce nom d'utilisateur est déjà utilisé.";
+                    $message="Ce nom d'utilisateur est déjà utilisé.";
                 } else {
-                    echo "Erreur lors de l'inscription : " . $e->getMessage();
+                    $message="Erreur lors de l'inscription : " . $e->getMessage();
                 }
             }
 
         } else {
-            echo "Veuillez compléter tous les champs.";
+            $message= "Veuillez compléter tous les champs.";
             
         }
     }

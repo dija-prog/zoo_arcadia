@@ -29,7 +29,7 @@ class ContactController
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
         
             if (empty($titre) || empty($email) || empty($description)) {
-                echo "Le titre et le message doivent êtr remplis.";
+                $message= "Le titre et le message doivent êtr remplis.";
                 require_once __DIR__ . '/../views/contact.php';
                 return;
             }
@@ -50,13 +50,13 @@ class ContactController
                     $mailer->send($email);
         
         
-                    echo 'Email envoyé avec succès';
+                    $message= 'Email envoyé avec succès';
                 } catch (\Exception $e) {
-                    echo 'Erreur lors de l\'envoie de l\'email:', $e->getMessage();
-                    echo 'code d\'erreur:' . $e->getCode();
+                    error_log($e->getMessage()); // log technique
+                    $message = "Erreur lors de l'envoi de l'email. Veuillez réessayer.";
                 }
             }else {
-                echo "Erreur lors dans la base de données.";
+                $message="echo Erreur lors dans la base de données.";
             }
 
             require_once __DIR__ . '/../views/contact.php';

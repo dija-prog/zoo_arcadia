@@ -59,9 +59,10 @@ class AnimalController
                 'habitat_id' => $habitat_id
             ])){
                 header("Location:admin#animaletable");
+                exit();
                 
             } else {
-                echo "Erreur lrs de la modification de l'animal.";
+                $message="Erreur lrs de la modification de l'animal.";
             }
             
         }
@@ -78,19 +79,12 @@ class AnimalController
     {
         if($this->model->deleteAnimal($animal_id)) {
             header("Location:/admin#animaletable"); 
+            exit();
         }else {
-            echo "Erreur lors de la suppression de l'animal";
+            $message= "Erreur lors de la suppression de l'animal";
         }
     }
-    public function getAnimalsJoin()
-    {
-        if($this->model->getAnimalsJoin()) {
-            header ("Location: /admin/animals");
-        }else {
-            echo "Erreur lors de la suppression de l'animal";
-        }
-        require_once __DIR__ . '/../views/admin.php';
-    }
+    
 
     public function animalFilter() {
         $classe = $_GET['classe'] ?? null;

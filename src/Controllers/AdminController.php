@@ -90,7 +90,7 @@ class AdminController
                 header('Location: /admin#usertable');
                 exit;
             } else {
-                echo "Erreur lors de l'ajout de l'utilisateur.";
+                $message="Erreur lors de l'ajout de l'utilisateur.";
             }
             
         }
@@ -128,8 +128,9 @@ class AdminController
             echo json_encode(['error' => 'Aucune donnée trouvée']);
             return;
         }
-        header('Content-Type: application/json'); // Indique que la réponse est au format JSON
+        header('Content-Type: application/json'); //  la réponse est au format JSON
         echo json_encode($viewsStats);
+        exit();
     }
 
 
