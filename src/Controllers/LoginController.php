@@ -40,15 +40,15 @@ class LoginController
                 $_SESSION['prenom'] = $user['prenom'];
                 $_SESSION['nom'] = $user['nom'];
 
-                // if ($remember) {
-                //     setcookie('username', $username, time() + (86400 * 30), "/");
-                // } else {
-                //     setcookie('username', '', time() - 3600, "/");
-                // }
-                // echo json_encode([
-                //     'success' => true,
-                //     'role' => $user['role_id']
-                // ]);
+                if ($remember) {
+                    setcookie('username', $username, time() + (86400 * 30), "/");
+                } else {
+                    setcookie('username', '', time() - 3600, "/");
+                }
+                echo json_encode([
+                    'success' => true,
+                    'role' => $user['role_id']
+                ]);
                 return;
             } else {
                 echo json_encode([

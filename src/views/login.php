@@ -47,6 +47,13 @@
                 <span class="text-danger" id="password_error"></span>
               </div>
 
+              <!-- Case à cocher "Se souvenir de moi" -->
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="remember" id="remember" />
+                <label class="form-check-label" for="remember">
+                  Se souvenir de moi
+                </label>
+              </div>
 
               <div class="pt-1 mb-3 ">
                 <input type="submit" name="valider"  class="btn btn-warning btn-lg btn-block" type="button" />
