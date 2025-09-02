@@ -16,8 +16,10 @@
         <div class="page-wrap d-flex flex-row align-items-center mt-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 ">
-                        <img src="../Assets/images/LOGOZOO.png" class="img-fluid rounded-circle shadow-sm" alt="logo" />
+                    <div class="col-md-2 ">
+                        <a href="./login">
+                        <img src="./images/LOGOZOO.png" class="img-fluid  shadow-sm " alt="logo" />
+                        </a>
                     </div>
                     <div class="col-md-9 mt-5">
                         <h3 class="font-weight-light">Mot de passe oublié ?</h3>

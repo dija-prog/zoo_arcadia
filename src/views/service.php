@@ -90,7 +90,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="card" style="width: 18rem;">
-                        <img src="./images/tarin.jpg" class="img-fluid " alt="Train">
+                        <img src="./images/train.jpg" class="img-fluid " alt="Train">
                         <div class="card-body bg-dark">
                             <h5 class="card-title text-warning">Petit train</h5>
                             <p class="card-text text-white">Découvrez le zoo autrement à bord de notre petit train ! Une manière relaxante et ludique de parcourir le parc tout en profitant d'une vue panoramique sur les habitats des animaux. This content is a little bit longer.</p>

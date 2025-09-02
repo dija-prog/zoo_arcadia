@@ -10,11 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 })
 
-
-
-
-
-
 // suprimer un utilisateur
 
 function confirmationSup(){
@@ -27,9 +22,7 @@ function confirmationSup(){
         alert("la suppression a été annulée")
     }
 
-
 }
-
 
 
 document.addEventListener('DOMContentLoaded', function() {

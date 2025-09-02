@@ -10,7 +10,7 @@
     <div class="text-center bg-white p-5 rounded-3 shadow">
         <h2 class="text-success mb-4"></h2>Mot de passe réinitialisé avec succès !</h2>
         <p class="text-muted mb-4">Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.</p>
-        <a href="/login" class="btn btn-success btn-login">Se connecter</a>
+        <a href="./login" class="btn btn-success btn-login">Se connecter</a>
     </div>
 </body>
 </html>
