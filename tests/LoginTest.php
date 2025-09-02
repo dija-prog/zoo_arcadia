@@ -1,8 +1,9 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../app/controllers/LoginController.php';
-require_once __DIR__ . '/../app/models/UserModel.php';
+use App\Controllers\LoginController;
+use App\Models\UserModel;
+
 
 class LoginTest extends TestCase
 {
