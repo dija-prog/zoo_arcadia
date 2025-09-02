@@ -1,41 +1,59 @@
 <?php
-namespace Tests;
-
 use PHPUnit\Framework\TestCase;
-use App\Controllers\AnimalController;
-use App\Models\AnimalModel;
 
-class AnimalControllerTest extends TestCase
+use App\Controllers\LoginController;
+use App\Models\UserModel;
+
+
+class LoginTest extends TestCase
 {
-    public function testProcessAddAnimalSuccess(): void
+    private $controller;
+
+    protected function setUp(): void
     {
-        // On simule le modèle
-        $mockModel = $this->createMock(AnimalModel::class);
-        $mockModel->method('addAnimal')->willReturn(true);
+        // ⚠️ Tu peux mocker UserModel pour éviter d’appeler la vraie BDD
+        $mockUserModel = $this->createMock(UserModel::class);
+        $mockUserModel->method('getUserByUsername')
+            ->willReturn([
+                'username' => 'john',
+                'password' => password_hash('secret', PASSWORD_BCRYPT),
+                'role_id'  => 1,
+                'prenom'   => 'John',
+                'nom'      => 'Doe'
+            ]);
 
-        // On injecte le modèle simulé dans le contrôleur
-        $controller = new AnimalController($mockModel);
-
-        $data = [
-            'animal_nom' => 'Lion',
-            'id_classe'  => 1,
-            'habitat_id' => 2
-        ];
-
-        $this->assertTrue($controller->processAddAnimal($data));
+        $this->controller = new LoginController($mockUserModel);
     }
 
-    public function testProcessAddAnimalFailsWithMissingData(): void
+    public function testAuthenticateSuccess()
     {
-        $mockModel = $this->createMock(AnimalModel::class);
-        $controller = new AnimalController($mockModel);
+        $_POST['username'] = 'john';
+        $_POST['password'] = 'secret';
+        $_POST['remember'] = 'on';
 
-        $data = [
-            'animal_nom' => '', // manquant
-            'id_classe'  => 1,
-            'habitat_id' => 2
-        ];
+        ob_start();
+        $this->controller->authenticate();
+        $output = ob_get_clean();
 
-        $this->assertFalse($controller->processAddAnimal($data));
+        $data = json_decode($output, true);
+
+        $this->assertTrue($data['success']);
+        $this->assertEquals(1, $data['role']);
+        $this->assertArrayHasKey('username', $_SESSION);
+    }
+
+    public function testAuthenticateFailWrongPassword()
+    {
+        $_POST['username'] = 'john';
+        $_POST['password'] = 'wrong';
+
+        ob_start();
+        $this->controller->authenticate();
+        $output = ob_get_clean();
+
+        $data = json_decode($output, true);
+
+        $this->assertFalse($data['success']);
+        $this->assertEquals('Mot de passe incorrect', $data['message']);
     }
 }
