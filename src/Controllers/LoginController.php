@@ -10,10 +10,11 @@ use App\Models\UserModel;
 class LoginController
 {
     private $userModel;
-    public function __construct()
-    {
-        $this->userModel = new UserModel();
-    }
+    public function __construct(UserModel $userModel = null)
+{
+    $this->userModel = $userModel ?: new UserModel();
+}
+
 
 
     public function showLogin()
