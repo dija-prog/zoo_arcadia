@@ -41,7 +41,7 @@ class LoginController
                 $_SESSION['nom'] = $user['nom'];
 
                 if ($remember) {
-                    setcookie('username', $username, time() + (86400 * 30), "/");
+                    setcookie('username', $username, time() + (86400 * 30), "/" ,"", true, true);
                 } else {
                     setcookie('username', '', time() - 3600, "/");
                 }
