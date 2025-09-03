@@ -30,11 +30,19 @@ jobs:
       #     sudo pecl install mongodb-1.20.0
       #     echo "extension=mongodb.so" >> $GITHUB_ENV
 
-        
       - name: Install PHPUnit globally
         run: composer global require phpunit/phpunit:^10
+
+      #  Run Unit Tests without database
       - name: Run Unit Tests
         run: $HOME/.composer/vendor/bin/phpunit --testsuite=Unit --testdox
+        env:
+          # On définit des variables vides ou fictives pour s'assurer que la DB n'est jamais appelée
+          DB_HOST: ''
+          DB_PORT: ''
+          DB_DATABASE: ''
+          DB_USERNAME: ''
+          DB_PASSWORD: ''
 
 
   integration-tests:
@@ -67,6 +75,9 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist
+
+      - name: Wait for MySQL to start
+        run: sleep 10
 
       - name: Import database schema
         run: mysql -h 127.0.0.1 -uroot -proot zoo_arcadia_test < database/schema.sql
