@@ -24,6 +24,12 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist
+      # - name: Install ext-mongodb
+      #   run: |
+      #     sudo pecl install mongodb-1.20.0
+      #     echo "extension=mongodb.so" >> $GITHUB_ENV
+
+        run: composer install --ignore-platform-req=ext-mongodb
 
       - name: Run Unit Tests
         run: vendor/bin/phpunit --testsuite=Unit --testdox
