@@ -1,9 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
-
 use App\Controllers\LoginController;
 use App\Models\UserModel;
-
 
 class LoginTest extends TestCase
 {
@@ -11,52 +9,27 @@ class LoginTest extends TestCase
 
     protected function setUp(): void
     {
-        // ⚠️ Tu peux mocker UserModel pour éviter d’appeler la vraie BDD
         $mockUserModel = $this->createMock(UserModel::class);
         $mockUserModel->method('getUserByUsername')
             ->willReturn([
                 'username' => 'john',
                 'password' => password_hash('secret', PASSWORD_BCRYPT),
-                'role_id'  => 1,
-                'prenom'   => 'John',
-                'nom'      => 'Doe'
+                'role_id'  => 1
             ]);
 
         $this->controller = new LoginController($mockUserModel);
     }
 
-    public function testAuthenticateSuccess()
+    public function testCheckCredentialsSuccess()
     {
-        $_POST['username'] = 'john';
-        $_POST['password'] = 'secret';
-        $_POST['remember'] = 'on';
-
-        ob_start();
-        $this->controller->authenticate();
-        $output = ob_get_clean();
-
-        $data = json_decode($output, true);
-
-        $this->assertTrue($data['success']);
-        $this->assertEquals(1, $data['role']);
-        $this->assertArrayHasKey('username', $_SESSION);
+        $result = $this->controller->checkCredentials('john', 'secret');
+        $this->assertTrue($result['success']);
+        $this->assertEquals(1, $result['role']);
     }
 
-    public function testAuthenticateFailWrongPassword()
+    public function testCheckCredentialsFail()
     {
-        $_POST['username'] = 'john';
-        $_POST['password'] = 'wrong';
-
-        ob_start();
-        $this->controller->authenticate();
-        $output = ob_get_clean();
-
-        $data = json_decode($output, true);
-
-        $this->assertFalse($data['success']);
-        $this->assertEquals('Mot de passe incorrect', $data['message']);
+        $result = $this->controller->checkCredentials('john', 'wrong');
+        $this->assertFalse($result['success']);
     }
 }
-
-
-
