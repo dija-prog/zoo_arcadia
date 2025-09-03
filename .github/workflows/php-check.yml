@@ -31,8 +31,11 @@ jobs:
       #     echo "extension=mongodb.so" >> $GITHUB_ENV
 
         
+      - name: Install PHPUnit globally
+        run: composer global require phpunit/phpunit:^10
       - name: Run Unit Tests
-        run: vendor/bin/phpunit --testsuite=Unit --testdox
+        run: $HOME/.composer/vendor/bin/phpunit --testsuite=Unit --testdox
+
 
   integration-tests:
     runs-on: ubuntu-latest
