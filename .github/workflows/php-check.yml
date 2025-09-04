@@ -84,6 +84,10 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist
+        
+      - name: Install PHPUnit globally
+        run: composer global require phpunit/phpunit:^10
+
 
       - name: Wait for MySQL to start
         run: sleep 10
