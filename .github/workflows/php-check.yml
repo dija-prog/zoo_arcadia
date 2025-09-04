@@ -84,7 +84,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist
-        
+
       - name: Install PHPUnit globally
         run: composer global require phpunit/phpunit:^10
 
@@ -102,4 +102,4 @@ jobs:
           DB_DATABASE: zoo_arcadia_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        run: vendor/bin/phpunit --testsuite=Integration --testdox
+        run: phpunit --testsuite=Integration --testdox
