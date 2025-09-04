@@ -73,6 +73,15 @@ jobs:
           extensions: mbstring, xml, pdo, pdo_mysql
           coverage: none
 
+      #  Installer la version exacte de l'extension MongoDB
+      - name: Install exact MongoDB extension version
+        run: |
+          sudo phpdismod mongodb || true
+          sudo pecl install -f mongodb-1.20.0
+          echo "extension=mongodb.so" >> $GITHUB_ENV
+          echo "extension=mongodb.so" | sudo tee /etc/php/8.2/cli/conf.d/20-mongodb.ini
+
+
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist
 
