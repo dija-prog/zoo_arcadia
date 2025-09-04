@@ -86,4 +86,20 @@ class LoginController
 
         require_once __DIR__ . '/../views/login.php';
     }
+
+    public function checkCredentials(string $username, string $password): array
+{
+    $user = $this->userModel->getUserByUsername($username);
+
+    if (!$user) {
+        return ['success' => false];
+    }
+
+    if (!password_verify($password, $user['password'])) {
+        return ['success' => false];
+    }
+
+    return ['success' => true, 'role' => $user['role_id']];
+}
+
 }

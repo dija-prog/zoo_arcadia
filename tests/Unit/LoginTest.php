@@ -1,14 +1,17 @@
 <?php
+namespace Tests\Unit;
+
 use PHPUnit\Framework\TestCase;
 use App\Controllers\LoginController;
 use App\Models\UserModel;
 
 class LoginTest extends TestCase
 {
-    private $controller;
+    private LoginController $controller;
 
     protected function setUp(): void
     {
+        // Création d'un mock pour UserModel pour ne pas toucher à la BDD
         $mockUserModel = $this->createMock(UserModel::class);
         $mockUserModel->method('getUserByUsername')
             ->willReturn([
@@ -20,14 +23,14 @@ class LoginTest extends TestCase
         $this->controller = new LoginController($mockUserModel);
     }
 
-    public function testCheckCredentialsSuccess()
+    public function testCheckCredentialsSuccess(): void
     {
         $result = $this->controller->checkCredentials('john', 'secret');
         $this->assertTrue($result['success']);
         $this->assertEquals(1, $result['role']);
     }
 
-    public function testCheckCredentialsFail()
+    public function testCheckCredentialsFail(): void
     {
         $result = $this->controller->checkCredentials('john', 'wrong');
         $this->assertFalse($result['success']);
