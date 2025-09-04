@@ -120,7 +120,7 @@ CREATE TABLE `commentaires_habitats` (
   `comment_id` int(11) NOT NULL,
   `habitat_id` int(11) NOT NULL,
   `commentaire` text NOT NULL,
-  `date_commentaire` date DEFAULT curdate()
+  `date_commentaire` date DEFAULT DATETIME 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
