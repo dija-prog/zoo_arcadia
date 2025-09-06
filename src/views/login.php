@@ -23,25 +23,19 @@
             alt="Login image" class="w-100 vh-100">
         </div>
         <div class=" login col-sm-6 text-black ">
-          <?php if(isset($error)){ ?>
-            <div class="alert alert-danger" role="alert">
-              <?php echo $error ?>
-            </div>
-          <?php } ?>
-          <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4  pt-4 pt-xl-0 mt-xl-n5">
+          <div class="d-flex align-items-center px-5 ms-xl-4  pt-4 pt-xl-0 mt-xl-n5">
             <form id="login-form" method="POST" action="/login">
               <div class="back text-success fw-bold d-flex justify-content-start mt-4">
                 <a href="./Accueil"><i class="fa-solid fa-house "></i>Accueil</a>
               </div>
               <h3 class=" conx fw-bold mt-5 mb-3 pb-3 ms-xl-4 ">Connexion</h3>
-
-              <div data-mdb-input-init class="form-outline text-dark mb-4">
+              <div class=" text-dark mb-4">
                 <label class="form-label">Email</label>
                 <input id="email" name="username" type="email" placeholder="exemple@gmail.fr" class="form-control form-control-lg" value="<?php echo isset($_COOKIE['username']) ? htmlspecialchars($_COOKIE['username']) : ''; ?>"  required/>
                 <span class="text-danger" id="email_error"></span>
               </div>
 
-              <div data-mdb-input-init class="form-outline text-dark mb-4">
+              <div  class=" text-dark mb-4">
                 <label class="form-label">Mot de passe</label>
                 <input id="password" name="password" type="password" placeholder="mot de passe" class="form-control form-control-lg" required/>
                 <span class="text-danger" id="password_error"></span>

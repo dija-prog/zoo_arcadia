@@ -122,9 +122,8 @@ CREATE TABLE rapport_veterinaire (
     FOREIGN KEY (animal_id) REFERENCES animal(animal_id)
 );
 
--- ========================
+
 -- Données de test
--- ========================
 
 -- Table : service
 INSERT INTO service (service_nom, description) VALUES
@@ -158,7 +157,7 @@ INSERT INTO habitat (nom, description) VALUES
 -- Table : commentaires_habitats
 INSERT INTO commentaires_habitats (habitat_id, commentaire, date_commentaire) VALUES
 (1, 'Très réaliste et bien entretenu', '2025-09-01'),
-(2, 'Super ambiance sonore !', '2025-09-02');
+(2, 'Super ambiance !', '2025-09-02');
 
 -- Table : role
 INSERT INTO role (nom_role) VALUES

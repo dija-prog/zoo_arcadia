@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\AnimalModel;
-
+use App\Models\HabitatModel; 
 class AnimalController
 {
     private $model;
@@ -18,11 +18,7 @@ class AnimalController
         require_once __DIR__ . '/../views/admin.php';
     }
 
-    public function __construct()
-    {
-        $this->model = new AnimalModel();
-    }
-
+    
     public function addAnimal() 
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST")  

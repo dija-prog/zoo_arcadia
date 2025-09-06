@@ -13,15 +13,12 @@ class UserModel
     $db = new Database();
     $this->pdo = $db->getPdo();
   }
-
-
 public function getUserByUsername($username)
 {
   $query = $this->pdo->prepare('SELECT * FROM utilisateur WHERE username = ?');
   $query->execute([$username]);
   return $query->fetch(PDO::FETCH_ASSOC);
 }
-
 public function getNonAdminUsers()
 {
     $query = "
@@ -33,8 +30,8 @@ public function getNonAdminUsers()
     $stmt = $this->pdo->prepare($query);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
 
+}
 
   public function addUser($nom, $prenom, $role_id, $username, $password)
   {

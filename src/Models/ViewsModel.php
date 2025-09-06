@@ -10,8 +10,6 @@ class ViewsModel {
     private $collection;
     public function __construct()
     {
-
-
         try {
             $db = MongoConnection::getInstance();
             $this->collection = $db->animals_views;
@@ -19,11 +17,7 @@ class ViewsModel {
             // Gérer l'erreur
             error_log("Erreur d'initialisation de la collection: " . $e->getMessage());
             throw $e;
-        }
-        // $db = getMongoClient();
-        // $this->collection = $db->animals_views;
-        
-        
+        }    
     }
 
     public function incrementView($animal_nom)
@@ -34,10 +28,8 @@ class ViewsModel {
                 
                 ['animal_nom' => $animal_nom,
                 'views'=> 1]
-
             );
-        }else{
-            
+        }else{            
             $result = $this->collection->updateOne(
                 
                 ['animal_nom' => $animal_nom],

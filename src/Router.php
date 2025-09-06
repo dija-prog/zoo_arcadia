@@ -71,8 +71,7 @@ class Router
                 '/ShowAnimalsStatics' => ['App\\Controllers\\AdminController', 'ShowAnimalsStatics'],
 
                 '/animaux' => ['App\\Controllers\\AnimalController', 'animalFilter'],
-                
-                '/animaux' => ['App\\Controllers\\AnimalController', 'animalFilter'],
+            
                 '/animaleFood()' => ['App\\Controllers\\VeterinaireController', 'animaleFood()'],
 
                 
