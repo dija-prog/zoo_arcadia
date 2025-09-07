@@ -83,7 +83,7 @@ public function getNonAdminUsers()
     }
 
     // Requête SQL
-    $sql = "SELECT * FROM utilisateur WHERE reset_token = :token AND reset_token_expire > NOW() + 1 HOUR";
+    $sql = "SELECT * FROM utilisateur WHERE reset_token = :token AND reset_token_expire > NOW() ";
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute(['token' => $token]);
 
