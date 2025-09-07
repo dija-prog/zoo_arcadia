@@ -190,5 +190,4 @@ INSERT INTO food (animal_nom, foodType, quantite, Date, Heure, animal_id) VALUES
 INSERT INTO rapport_veterinaire (etat, detail, animal_id, quantite, foodType, date) VALUES
 ('Bonne santé', 'RAS', 1, 5, 'Viande', '2025-09-01'),
 ('Petite blessure', 'Soins à la patte', 2, 10, 'Feuilles', '2025-09-02'),
-('Surveillance', 'Bec abîmé', 3, 2, 'Graines', '2025-09-02');
 

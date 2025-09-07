@@ -18,7 +18,7 @@
                 <h3 class="text-center mb-4">Réinitialisation du mot de passe</h3>
                 <form method="post" action="/reset_password">
 
-                    <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token'] ?? ''); ?>">
+                    <input type="hidden" name="token" value="<?php echo htmlspecialchars($_POST['token'] ?? ''); ?>">
                     <!-- Champ pour le nouveau mot de passe -->
                     <div class="form-outline mb-4">
                         <label for="password" class="form-label">Nouveau mot de passe</label>
